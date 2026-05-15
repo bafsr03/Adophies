@@ -1,0 +1,52 @@
+/* Adophies fix – tighten spacing in feature row */
+.feature-row__text {
+  margin-top: -20px;
+}
+
+.feature-row__subtext {
+  margin-bottom: 8px;
+}
+
+.feature-row .btn {
+  margin-top: 10px;
+  background-color: #FEFEF7;
+  color: #544541;
+  border: 1px solid #DEB071;
+  font-family: ‘Cormorant Garamond’, serif;
+  font-size: 16px;
+  padding: 12px 28px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.feature-row .btn:hover {
+  background-color: #F6D29E;
+  color: #fff;
+}
+/* Floating sparkle near the button */
+.feature-row .btn::after {
+  content: “”;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-image: url(‘YOUR-SPARKLE-URL-HERE’);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: -10px;
+  right: -10px;
+  animation: sparkleFloat 4s infinite ease-in-out;
+}
+
+/* Create a relative container so the sparkle can float around the button */
+.feature-row .btn {
+  position: relative;
+  overflow: visible;
+}
+
+/* Soft floating animation */
+@keyframes sparkleFloat {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  50% { transform: translateY(-5px) rotate(10deg); opacity: 0.8; }
+  100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+}
