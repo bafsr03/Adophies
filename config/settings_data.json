@@ -1,1 +1,944 @@
-{"current":{"color_text":"#544541","color_body_text":"#544541","color_sale_text":"#deb071","color_button":"#deb071","color_button_text":"#feefe7","color_small_button_text_border":"#deb071","color_text_field_text":"#deb071","color_text_field_border":"#deb071","color_text_field":"#feefe7","color_image_overlay_text":"#deb071","color_image_overlay":"#fffaec","image_overlay_opacity":79,"color_borders":"#fffaec","color_body_bg":"#fffaec","type_header_font":"cormorant_n4","type_header_base_size":27,"type_base_font":"cormorant_n3","type_base_size":14,"social_facebook_link":"https://shopadophies.com/shopify","social_instagram_link":"https://www.instagram.com/shopadophies/","favicon":"shopify://shop_images/Pink_Green_Modern_Illustrated_Bar_Logo_12_x_12_in_8.png","checkout_logo_image":"shopify://shop_images/1000048768.png","checkout_logo_position":"left","checkout_logo_size":"large","checkout_body_background_color":"#fff6f7","checkout_input_background_color_mode":"white","checkout_sidebar_background_color":"#ffffff","checkout_heading_font":"Playfair Display","checkout_body_font":"Playfair Display","checkout_accent_color":"#212022","checkout_button_color":"#434341","checkout_error_color":"#212022","sections":{"header":{"type":"header","custom_css":[],"settings":{"align_logo":"left","logo":"shopify://shop_images/DISCOVER_OUR_DREAMY_WORLDS_3.png","logo_max_width":200,"main_linklist":"home","message":true,"home_page_only":true,"message_text":"Babe mail starts at 4.99/ All dresses are 20%  off - no code needed","message_link":"shopify://collections/shop-all","color_bg":"#feefe7","color_text":"#544541"}},"feature-row":{"type":"feature-row","custom_css":[],"settings":{"image":"shopify://shop_images/Brown_Photocentric_Outfit_of_The_Day_Instagram_Story_12_x_12_in_8.5_x_11_in_7.png","layout":"left","title":"","text":"","button_label":"SHOP YOUR FAVORITES HERE","button_link":"shopify://collections"}},"feature-columns":{"type":"feature-columns","blocks":{"feature-columns-0":{"type":"text_block","settings":{"enable_image":true,"image":"shopify://shop_images/png_20230707_021418_0000.png","title":"Add aHVHVV","text":"<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>","button_label":"","button_link":""}},"feature-columns-1":{"type":"text_block","settings":{"enable_image":true,"title":"Add a title or tagline","text":"<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>","button_label":"","button_link":""}},"feature-columns-2":{"type":"text_block","settings":{"enable_image":true,"title":"Add a title or tagline","text":"<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>","button_label":"","button_link":""}}},"block_order":["feature-columns-0","feature-columns-1","feature-columns-2"],"settings":{"title":"","align_text":"left"}},"collection":{"type":"collection","settings":{"title":"MOVE WITH GRACE, SHINE WITH CONFIDENCE","collection":"atheletic-ballet-core","grid":4,"rows":1,"show_vendor":false,"show_view_all":true}},"quotes":{"type":"quotes","blocks":{"quotes-0":{"type":"quote","disabled":true,"settings":{"quote":"<p>Add customer reviews and testimonials to showcase your store\u2019s happy customers.</p>","author":"Author's name"}},"quotes-1":{"type":"quote","disabled":true,"settings":{"quote":"<p>Add customer reviews and testimonials to showcase your store\u2019s happy customers.</p>","author":"Author's name"}},"quotes-2":{"type":"quote","disabled":true,"settings":{"quote":"<p>Add customer reviews and testimonials to showcase your store\u2019s happy customers.</p>","author":"Author's name"}},"quote_TFEhVT":{"type":"quote","settings":{"quote":"<p>Add customer reviews and testimonials to showcase your store\u2019s happy customers.</p>","author":"Author's name"}}},"block_order":["quotes-0","quotes-1","quotes-2","quote_TFEhVT"],"disabled":true,"settings":{"title":""}},"image-bar":{"type":"image-bar","blocks":{"image-bar-0":{"type":"image","settings":{"alignment":"center","link":"","cta_label":""}},"image-bar-1":{"type":"image","disabled":true,"settings":{"alignment":"center","link":"","cta_label":""}}},"block_order":["image-bar-0","image-bar-1"],"settings":{"section_height":"medium"}},"footer":{"type":"footer","blocks":{"footer-0":{"type":"link_list","settings":{"title":"Quick links","menu":"footer"},"disabled":true},"footer-1":{"type":"newsletter","settings":{"title":"Newsletter"},"disabled":true}},"block_order":["footer-0","footer-1"],"settings":{"show_payment_icons":false,"color_footer_bg":"#fffaec","color_footer_text":"#544541","show_locale_selector":true,"show_currency_selector":true}},"cart-template":{"type":"cart-template","settings":{"cart_ajax_enable":true,"cart_notes_enable":true}},"collection-template":{"type":"collection-template","settings":{"layout":"grid","grid":3,"rows":2,"show_collection_image":true,"show_vendor":false,"sort_enable":true,"tags_enable":true}},"product-template":{"type":"product-template","settings":{"show_quantity_selector":false,"show_vendor":false,"enable_payment_button":true,"show_share_buttons":true,"media_size":"medium","enable_image_zoom":true,"enable_video_looping":false}},"product-recommendations":{"type":"product-recommendations","settings":{"show_product_recommendations":true,"heading":"You may also like","show_vendor":false}},"a7adf521-fc40-41c5-9883-2a042b8de8ee":{"type":"custom-content","blocks":{"a7adf521-fc40-41c5-9883-2a042b8de8ee-16887230326060ba19-1":{"type":"image","disabled":true,"settings":{"image":"shopify://shop_images/Charmed_Instagram_Post_3.png","width":"50%","alignment":"center"}},"a7adf521-fc40-41c5-9883-2a042b8de8ee-16887230326060ba19-0":{"type":"text","disabled":true,"settings":{"title":"THE DANTIEST CHARMS EXIST HERE","text":"<p>Browse through our collection of charms to create the perfect personalized gift or keepsake for yourself!</p>","width":"50%","alignment":"center","align_text":"left"}}},"block_order":["a7adf521-fc40-41c5-9883-2a042b8de8ee-16887230326060ba19-1","a7adf521-fc40-41c5-9883-2a042b8de8ee-16887230326060ba19-0"],"disabled":true,"settings":{"title":"LET'S GET CHARMED"}},"c19ac68e-94b6-48aa-8e55-4661fcca3d8c":{"type":"featured-product","settings":{"featured_product":"virelle-dress","show_quantity_selector":false,"show_vendor":false,"enable_payment_button":true,"show_share_buttons":true,"media_size":"medium","enable_image_zoom":true,"enable_video_looping":false}},"hero_PBQCD9":{"type":"hero","settings":{"image":"shopify://shop_images/For_the_girls_who_love_pretty_things_3.png","alignment":"center","hero_layout":"full_width","hero_size":"adapt","text_size":"large","title":"","text":"","button_label":"","button_link":"shopify://collections/atheletic-ballet-core"}},"newsletter_NxrfJT":{"type":"newsletter","name":"Newsletter","settings":{"section_title":"Subscribe to our newsletter","subheading":"<p>Promotions, new products and sales. Directly to your inbox.</p>","show_background":true}},"image_bar_dr3Tbi":{"type":"image-bar","blocks":{"image_9VtxBN":{"type":"image","settings":{"alignment":"center","link":"","cta_label":""}}},"block_order":["image_9VtxBN"],"disabled":true,"name":"Gallery","settings":{"section_height":"medium"}},"map_N4kRDY":{"type":"map","name":"Map","settings":{"heading":"Our store","address":"<p>202 Pine ST <br/>Abilene, TX Suite 103</p><p>Tuesday - Saturday, 10:30am - 6pm<br/></p>","map_address":"202 pine st abilene tx","button_text":"Get directions","show_pin":true,"api_key":"","background_image":"shopify://shop_images/Scent_bar_4_x_5_in_7.png","background_image_position":"center center"}},"collection_fMCNnX":{"type":"collection","name":"Featured collection","settings":{"title":"Featured collection","collection":"new-arrivals","grid":2,"rows":1,"show_vendor":false,"show_view_all":false}},"video_UDi8LY":{"type":"video","disabled":true,"name":"Video","settings":{"image_position":"center center","video_link":"https://www.youtube.com/watch?v=_9VUPq3SxOc","show_overlay":true,"style":"image_with_play","height":"medium","video_title":"","text_size":"medium"}},"feature_row_cV3jxz":{"type":"feature-row","disabled":true,"name":"Image with text","settings":{"layout":"left","title":"Image with text","text":"<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>","button_label":"","button_link":""}},"hero_video_main":{"type":"hero-video","settings":{"eyebrow":"Adophies \u2014 est. for the girls","title":"<p>For the girls<br>who love <em>pretty things</em>.</p>","subtitle":"A boutique in Abilene with four worlds inside: dresses, hats made yours, charms to mix and match, and softness for the littlest ones.","cta_label":"Step inside","cta_link":"shopify://collections","show_spinner":true,"spinner_link":"/pages/charm-bar"}},"marquee_top":{"type":"marquee-strip","blocks":{"mqt_p1":{"type":"phrase","settings":{"text":"For the girls who love pretty things"}},"mqt_p2":{"type":"phrase","settings":{"text":"Adophies Cocktail Club"}},"mqt_p3":{"type":"phrase","settings":{"text":"Hat Bar \u00b7 Charm Bar \u00b7 Dress Bar"}},"mqt_p4":{"type":"phrase","settings":{"text":"Made with softness in Abilene, TX"}}},"block_order":["mqt_p1","mqt_p2","mqt_p3","mqt_p4"],"settings":{"tone":"pink","speed":28}},"four_pillars_main":{"type":"four-pillars","blocks":{"fp_w":{"type":"pillar","settings":{"title":"Women's Clothing","subtitle":"Dresses, sets and everyday softness.","cta":"Shop women's","link":"shopify://collections","fallback_asset":"pillar-women.jpg"}},"fp_h":{"type":"pillar","settings":{"title":"Hat Bar","subtitle":"Pressed, burned, made yours.","cta":"Visit the Hat Bar","link":"shopify://collections","fallback_asset":"pillar-hat.jpg"}},"fp_c":{"type":"pillar","settings":{"title":"Charm Bar","subtitle":"Tiny, dainty, mix-and-match.","cta":"Explore charms","link":"/pages/charm-bar","fallback_asset":"pillar-charm.jpg"}},"fp_b":{"type":"pillar","settings":{"title":"Baby","subtitle":"Sweet things for the littlest ones.","cta":"Shop baby","link":"shopify://collections","fallback_asset":"pillar-baby.jpg"}}},"block_order":["fp_w","fp_h","fp_c","fp_b"],"settings":{"eyebrow":"Welcome to Adophies","title":"Four worlds. One boutique.","subtitle":"Pick your aisle."}},"jewelry_teaser_main":{"type":"jewelry-3d-teaser","blocks":{"jt_m1":{"type":"model","settings":{"name":"Charm 01","price":"$48","material":"14k Gold-filled","dimensions":"18mm x 24mm"}},"jt_m2":{"type":"model","settings":{"name":"Charm 02","price":"$64","material":"Sterling Silver","dimensions":"20mm x 22mm"}},"jt_m3":{"type":"model","settings":{"name":"Charm 03","price":"$52","material":"14k Gold-filled","dimensions":"16mm x 26mm"}}},"block_order":["jt_m1","jt_m2","jt_m3"],"settings":{"eyebrow":"The Charm Bar","title":"Pieces that move with you","subtitle":"Hover, spin, and explore. Each piece hand-curated for the girls who love pretty things.","cta_label":"View the full Charm Bar","cta_link":"/pages/charm-bar"}},"editorial_hat":{"type":"editorial-split","settings":{"reverse":false,"fallback_asset":"editorial-1.jpg","eyebrow":"Inside the boutique","title":"<p>The Hat Bar.<br><em>Pressed, burned, made yours.</em></p>","body":"<p>Pick the brim. Pick the band. We shape, brand and finish each hat in the shop so you walk out with something nobody else has.</p>","cta_label":"Visit the Hat Bar","cta_link":"shopify://collections"}},"marquee_mid":{"type":"marquee-strip","blocks":{"mqm_p1":{"type":"phrase","settings":{"text":"Soft girl summer, all year"}},"mqm_p2":{"type":"phrase","settings":{"text":"Adophies"}},"mqm_p3":{"type":"phrase","settings":{"text":"\u2726"}},"mqm_p4":{"type":"phrase","settings":{"text":"Charm. Press. Spin."}}},"block_order":["mqm_p1","mqm_p2","mqm_p3","mqm_p4"],"settings":{"tone":"gold","speed":24}},"editorial_charm":{"type":"editorial-split","settings":{"reverse":true,"fallback_asset":"editorial-2.jpg","eyebrow":"Now in 3D","title":"<p>Spin every charm<br>before you commit.</p>","body":"<p>Click any piece on the Charm Bar to rotate it, zoom in, and read the specs. Build a little world for your wrist, your ears, your fingers.</p>","cta_label":"Open the Charm Bar","cta_link":"/pages/charm-bar"}}},"content_for_index":["hero_video_main","marquee_top","four_pillars_main","jewelry_teaser_main","editorial_hat","collection_fMCNnX","marquee_mid","editorial_charm","map_N4kRDY","newsletter_NxrfJT"],"_adophies_previous_index":["hero_PBQCD9","collection_fMCNnX","a7adf521-fc40-41c5-9883-2a042b8de8ee","quotes","c19ac68e-94b6-48aa-8e55-4661fcca3d8c","image_bar_dr3Tbi","map_N4kRDY","newsletter_NxrfJT","video_UDi8LY","feature_row_cV3jxz"]},"presets":{"Default":{"sections":{"header":{"type":"header","settings":{}},"hero-1":{"type":"hero","settings":{"hero_size":"large","text_size":"large"}},"feature-row":{"type":"feature-row","settings":{}},"feature-columns":{"type":"feature-columns","blocks":{"feature-columns-0":{"type":"text_block","settings":{}},"feature-columns-1":{"type":"text_block","settings":{}},"feature-columns-2":{"type":"text_block","settings":{}}},"block_order":["feature-columns-0","feature-columns-1","feature-columns-2"],"settings":{"title":""}},"collection":{"type":"collection","settings":{"grid":4}},"hero-2":{"type":"hero","settings":{"text_size":"large"}},"quotes":{"type":"quotes","blocks":{"quotes-0":{"type":"quote","settings":{}},"quotes-1":{"type":"quote","settings":{}},"quotes-2":{"type":"quote","settings":{}}},"block_order":["quotes-0","quotes-1","quotes-2"],"settings":{"title":""}},"image-bar":{"type":"image-bar","blocks":{"image-bar-0":{"type":"image","settings":{}},"image-bar-1":{"type":"image","settings":{}},"image-bar-2":{"type":"image","settings":{}}},"block_order":["image-bar-0","image-bar-1","image-bar-2"],"settings":{}},"footer":{"type":"footer","blocks":{"footer-0":{"type":"link_list","settings":{}},"footer-1":{"type":"newsletter","settings":{}}},"block_order":["footer-0","footer-1"],"settings":{"show_payment_icons":true}}},"content_for_index":["hero-1","feature-row","feature-columns","collection","hero-2","quotes","image-bar"]},"Light":{"color_text":"#162950","color_body_text":"#6d6d6d","color_sale_text":"#DA2F0C","color_borders":"#e4e4e4","color_button":"#DA2F0C","color_button_text":"#ffffff","color_small_button_text_border":"#162950","color_text_field":"#ffffff","color_text_field_text":"#162950","color_text_field_border":"#909090","color_image_overlay_text":"#ffffff","color_image_overlay":"#3d3d3d","image_overlay_opacity":40,"color_body_bg":"#f8f8f8","type_header_font":"muli_n6","type_header_base_size":26,"type_base_font":"muli_n4","type_base_size":18,"share_facebook":true,"share_twitter":true,"share_pinterest":true,"social_twitter_link":"","social_facebook_link":"","social_pinterest_link":"","social_instagram_link":"","social_tumblr_link":"","social_snapchat_link":"","social_youtube_link":"","social_vimeo_link":"","favicon":"","checkout_header_image":"","checkout_logo_image":"","checkout_logo_position":"left","checkout_logo_size":"small","checkout_body_background_image":"","checkout_body_background_color":"#ffffff","checkout_input_background_color_mode":"white","checkout_sidebar_background_image":"","checkout_sidebar_background_color":"#e8f3f6","checkout_heading_font":"Roboto","checkout_body_font":"Source Sans Pro","checkout_accent_color":"#1990c6","checkout_button_color":"#23314e","checkout_error_color":"#ff6d6d","sections":{"header":{"type":"header","settings":{"align_logo":"left","logo":"","logo_max_width":135,"main_linklist":"main-menu","message":true,"color_bg":"#162950","color_text":"#ffffff"}},"hero":{"type":"hero","settings":{"alignment":"center","hero_size":"x-large","text_size":"large"}},"slideshow":{"type":"slideshow","blocks":{"slideshow-0":{"type":"image","settings":{"image":"","alignment":"center center"}},"1492095993817":{"type":"image","settings":{"image":"","alignment":"center"}}},"block_order":["slideshow-0","1492095993817"],"settings":{"slideshow_height":"medium","text_size":"medium","autorotate":false,"autorotate_speed":5}},"featured-collections":{"type":"collection","settings":{"grid":3,"rows":1,"show_vendor":true,"show_view_all":true}},"product-template":{"type":"product-template","settings":{"show_quantity_selector":false,"show_vendor":false,"show_share_buttons":true,"media_size":"medium","enable_image_zoom":true,"enable_video_looping":false}},"collection-template":{"type":"collection-template","settings":{"layout":"grid","grid":2,"rows":2,"show_collection_image":true,"show_vendor":false,"sort_enable":true,"tags_enable":true}},"1492033809691":{"type":"map","settings":{}},"1492033877875":{"type":"quotes","blocks":{"1492033877875-0":{"type":"quote","settings":{}}},"block_order":["1492033877875-0"],"settings":{}},"1492033924902":{"type":"custom-content","blocks":{"1492033924902-0":{"type":"text","settings":{"width":"100%","alignment":"center","align_text":"center"}}},"block_order":["1492033924902-0"],"settings":{"title":""}},"1492096252560":{"type":"collection-list","blocks":{"1492096252560-0":{"type":"featured_collection","settings":{}},"1492096252560-1":{"type":"featured_collection","settings":{}},"1492096252560-2":{"type":"featured_collection","settings":{}}},"block_order":["1492096252560-0","1492096252560-1","1492096252560-2"],"settings":{"grid":3}},"blog-template":{"type":"blog-template","settings":{"layout":"grid","blog_show_author":true,"blog_show_date":false}},"article-template":{"type":"article-template","settings":{"blog_show_author":true,"blog_show_date":true,"show_share_buttons":true}},"cart-template":{"type":"cart-template","settings":{"cart_notes_enable":false}},"footer":{"type":"footer","blocks":{"link_list":{"type":"link_list","settings":{}},"text":{"type":"text","settings":{}},"newsletter":{"type":"newsletter","settings":{}}},"block_order":["link_list","text","newsletter"],"settings":{"color_footer_bg":"#f8f8f8","color_footer_text":"#6d6d6d"}}},"content_for_index":["hero","featured-collections","slideshow","1492033924902","1492096252560","1492033877875","1492033809691"]}},"platform_customizations":{"custom_css":[]}}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "color_text": "#544541",
+    "color_body_text": "#544541",
+    "color_sale_text": "#deb071",
+    "color_button": "#deb071",
+    "color_button_text": "#feefe7",
+    "color_small_button_text_border": "#deb071",
+    "color_text_field_text": "#deb071",
+    "color_text_field_border": "#deb071",
+    "color_text_field": "#feefe7",
+    "color_image_overlay_text": "#deb071",
+    "color_image_overlay": "#fffaec",
+    "image_overlay_opacity": 79,
+    "color_borders": "#fffaec",
+    "color_body_bg": "#fffaec",
+    "type_header_font": "cormorant_n4",
+    "type_header_base_size": 27,
+    "type_base_font": "cormorant_n3",
+    "type_base_size": 14,
+    "social_facebook_link": "https://shopadophies.com/shopify",
+    "social_instagram_link": "https://www.instagram.com/shopadophies/",
+    "favicon": "shopify://shop_images/Pink_Green_Modern_Illustrated_Bar_Logo_12_x_12_in_8.png",
+    "checkout_logo_image": "shopify://shop_images/1000048768.png",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "large",
+    "checkout_body_background_color": "#fff6f7",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_color": "#ffffff",
+    "checkout_heading_font": "Playfair Display",
+    "checkout_body_font": "Playfair Display",
+    "checkout_accent_color": "#212022",
+    "checkout_button_color": "#434341",
+    "checkout_error_color": "#212022",
+    "_adophies_previous_index": [
+      "hero_PBQCD9",
+      "collection_fMCNnX",
+      "a7adf521-fc40-41c5-9883-2a042b8de8ee",
+      "quotes",
+      "c19ac68e-94b6-48aa-8e55-4661fcca3d8c",
+      "image_bar_dr3Tbi",
+      "map_N4kRDY",
+      "newsletter_NxrfJT",
+      "video_UDi8LY",
+      "feature_row_cV3jxz"
+    ],
+    "sections": {
+      "header": {
+        "type": "header",
+        "custom_css": [],
+        "settings": {
+          "align_logo": "left",
+          "logo": "shopify://shop_images/DISCOVER_OUR_DREAMY_WORLDS_3.png",
+          "logo_max_width": 200,
+          "main_linklist": "home",
+          "message": true,
+          "home_page_only": true,
+          "message_text": "Babe mail starts at 4.99/ All dresses are 20%  off - no code needed",
+          "message_link": "shopify://collections/shop-all",
+          "color_bg": "#feefe7",
+          "color_text": "#544541"
+        }
+      },
+      "feature-row": {
+        "type": "feature-row",
+        "custom_css": [],
+        "settings": {
+          "image": "shopify://shop_images/Brown_Photocentric_Outfit_of_The_Day_Instagram_Story_12_x_12_in_8.5_x_11_in_7.png",
+          "layout": "left",
+          "title": "",
+          "text": "",
+          "button_label": "SHOP YOUR FAVORITES HERE",
+          "button_link": "shopify://collections"
+        }
+      },
+      "feature-columns": {
+        "type": "feature-columns",
+        "blocks": {
+          "feature-columns-0": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify://shop_images/png_20230707_021418_0000.png",
+              "title": "Add aHVHVV",
+              "text": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>",
+              "button_label": "",
+              "button_link": ""
+            }
+          },
+          "feature-columns-1": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "title": "Add a title or tagline",
+              "text": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>",
+              "button_label": "",
+              "button_link": ""
+            }
+          },
+          "feature-columns-2": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "title": "Add a title or tagline",
+              "text": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>",
+              "button_label": "",
+              "button_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "feature-columns-0",
+          "feature-columns-1",
+          "feature-columns-2"
+        ],
+        "settings": {
+          "title": "",
+          "align_text": "left"
+        }
+      },
+      "collection": {
+        "type": "collection",
+        "settings": {
+          "title": "MOVE WITH GRACE, SHINE WITH CONFIDENCE",
+          "collection": "atheletic-ballet-core",
+          "grid": 4,
+          "rows": 1,
+          "show_vendor": false,
+          "show_view_all": true
+        }
+      },
+      "quotes": {
+        "type": "quotes",
+        "blocks": {
+          "quotes-0": {
+            "type": "quote",
+            "disabled": true,
+            "settings": {
+              "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>",
+              "author": "Author's name"
+            }
+          },
+          "quotes-1": {
+            "type": "quote",
+            "disabled": true,
+            "settings": {
+              "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>",
+              "author": "Author's name"
+            }
+          },
+          "quotes-2": {
+            "type": "quote",
+            "disabled": true,
+            "settings": {
+              "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>",
+              "author": "Author's name"
+            }
+          },
+          "quote_TFEhVT": {
+            "type": "quote",
+            "settings": {
+              "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>",
+              "author": "Author's name"
+            }
+          }
+        },
+        "block_order": [
+          "quotes-0",
+          "quotes-1",
+          "quotes-2",
+          "quote_TFEhVT"
+        ],
+        "disabled": true,
+        "settings": {
+          "title": ""
+        }
+      },
+      "image-bar": {
+        "type": "image-bar",
+        "blocks": {
+          "image-bar-0": {
+            "type": "image",
+            "settings": {
+              "alignment": "center",
+              "link": "",
+              "cta_label": ""
+            }
+          },
+          "image-bar-1": {
+            "type": "image",
+            "disabled": true,
+            "settings": {
+              "alignment": "center",
+              "link": "",
+              "cta_label": ""
+            }
+          }
+        },
+        "block_order": [
+          "image-bar-0",
+          "image-bar-1"
+        ],
+        "settings": {
+          "section_height": "medium"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "footer-0": {
+            "type": "link_list",
+            "disabled": true,
+            "settings": {
+              "title": "Quick links",
+              "menu": "footer"
+            }
+          },
+          "footer-1": {
+            "type": "newsletter",
+            "disabled": true,
+            "settings": {
+              "title": "Newsletter"
+            }
+          }
+        },
+        "block_order": [
+          "footer-0",
+          "footer-1"
+        ],
+        "settings": {
+          "show_payment_icons": false,
+          "color_footer_bg": "#fffaec",
+          "color_footer_text": "#544541",
+          "show_locale_selector": true,
+          "show_currency_selector": true
+        }
+      },
+      "cart-template": {
+        "type": "cart-template",
+        "settings": {
+          "cart_ajax_enable": true,
+          "cart_notes_enable": true
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "layout": "grid",
+          "grid": 3,
+          "rows": 2,
+          "show_collection_image": true,
+          "show_vendor": false,
+          "sort_enable": true,
+          "tags_enable": true
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "show_quantity_selector": false,
+          "show_vendor": false,
+          "enable_payment_button": true,
+          "show_share_buttons": true,
+          "media_size": "medium",
+          "enable_image_zoom": true,
+          "enable_video_looping": false
+        }
+      },
+      "product-recommendations": {
+        "type": "product-recommendations",
+        "settings": {
+          "show_product_recommendations": true,
+          "heading": "You may also like",
+          "show_vendor": false
+        }
+      },
+      "newsletter_NxrfJT": {
+        "type": "newsletter",
+        "name": "Newsletter",
+        "settings": {
+          "section_title": "Subscribe to our newsletter",
+          "subheading": "<p>Promotions, new products and sales. Directly to your inbox.</p>",
+          "show_background": true
+        }
+      },
+      "map_N4kRDY": {
+        "type": "map",
+        "name": "Map",
+        "settings": {
+          "heading": "Our store",
+          "address": "<p>202 Pine ST <br/>Abilene, TX Suite 103</p><p>Tuesday - Saturday, 10:30am - 6pm<br/></p>",
+          "map_address": "202 pine st abilene tx",
+          "button_text": "Get directions",
+          "show_pin": true,
+          "api_key": "",
+          "background_image": "shopify://shop_images/Scent_bar_4_x_5_in_7.png",
+          "background_image_position": "center center"
+        }
+      },
+      "collection_fMCNnX": {
+        "type": "collection",
+        "name": "Featured collection",
+        "settings": {
+          "title": "Featured collection",
+          "collection": "new-arrivals",
+          "grid": 2,
+          "rows": 1,
+          "show_vendor": false,
+          "show_view_all": false
+        }
+      },
+      "hero_video_main": {
+        "type": "hero-video",
+        "settings": {
+          "custom_video_url": "",
+          "eyebrow": "Adophies — est. for the girls",
+          "title": "<p>For the girls<br>who love <em>pretty things</em>.</p>",
+          "subtitle": "A boutique in Abilene with four worlds inside: dresses, hats made yours, charms to mix and match, and softness for the littlest ones.",
+          "cta_label": "Step inside",
+          "cta_link": "shopify://collections",
+          "show_spinner": true,
+          "spinner_link": "/pages/charm-bar"
+        }
+      },
+      "marquee_top": {
+        "type": "marquee-strip",
+        "blocks": {
+          "mqt_p1": {
+            "type": "phrase",
+            "settings": {
+              "text": "For the girls who love pretty things"
+            }
+          },
+          "mqt_p2": {
+            "type": "phrase",
+            "settings": {
+              "text": "Adophies Cocktail Club"
+            }
+          },
+          "mqt_p3": {
+            "type": "phrase",
+            "settings": {
+              "text": "Hat Bar · Charm Bar · Dress Bar"
+            }
+          },
+          "mqt_p4": {
+            "type": "phrase",
+            "settings": {
+              "text": "Made with softness in Abilene, TX"
+            }
+          }
+        },
+        "block_order": [
+          "mqt_p1",
+          "mqt_p2",
+          "mqt_p3",
+          "mqt_p4"
+        ],
+        "settings": {
+          "tone": "pink",
+          "speed": 28
+        }
+      },
+      "four_pillars_main": {
+        "type": "four-pillars",
+        "blocks": {
+          "fp_w": {
+            "type": "pillar",
+            "settings": {
+              "fallback_asset": "pillar-women.jpg",
+              "title": "Women's Clothing",
+              "subtitle": "Dresses, sets and everyday softness.",
+              "cta": "Shop women's",
+              "link": "shopify://collections"
+            }
+          },
+          "fp_h": {
+            "type": "pillar",
+            "settings": {
+              "fallback_asset": "pillar-hat.jpg",
+              "title": "Hat Bar",
+              "subtitle": "Pressed, burned, made yours.",
+              "cta": "Visit the Hat Bar",
+              "link": "shopify://collections"
+            }
+          },
+          "fp_c": {
+            "type": "pillar",
+            "settings": {
+              "fallback_asset": "pillar-charm.jpg",
+              "title": "Charm Bar",
+              "subtitle": "Tiny, dainty, mix-and-match.",
+              "cta": "Explore charms",
+              "link": "/pages/charm-bar"
+            }
+          },
+          "fp_b": {
+            "type": "pillar",
+            "settings": {
+              "fallback_asset": "pillar-baby.jpg",
+              "title": "Baby",
+              "subtitle": "Sweet things for the littlest ones.",
+              "cta": "Shop baby",
+              "link": "shopify://collections"
+            }
+          }
+        },
+        "block_order": [
+          "fp_w",
+          "fp_h",
+          "fp_c",
+          "fp_b"
+        ],
+        "settings": {
+          "eyebrow": "Welcome to Adophies",
+          "title": "Four worlds. One boutique.",
+          "subtitle": "Pick your aisle."
+        }
+      },
+      "jewelry_teaser_main": {
+        "type": "jewelry-3d-teaser",
+        "blocks": {
+          "jt_m1": {
+            "type": "model",
+            "settings": {
+              "model_url": "",
+              "poster_url": "",
+              "name": "Charm 01",
+              "price": "$48",
+              "material": "14k Gold-filled",
+              "dimensions": "18mm x 24mm",
+              "product_url": ""
+            }
+          },
+          "jt_m2": {
+            "type": "model",
+            "settings": {
+              "model_url": "https://cdn.shopify.com/3d/models/8f57159c0e2ac215/Ring005.glb",
+              "poster_url": "",
+              "name": "Charm 02",
+              "price": "$64",
+              "material": "Sterling Silver",
+              "dimensions": "20mm x 22mm",
+              "product_url": ""
+            }
+          },
+          "jt_m3": {
+            "type": "model",
+            "settings": {
+              "model_url": "https://cdn.shopify.com/3d/models/701fad67c5476094/Ring002.glb",
+              "poster_url": "",
+              "name": "Charm 03",
+              "price": "$52",
+              "material": "14k Gold-filled",
+              "dimensions": "16mm x 26mm",
+              "product_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "jt_m1",
+          "jt_m2",
+          "jt_m3"
+        ],
+        "settings": {
+          "eyebrow": "The Charm Bar",
+          "title": "Pieces that move with you",
+          "subtitle": "Hover, spin, and explore. Each piece hand-curated for the girls who love pretty things.",
+          "cta_label": "View the full Charm Bar",
+          "cta_link": "/pages/charm-bar"
+        }
+      },
+      "editorial_hat": {
+        "type": "editorial-split",
+        "settings": {
+          "reverse": false,
+          "fallback_asset": "editorial-1.jpg",
+          "eyebrow": "Inside the boutique",
+          "title": "<p>The Hat Bar.<br><em>Pressed, burned, made yours.</em></p>",
+          "body": "<p>Pick the brim. Pick the band. We shape, brand and finish each hat in the shop so you walk out with something nobody else has.</p>",
+          "cta_label": "Visit the Hat Bar",
+          "cta_link": "shopify://collections"
+        }
+      },
+      "marquee_mid": {
+        "type": "marquee-strip",
+        "blocks": {
+          "mqm_p1": {
+            "type": "phrase",
+            "settings": {
+              "text": "Soft girl summer, all year"
+            }
+          },
+          "mqm_p2": {
+            "type": "phrase",
+            "settings": {
+              "text": "Adophies"
+            }
+          },
+          "mqm_p3": {
+            "type": "phrase",
+            "settings": {
+              "text": "✦"
+            }
+          },
+          "mqm_p4": {
+            "type": "phrase",
+            "settings": {
+              "text": "Charm. Press. Spin."
+            }
+          }
+        },
+        "block_order": [
+          "mqm_p1",
+          "mqm_p2",
+          "mqm_p3",
+          "mqm_p4"
+        ],
+        "settings": {
+          "tone": "gold",
+          "speed": 24
+        }
+      },
+      "editorial_charm": {
+        "type": "editorial-split",
+        "settings": {
+          "reverse": true,
+          "fallback_asset": "editorial-2.jpg",
+          "eyebrow": "Now in 3D",
+          "title": "<p>Spin every charm<br>before you commit.</p>",
+          "body": "<p>Click any piece on the Charm Bar to rotate it, zoom in, and read the specs. Build a little world for your wrist, your ears, your fingers.</p>",
+          "cta_label": "Open the Charm Bar",
+          "cta_link": "/pages/charm-bar"
+        }
+      }
+    },
+    "content_for_index": [
+      "hero_video_main",
+      "marquee_top",
+      "four_pillars_main",
+      "jewelry_teaser_main",
+      "editorial_hat",
+      "collection_fMCNnX",
+      "marquee_mid",
+      "editorial_charm",
+      "map_N4kRDY",
+      "newsletter_NxrfJT"
+    ]
+  },
+  "presets": {
+    "Default": {
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {}
+        },
+        "hero-1": {
+          "type": "hero",
+          "settings": {
+            "hero_size": "large",
+            "text_size": "large"
+          }
+        },
+        "feature-row": {
+          "type": "feature-row",
+          "settings": {}
+        },
+        "feature-columns": {
+          "type": "feature-columns",
+          "blocks": {
+            "feature-columns-0": {
+              "type": "text_block",
+              "settings": {}
+            },
+            "feature-columns-1": {
+              "type": "text_block",
+              "settings": {}
+            },
+            "feature-columns-2": {
+              "type": "text_block",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "feature-columns-0",
+            "feature-columns-1",
+            "feature-columns-2"
+          ],
+          "settings": {
+            "title": ""
+          }
+        },
+        "collection": {
+          "type": "collection",
+          "settings": {
+            "grid": 4
+          }
+        },
+        "hero-2": {
+          "type": "hero",
+          "settings": {
+            "text_size": "large"
+          }
+        },
+        "quotes": {
+          "type": "quotes",
+          "blocks": {
+            "quotes-0": {
+              "type": "quote",
+              "settings": {}
+            },
+            "quotes-1": {
+              "type": "quote",
+              "settings": {}
+            },
+            "quotes-2": {
+              "type": "quote",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "quotes-0",
+            "quotes-1",
+            "quotes-2"
+          ],
+          "settings": {
+            "title": ""
+          }
+        },
+        "image-bar": {
+          "type": "image-bar",
+          "blocks": {
+            "image-bar-0": {
+              "type": "image",
+              "settings": {}
+            },
+            "image-bar-1": {
+              "type": "image",
+              "settings": {}
+            },
+            "image-bar-2": {
+              "type": "image",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "image-bar-0",
+            "image-bar-1",
+            "image-bar-2"
+          ],
+          "settings": {}
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "footer-0": {
+              "type": "link_list",
+              "settings": {}
+            },
+            "footer-1": {
+              "type": "newsletter",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "footer-0",
+            "footer-1"
+          ],
+          "settings": {
+            "show_payment_icons": true
+          }
+        }
+      },
+      "content_for_index": [
+        "hero-1",
+        "feature-row",
+        "feature-columns",
+        "collection",
+        "hero-2",
+        "quotes",
+        "image-bar"
+      ]
+    },
+    "Light": {
+      "color_text": "#162950",
+      "color_body_text": "#6d6d6d",
+      "color_sale_text": "#DA2F0C",
+      "color_borders": "#e4e4e4",
+      "color_button": "#DA2F0C",
+      "color_button_text": "#ffffff",
+      "color_small_button_text_border": "#162950",
+      "color_text_field": "#ffffff",
+      "color_text_field_text": "#162950",
+      "color_text_field_border": "#909090",
+      "color_image_overlay_text": "#ffffff",
+      "color_image_overlay": "#3d3d3d",
+      "image_overlay_opacity": 40,
+      "color_body_bg": "#f8f8f8",
+      "type_header_font": "muli_n6",
+      "type_header_base_size": 26,
+      "type_base_font": "muli_n4",
+      "type_base_size": 18,
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "social_twitter_link": "",
+      "social_facebook_link": "",
+      "social_pinterest_link": "",
+      "social_instagram_link": "",
+      "social_tumblr_link": "",
+      "social_snapchat_link": "",
+      "social_youtube_link": "",
+      "social_vimeo_link": "",
+      "favicon": "",
+      "checkout_header_image": "",
+      "checkout_logo_image": "",
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "small",
+      "checkout_body_background_image": "",
+      "checkout_body_background_color": "#ffffff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_image": "",
+      "checkout_sidebar_background_color": "#e8f3f6",
+      "checkout_heading_font": "Roboto",
+      "checkout_body_font": "Source Sans Pro",
+      "checkout_accent_color": "#1990c6",
+      "checkout_button_color": "#23314e",
+      "checkout_error_color": "#ff6d6d",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "align_logo": "left",
+            "logo": "",
+            "logo_max_width": 135,
+            "main_linklist": "main-menu",
+            "message": true,
+            "color_bg": "#162950",
+            "color_text": "#ffffff"
+          }
+        },
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "alignment": "center",
+            "hero_size": "x-large",
+            "text_size": "large"
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "alignment": "center center"
+              }
+            },
+            "1492095993817": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "alignment": "center"
+              }
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "1492095993817"
+          ],
+          "settings": {
+            "slideshow_height": "medium",
+            "text_size": "medium",
+            "autorotate": false,
+            "autorotate_speed": 5
+          }
+        },
+        "featured-collections": {
+          "type": "collection",
+          "settings": {
+            "grid": 3,
+            "rows": 1,
+            "show_vendor": true,
+            "show_view_all": true
+          }
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+            "show_quantity_selector": false,
+            "show_vendor": false,
+            "show_share_buttons": true,
+            "media_size": "medium",
+            "enable_image_zoom": true,
+            "enable_video_looping": false
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "layout": "grid",
+            "grid": 2,
+            "rows": 2,
+            "show_collection_image": true,
+            "show_vendor": false,
+            "sort_enable": true,
+            "tags_enable": true
+          }
+        },
+        "1492033809691": {
+          "type": "map",
+          "settings": {}
+        },
+        "1492033877875": {
+          "type": "quotes",
+          "blocks": {
+            "1492033877875-0": {
+              "type": "quote",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "1492033877875-0"
+          ],
+          "settings": {}
+        },
+        "1492033924902": {
+          "type": "custom-content",
+          "blocks": {
+            "1492033924902-0": {
+              "type": "text",
+              "settings": {
+                "width": "100%",
+                "alignment": "center",
+                "align_text": "center"
+              }
+            }
+          },
+          "block_order": [
+            "1492033924902-0"
+          ],
+          "settings": {
+            "title": ""
+          }
+        },
+        "1492096252560": {
+          "type": "collection-list",
+          "blocks": {
+            "1492096252560-0": {
+              "type": "featured_collection",
+              "settings": {}
+            },
+            "1492096252560-1": {
+              "type": "featured_collection",
+              "settings": {}
+            },
+            "1492096252560-2": {
+              "type": "featured_collection",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "1492096252560-0",
+            "1492096252560-1",
+            "1492096252560-2"
+          ],
+          "settings": {
+            "grid": 3
+          }
+        },
+        "blog-template": {
+          "type": "blog-template",
+          "settings": {
+            "layout": "grid",
+            "blog_show_author": true,
+            "blog_show_date": false
+          }
+        },
+        "article-template": {
+          "type": "article-template",
+          "settings": {
+            "blog_show_author": true,
+            "blog_show_date": true,
+            "show_share_buttons": true
+          }
+        },
+        "cart-template": {
+          "type": "cart-template",
+          "settings": {
+            "cart_notes_enable": false
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "link_list": {
+              "type": "link_list",
+              "settings": {}
+            },
+            "text": {
+              "type": "text",
+              "settings": {}
+            },
+            "newsletter": {
+              "type": "newsletter",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "link_list",
+            "text",
+            "newsletter"
+          ],
+          "settings": {
+            "color_footer_bg": "#f8f8f8",
+            "color_footer_text": "#6d6d6d"
+          }
+        }
+      },
+      "content_for_index": [
+        "hero",
+        "featured-collections",
+        "slideshow",
+        "1492033924902",
+        "1492096252560",
+        "1492033877875",
+        "1492033809691"
+      ]
+    }
+  },
+  "platform_customizations": {
+    "custom_css": []
+  }
+}
