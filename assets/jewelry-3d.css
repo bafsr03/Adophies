@@ -347,24 +347,6 @@
   .jewelry-modal__meta { grid-template-columns: 1fr; gap: 12px; }
 }
 
-/* ---------- Spinning logo (header) ---------- */
-
-.site-header__logo-image--spin img {
-  animation: adophiesLogoSpin 9s linear infinite;
-  transform-origin: 50% 50%;
-  will-change: transform;
-}
-
-.site-header__logo-image--spin:hover img {
-  animation-play-state: paused;
-}
-
-@keyframes adophiesLogoSpin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .site-header__logo-image--spin img,
   model-viewer { animation: none !important; }
 }

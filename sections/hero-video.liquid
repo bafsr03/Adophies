@@ -1,0 +1,76 @@
+{% comment %}
+  Adophies — Full-bleed video hero.
+
+  Plays a looping muted video as the background, overlays an editorial
+  title + CTA, and pins the Cocktail Club spinning badge as a top-right
+  decoration on the hero (separate from the main wordmark logo).
+
+  Falls back to a still image if the video file is missing.
+{% endcomment %}
+
+<section class="hero-video"
+         data-section-id="{{ section.id }}"
+         data-section-type="hero-video">
+
+  {%- assign video_url = 'hero-bg.mp4' | asset_url -%}
+  {%- if section.settings.custom_video_url != blank -%}
+    {%- assign video_url = section.settings.custom_video_url -%}
+  {%- endif -%}
+
+  <video class="hero-video__media"
+         autoplay muted loop playsinline preload="metadata"
+         {% if section.settings.poster %}poster="{{ section.settings.poster | img_url: '1600x' }}"{% endif %}>
+    <source src="{{ video_url }}" type="video/mp4">
+  </video>
+
+  <div class="hero-video__overlay"></div>
+
+  {%- if section.settings.show_spinner -%}
+    {%- assign spinner_class = 'hero-video__spinner' -%}
+    {%- assign spinner_size = 260 -%}
+    {%- assign spinner_link = section.settings.spinner_link -%}
+    {% include 'cocktail-spinner' %}
+  {%- endif -%}
+
+  <div class="hero-video__content">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="hero-video__eyebrow" data-reveal>{{ section.settings.eyebrow | escape }}</div>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h1 class="hero-video__title" data-reveal style="--reveal-delay:120ms">{{ section.settings.title }}</h1>
+    {%- endif -%}
+    {%- if section.settings.subtitle != blank -%}
+      <p class="hero-video__subtitle" data-reveal style="--reveal-delay:240ms">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+    {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+      <a href="{{ section.settings.cta_link }}" class="hero-video__cta" data-magnetic="0.25" data-reveal style="--reveal-delay:360ms">
+        {{ section.settings.cta_label | escape }}
+        <span class="hero-video__cta-arrow">→</span>
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero video",
+  "settings": [
+    { "type": "url", "id": "custom_video_url", "label": "Custom video URL (optional)",
+      "info": "Leave empty to use assets/hero-bg.mp4 (already uploaded with the theme)." },
+    { "type": "image_picker", "id": "poster", "label": "Poster (still image while video loads)" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "Adophies — est. for the girls" },
+    { "type": "richtext", "id": "title", "label": "Title (HTML allowed)",
+      "default": "<p>For the girls<br>who love <em>pretty things</em>.</p>" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle",
+      "default": "A boutique in Abilene with four worlds inside: dresses, hats made yours, charms to mix and match, and softness for the littlest ones." },
+    { "type": "text", "id": "cta_label", "label": "Button text", "default": "Step inside" },
+    { "type": "url", "id": "cta_link", "label": "Button link" },
+    { "type": "header", "content": "Cocktail Club spinning badge" },
+    { "type": "checkbox", "id": "show_spinner", "label": "Show spinning badge on hero", "default": true },
+    { "type": "url", "id": "spinner_link", "label": "Badge link (optional)" }
+  ],
+  "presets": [
+    { "name": "Hero video", "category": "Image" }
+  ]
+}
+{% endschema %}

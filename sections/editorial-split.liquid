@@ -1,0 +1,77 @@
+{% comment %}
+  Adophies — Editorial 50/50 split (image + text).
+
+  Used between pillar/teaser sections as a storytelling moment.
+  Scroll-revealed: the image scales from 1.06 → 1.0 as it enters view.
+  Layout flip via "reverse" toggle.
+{% endcomment %}
+
+{%- assign reverse_class = '' -%}
+{%- if section.settings.reverse -%}{%- assign reverse_class = ' editorial-split--reverse' -%}{%- endif -%}
+
+<section class="editorial-split{{ reverse_class }}"
+         data-reveal
+         data-section-id="{{ section.id }}"
+         data-section-type="editorial-split">
+
+  <div class="editorial-split__media">
+    {%- if section.settings.image -%}
+      <img class="editorial-split__media-img"
+           src="{{ section.settings.image | img_url: '1400x' }}"
+           srcset="{{ section.settings.image | img_url: '600x' }} 600w,
+                   {{ section.settings.image | img_url: '1000x' }} 1000w,
+                   {{ section.settings.image | img_url: '1600x' }} 1600w"
+           sizes="(min-width: 990px) 50vw, 100vw"
+           alt="{{ section.settings.image.alt | escape }}"
+           loading="lazy" decoding="async">
+    {%- elsif section.settings.fallback_asset != blank -%}
+      <img class="editorial-split__media-img"
+           src="{{ section.settings.fallback_asset | asset_url }}"
+           alt="{{ section.settings.title | escape }}"
+           loading="lazy" decoding="async">
+    {%- endif -%}
+  </div>
+
+  <div class="editorial-split__copy">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="editorial-split__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h2 class="editorial-split__title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+    {%- if section.settings.body != blank -%}
+      <div class="editorial-split__body">{{ section.settings.body }}</div>
+    {%- endif -%}
+    {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+      <a href="{{ section.settings.cta_link }}" class="editorial-split__cta" data-magnetic="0.2">
+        {{ section.settings.cta_label | escape }} →
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Editorial split",
+  "settings": [
+    { "type": "checkbox", "id": "reverse", "label": "Reverse (image on right)", "default": false },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "fallback_asset", "label": "Fallback asset filename",
+      "info": "Used only if Image is empty. e.g. editorial-1.jpg" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Inside the boutique" },
+    { "type": "richtext", "id": "title", "label": "Title",
+      "default": "<p>The Hat Bar.<br><em>Pressed, burned, made yours.</em></p>" },
+    { "type": "richtext", "id": "body", "label": "Body",
+      "default": "<p>Pick the brim. Pick the band. We shape, brand and finish each hat in the shop so you walk out with something nobody else has.</p>" },
+    { "type": "text", "id": "cta_label", "label": "Button text", "default": "Visit the Hat Bar" },
+    { "type": "url", "id": "cta_link", "label": "Button link" }
+  ],
+  "presets": [
+    {
+      "name": "Editorial split",
+      "category": "Image",
+      "settings": { "fallback_asset": "editorial-1.jpg" }
+    }
+  ]
+}
+{% endschema %}

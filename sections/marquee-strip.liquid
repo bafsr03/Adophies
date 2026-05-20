@@ -1,0 +1,66 @@
+{% comment %}
+  Adophies — scrolling marquee strip. Loops the same phrase across the
+  viewport. The JS in adophies-fx.js duplicates the track for a
+  seamless loop. Hover pauses.
+
+  Use between major sections as a visual punctuation mark.
+{% endcomment %}
+
+{%- assign tone = section.settings.tone | default: 'pink' -%}
+<section class="marquee marquee--{{ tone }}"
+         style="--marquee-duration: {{ section.settings.speed | default: 28 }}s;"
+         data-section-id="{{ section.id }}"
+         data-section-type="marquee-strip">
+  <div class="marquee__track">
+    {%- for block in section.blocks -%}
+      <span class="marquee__item">{{ block.settings.text | escape }}</span>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Marquee strip",
+  "settings": [
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Color tone",
+      "default": "pink",
+      "options": [
+        { "value": "pink",  "label": "Pink (soft)" },
+        { "value": "gold",  "label": "Gold" },
+        { "value": "brown", "label": "Brown" },
+        { "value": "cream", "label": "Cream" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll duration (s)",
+      "min": 12, "max": 60, "step": 2, "default": 28
+    }
+  ],
+  "blocks": [
+    {
+      "type": "phrase",
+      "name": "Phrase",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Phrase", "default": "For the girls who love pretty things" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee strip",
+      "category": "Text",
+      "blocks": [
+        { "type": "phrase", "settings": { "text": "For the girls who love pretty things" } },
+        { "type": "phrase", "settings": { "text": "Adophies Cocktail Club" } },
+        { "type": "phrase", "settings": { "text": "Hat Bar · Charm Bar · Dress Bar" } },
+        { "type": "phrase", "settings": { "text": "Made with softness in Abilene, TX" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

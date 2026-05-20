@@ -75,6 +75,7 @@
   </script>
 
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
+  <link rel="stylesheet" href="{{ 'adophies-fx.css' | asset_url }}" type="text/css">
 
   <style>
     {{ header_font | font_face: font_display: 'swap' }}
@@ -172,6 +173,7 @@
 
   <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
+  <script src="{{ 'adophies-fx.js' | asset_url }}" defer="defer"></script>
 
   <script type="text/javascript">
     if (window.MSInputMethodContext && document.documentMode) {
@@ -224,5 +226,12 @@
     <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
+
+  {%- comment -%} Floating Cocktail Club spinner (site-wide, top right) {%- endcomment -%}
+  {%- assign spinner_class = 'cocktail-spinner--floating' -%}
+  {%- assign spinner_size = 78 -%}
+  {%- assign spinner_link = routes.root_url -%}
+  {% include 'cocktail-spinner' %}
+
 {% include 'subscribe-it-helper' %}</body>
 </html>

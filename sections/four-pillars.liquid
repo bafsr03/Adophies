@@ -137,8 +137,12 @@
     {%- for block in section.blocks -%}
       {%- assign tile_link = block.settings.link | default: '#' -%}
       {%- assign img_url = block.settings.image | img_url: '1100x' -%}
+      {%- assign fallback_url = '' -%}
+      {%- if block.settings.image == blank and block.settings.fallback_asset != blank -%}
+        {%- assign fallback_url = block.settings.fallback_asset | asset_url -%}
+      {%- endif -%}
       <a class="pillar" href="{{ tile_link }}" {{ block.shopify_attributes }}>
-        <div class="pillar__media" style="{% if block.settings.image %}background-image: url('{{ img_url }}');{% else %}background: linear-gradient(135deg, #ffe3d6, #fff5f0);{% endif %}"></div>
+        <div class="pillar__media" style="{% if block.settings.image %}background-image: url('{{ img_url }}');{% elsif fallback_url != blank %}background-image: url('{{ fallback_url }}');{% else %}background: linear-gradient(135deg, #ffe3d6, #fff5f0);{% endif %}"></div>
         <div class="pillar__inner">
           <h3 class="pillar__title">{{ block.settings.title | escape }}</h3>
           {%- if block.settings.subtitle != blank -%}
@@ -166,6 +170,8 @@
       "name": "Pillar tile",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Background image" },
+        { "type": "text", "id": "fallback_asset", "label": "Fallback asset filename",
+          "info": "Used only if Background image is empty. e.g. pillar-women.jpg" },
         { "type": "text", "id": "title", "label": "Title", "default": "Women's Clothing" },
         { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Dresses, sets and everyday softness." },
         { "type": "text", "id": "cta", "label": "CTA label", "default": "Shop the aisle" },

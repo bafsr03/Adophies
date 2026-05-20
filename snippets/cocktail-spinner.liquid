@@ -1,0 +1,33 @@
+{% comment %}
+  Adophies — circular spinning Cocktail Club badge.
+
+  Renders the cocktail-club logo image cropped to a circle, slowly rotating.
+  Hover pauses. Respects prefers-reduced-motion.
+
+  Parameters (set before include):
+    spinner_size       integer px (default 200)
+    spinner_class      extra CSS class (e.g. "cocktail-spinner--floating")
+    spinner_link       optional URL — wraps the badge in an anchor
+    spinner_image_url  optional override; default uses the asset
+{% endcomment %}
+
+{%- assign s_size = spinner_size | default: 200 -%}
+{%- assign s_class = spinner_class -%}
+{%- assign s_image = spinner_image_url -%}
+{%- if s_image == blank -%}
+  {%- assign s_image = 'cocktail-badge.jpg' | asset_url -%}
+{%- endif -%}
+
+{%- capture s_html -%}
+  <span class="cocktail-spinner {{ s_class }}" style="width: {{ s_size }}px; height: {{ s_size }}px;" aria-hidden="true">
+    <img class="cocktail-spinner__img" src="{{ s_image }}" alt="Adophies Cocktail Club" loading="lazy" decoding="async">
+  </span>
+{%- endcapture -%}
+
+{%- if spinner_link != blank -%}
+  <a href="{{ spinner_link }}" class="cocktail-spinner-link" aria-label="Adophies — for the girls who love pretty things">
+    {{ s_html }}
+  </a>
+{%- else -%}
+  {{ s_html }}
+{%- endif -%}
