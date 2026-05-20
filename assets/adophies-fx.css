@@ -275,14 +275,14 @@ img { transition: transform 0.6s var(--ease-soft); }
   z-index: 2;
 }
 @media (max-width: 749px) {
-  /* Anchor the hero spinner to the BOTTOM of the hero section, smaller */
+  /* Mobile hero: spinner sits in the hero's TOP-right, slightly bigger than the floating one */
   .hero-video__spinner {
-    top: auto !important;
-    bottom: 24px !important;
-    right: 50% !important;
-    transform: translateX(50%);
-    width: 78px !important;
-    height: 78px !important;
+    top: 22px !important;
+    bottom: auto !important;
+    right: 18px !important;
+    transform: none !important;
+    width: 88px !important;
+    height: 88px !important;
   }
 }
 
@@ -1816,9 +1816,14 @@ body.adop-header-scrolled #shopify-section-header {
   filter: drop-shadow(0 10px 24px rgba(84,69,65,0.28));
 }
 @media (max-width: 749px) {
-  /* On mobile, the hero spinner is anchored at the bottom of the hero section,
-     so the duplicate floating spinner is hidden to avoid clutter. */
-  .cocktail-spinner--floating { display: none !important; }
+  /* Mobile: floating spinner stays fixed bottom-right, just smaller */
+  .cocktail-spinner--floating {
+    display: inline-block !important;
+    width: 62px !important;
+    height: 62px !important;
+    bottom: 16px !important;
+    right: 16px !important;
+  }
 }
 
 /* Hide Facebook entry in the Shopify footer's auto-generated social icons row */
