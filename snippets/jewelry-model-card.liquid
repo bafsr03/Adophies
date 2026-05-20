@@ -31,11 +31,11 @@
 {%- if is_teaser -%}
   {%- assign mv_shadow = '0' -%}
   {%- assign mv_rotate = '12deg' -%}
-  {%- assign mv_exposure = '1.3' -%}
+  {%- assign mv_exposure = '1.6' -%}
 {%- else -%}
-  {%- assign mv_shadow = '0.45' -%}
+  {%- assign mv_shadow = '0.3' -%}
   {%- assign mv_rotate = '22deg' -%}
-  {%- assign mv_exposure = '1.35' -%}
+  {%- assign mv_exposure = '1.65' -%}
 {%- endif -%}
 
 <article class="jewelry-card{% if is_teaser %} jewelry-card--eager jewelry-card--no-modal{% endif %}"
@@ -63,10 +63,10 @@
         auto-rotate-delay="500"
         rotation-per-second="{{ mv_rotate }}"
         interaction-prompt="none"
-        environment-image="neutral"
+        environment-image="https://cdn.jsdelivr.net/gh/google/model-viewer@v4.0.0/packages/shared-assets/environments/music_hall_01_1k.hdr"
         tone-mapping="commerce"
         shadow-intensity="{{ mv_shadow }}"
-        shadow-softness="1"
+        shadow-softness="1.3"
         exposure="{{ mv_exposure }}"
         camera-orbit="0deg 75deg 145%"
         field-of-view="26deg"

@@ -169,6 +169,12 @@
   height: 100%;
   --poster-color: transparent;
   background-color: transparent;
+  /* Push gold saturation up so the metal reads warmer instead of pale */
+  filter: contrast(1.08) saturate(1.25);
+  transition: filter 0.45s ease;
+}
+.jewelry-card:hover .jewelry-card__viewer {
+  filter: contrast(1.14) saturate(1.35);
 }
 
 .jewelry-card__placeholder {
