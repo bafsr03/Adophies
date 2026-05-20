@@ -1,19 +1,14 @@
 {% comment %}
-  Custom page template for the dedicated Charm Bar landing page.
-
-  To use:
-    1. In Shopify Admin > Online Store > Pages > Add page
-    2. Title: "Charm Bar"   (URL handle will become /pages/charm-bar)
-    3. In the "Theme template" dropdown, select "page.charm-bar"
-    4. Save
-    5. Open the page in the theme customizer to add 3D blocks
+  Custom page template for /pages/charm-bar.
+  Uses the dedicated charm-bar-trio section that splits into
+  Earrings / Rings / Bracelets sub-sections.
 {% endcomment %}
 
 <div class="page-charm-bar">
-  {% section 'jewelry-3d-gallery' %}
+  {% section 'charm-bar-trio' %}
 
   {%- if page.content != blank -%}
-    <div class="page-width text-center" style="padding: 32px 24px 64px;">
+    <div class="page-width text-center" style="padding: 40px 24px 80px;">
       <div class="rte">{{ page.content }}</div>
     </div>
   {%- endif -%}

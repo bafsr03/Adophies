@@ -1,0 +1,188 @@
+{% comment %}
+  Adophies — Charm Bar trio section.
+
+  Renders THREE category sub-sections on /pages/charm-bar:
+    1. Earrings   (block type "earring")
+    2. Rings      (block type "ring")
+    3. Bracelets  (block type "bracelet")
+
+  Each sub-section has its own editorial intro + grid styling.
+  Cards use the shared snippet/jewelry-model-card with the modal
+  open-on-click behavior (full gallery mode, not the inline-rotate
+  teaser mode).
+{% endcomment %}
+
+<link rel="stylesheet" href="{{ 'jewelry-3d.css' | asset_url }}">
+
+{%- assign earrings  = section.blocks | where: 'type', 'earring' -%}
+{%- assign rings     = section.blocks | where: 'type', 'ring' -%}
+{%- assign bracelets = section.blocks | where: 'type', 'bracelet' -%}
+
+<section class="charm-trio" data-section-id="{{ section.id }}" data-section-type="charm-bar-trio">
+
+  <!-- ============ HEADER ============ -->
+  <header class="charm-trio__hero" data-reveal>
+    <span class="charm-trio__hero-eyebrow">{{ section.settings.hero_eyebrow | escape | default: 'Adophies / Charm Bar' }}</span>
+    <h1 class="charm-trio__hero-title">{{ section.settings.hero_title | default: 'Build your <em>little world</em>.' }}</h1>
+    <p class="charm-trio__hero-sub">{{ section.settings.hero_sub | default: 'Click any piece to rotate it, zoom in, and read the specs. Three worlds inside one bar.' }}</p>
+    <div class="charm-trio__nav" aria-label="Jump to category">
+      <a href="#cat-earrings">Earrings</a>
+      <a href="#cat-rings">Rings</a>
+      <a href="#cat-bracelets">Bracelets</a>
+    </div>
+  </header>
+
+  <!-- ============ EARRINGS ============ -->
+  {%- if earrings.size > 0 -%}
+    <article class="charm-cat charm-cat--earrings" id="cat-earrings">
+      <div class="charm-cat__intro" data-reveal>
+        <span class="charm-cat__roman">I.</span>
+        <div>
+          <span class="charm-cat__eyebrow">For the ears</span>
+          <h2 class="charm-cat__title">Earrings.</h2>
+          <p class="charm-cat__body">Hover, spin, zoom. Pick the pair that catches the light the way you want it to.</p>
+        </div>
+      </div>
+      <div class="charm-cat__grid charm-cat__grid--earrings">
+        {%- for block in earrings -%}
+          {%- assign card_model_url = block.settings.model_url -%}
+          {%- assign card_poster_url = block.settings.poster | img_url: '600x' -%}
+          {%- if block.settings.poster == blank and block.settings.poster_url != blank -%}
+            {%- assign card_poster_url = block.settings.poster_url -%}
+          {%- endif -%}
+          {%- assign card_name = block.settings.name -%}
+          {%- assign card_price = block.settings.price -%}
+          {%- assign card_material = block.settings.material -%}
+          {%- assign card_dimensions = block.settings.dimensions -%}
+          {%- assign card_product_url = block.settings.product_url -%}
+          {%- assign card_id = block.id -%}
+          {%- assign card_eager = 'false' -%}
+          {% include 'jewelry-model-card' %}
+        {%- endfor -%}
+      </div>
+    </article>
+  {%- endif -%}
+
+  <!-- ============ RINGS ============ -->
+  {%- if rings.size > 0 -%}
+    <article class="charm-cat charm-cat--rings" id="cat-rings">
+      <div class="charm-cat__intro charm-cat__intro--center" data-reveal>
+        <span class="charm-cat__roman">II.</span>
+        <span class="charm-cat__eyebrow">For the hands</span>
+        <h2 class="charm-cat__title">Rings.</h2>
+        <p class="charm-cat__body">Solo, stacked, or stacked-up-the-knuckle. Every ring is built for a different kind of day.</p>
+      </div>
+      <div class="charm-cat__grid charm-cat__grid--rings">
+        {%- for block in rings -%}
+          {%- assign card_model_url = block.settings.model_url -%}
+          {%- assign card_poster_url = block.settings.poster | img_url: '600x' -%}
+          {%- if block.settings.poster == blank and block.settings.poster_url != blank -%}
+            {%- assign card_poster_url = block.settings.poster_url -%}
+          {%- endif -%}
+          {%- assign card_name = block.settings.name -%}
+          {%- assign card_price = block.settings.price -%}
+          {%- assign card_material = block.settings.material -%}
+          {%- assign card_dimensions = block.settings.dimensions -%}
+          {%- assign card_product_url = block.settings.product_url -%}
+          {%- assign card_id = block.id -%}
+          {%- assign card_eager = 'false' -%}
+          {% include 'jewelry-model-card' %}
+        {%- endfor -%}
+      </div>
+    </article>
+  {%- endif -%}
+
+  <!-- ============ BRACELETS ============ -->
+  {%- if bracelets.size > 0 -%}
+    <article class="charm-cat charm-cat--bracelets" id="cat-bracelets">
+      <div class="charm-cat__intro charm-cat__intro--right" data-reveal>
+        <div>
+          <span class="charm-cat__eyebrow">For the wrists</span>
+          <h2 class="charm-cat__title">Bracelets.</h2>
+          <p class="charm-cat__body">The slowest piece of jewelry to put on, the longest one to look at on your own wrist.</p>
+        </div>
+        <span class="charm-cat__roman">III.</span>
+      </div>
+      <div class="charm-cat__grid charm-cat__grid--bracelets">
+        {%- for block in bracelets -%}
+          {%- assign card_model_url = block.settings.model_url -%}
+          {%- assign card_poster_url = block.settings.poster | img_url: '600x' -%}
+          {%- if block.settings.poster == blank and block.settings.poster_url != blank -%}
+            {%- assign card_poster_url = block.settings.poster_url -%}
+          {%- endif -%}
+          {%- assign card_name = block.settings.name -%}
+          {%- assign card_price = block.settings.price -%}
+          {%- assign card_material = block.settings.material -%}
+          {%- assign card_dimensions = block.settings.dimensions -%}
+          {%- assign card_product_url = block.settings.product_url -%}
+          {%- assign card_id = block.id -%}
+          {%- assign card_eager = 'false' -%}
+          {% include 'jewelry-model-card' %}
+        {%- endfor -%}
+      </div>
+    </article>
+  {%- endif -%}
+</section>
+
+<script src="{{ 'jewelry-3d.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Charm Bar trio",
+  "settings": [
+    { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "Adophies / Charm Bar" },
+    { "type": "richtext", "id": "hero_title", "label": "Hero title (HTML)",
+      "default": "<p>Build your <em>little world</em>.</p>" },
+    { "type": "textarea", "id": "hero_sub", "label": "Hero subtitle",
+      "default": "Click any piece to rotate it, zoom in, and read the specs. Three worlds inside one bar." }
+  ],
+  "blocks": [
+    {
+      "type": "earring",
+      "name": "Earring",
+      "settings": [
+        { "type": "url", "id": "model_url", "label": "GLB file URL (Shopify Files CDN)" },
+        { "type": "image_picker", "id": "poster", "label": "Poster image" },
+        { "type": "url", "id": "poster_url", "label": "Poster URL (alt)" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Earring" },
+        { "type": "text", "id": "price", "label": "Price", "default": "$48" },
+        { "type": "text", "id": "material", "label": "Material", "default": "14k Gold-filled" },
+        { "type": "text", "id": "dimensions", "label": "Dimensions", "default": "—" },
+        { "type": "url", "id": "product_url", "label": "Product page link" }
+      ]
+    },
+    {
+      "type": "ring",
+      "name": "Ring",
+      "settings": [
+        { "type": "url", "id": "model_url", "label": "GLB file URL (Shopify Files CDN)" },
+        { "type": "image_picker", "id": "poster", "label": "Poster image" },
+        { "type": "url", "id": "poster_url", "label": "Poster URL (alt)" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Ring" },
+        { "type": "text", "id": "price", "label": "Price", "default": "$64" },
+        { "type": "text", "id": "material", "label": "Material", "default": "14k Gold-filled" },
+        { "type": "text", "id": "dimensions", "label": "Dimensions", "default": "—" },
+        { "type": "url", "id": "product_url", "label": "Product page link" }
+      ]
+    },
+    {
+      "type": "bracelet",
+      "name": "Bracelet",
+      "settings": [
+        { "type": "url", "id": "model_url", "label": "GLB file URL (Shopify Files CDN)" },
+        { "type": "image_picker", "id": "poster", "label": "Poster image" },
+        { "type": "url", "id": "poster_url", "label": "Poster URL (alt)" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Bracelet" },
+        { "type": "text", "id": "price", "label": "Price", "default": "$84" },
+        { "type": "text", "id": "material", "label": "Material", "default": "14k Gold-filled" },
+        { "type": "text", "id": "dimensions", "label": "Dimensions", "default": "—" },
+        { "type": "url", "id": "product_url", "label": "Product page link" }
+      ]
+    }
+  ],
+  "max_blocks": 50,
+  "presets": [
+    { "name": "Charm Bar trio", "category": "Custom" }
+  ]
+}
+{% endschema %}

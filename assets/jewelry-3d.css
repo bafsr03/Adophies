@@ -89,12 +89,14 @@
   max-width: 780px;
   margin: 0 auto;
 }
+
 @media (max-width: 749px) {
   .jewelry-grid--teaser {
     grid-template-columns: 1fr !important;
     max-width: 320px;
   }
 }
+
 /* Teaser cards: smaller render area = lighter GPU work (3 viewers running simultaneously) */
 .jewelry-3d-section--teaser .jewelry-card {
   padding: 12px;
@@ -102,9 +104,11 @@
   margin: 0 auto;
   width: 100%;
 }
+
 .jewelry-3d-section--teaser .jewelry-card__media {
   aspect-ratio: 1 / 1;
 }
+
 .jewelry-3d-section--teaser .jewelry-card__viewer {
   --poster-color: transparent;
   background-color: transparent;
@@ -112,12 +116,31 @@
   box-sizing: border-box;
   image-rendering: auto;
 }
-.jewelry-3d-section--teaser .jewelry-card__name { font-size: 15px; }
-.jewelry-3d-section--teaser .jewelry-card__price { font-size: 13px; margin-bottom: 8px; }
-.jewelry-3d-section--teaser .jewelry-card__btn { padding: 8px 16px; font-size: 10px; }
+
+.jewelry-3d-section--teaser .jewelry-card__name {
+  font-size: 15px;
+}
+
+.jewelry-3d-section--teaser .jewelry-card__price {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.jewelry-3d-section--teaser .jewelry-card__btn {
+  padding: 8px 16px;
+  font-size: 10px;
+}
+
 @media (max-width: 749px) {
-  .jewelry-grid--teaser { grid-template-columns: repeat(2, 1fr); max-width: 420px; }
-  .jewelry-3d-section--teaser .jewelry-card { max-width: 100%; padding: 10px; }
+  .jewelry-grid--teaser {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 420px;
+  }
+
+  .jewelry-3d-section--teaser .jewelry-card {
+    max-width: 100%;
+    padding: 10px;
+  }
 }
 
 .jewelry-grid--gallery {
@@ -151,10 +174,12 @@
   cursor: zoom-in;
   outline: none;
 }
+
 /* Teaser cards: clicking navigates to the accessories page, dragging rotates the model */
 .jewelry-card--no-modal .jewelry-card__media {
   cursor: pointer;
 }
+
 .jewelry-card--no-modal .jewelry-card__media:active {
   cursor: grabbing;
 }
@@ -169,12 +194,13 @@
   height: 100%;
   --poster-color: transparent;
   background-color: transparent;
-  /* Push gold saturation up so the metal reads warmer instead of pale */
-  filter: contrast(1.08) saturate(1.25);
+  /* Subtle contrast + saturation + a touch of sepia to push warmth toward gold */
+  filter: contrast(1.08) saturate(1.15) sepia(0.08);
   transition: filter 0.45s ease;
 }
+
 .jewelry-card:hover .jewelry-card__viewer {
-  filter: contrast(1.14) saturate(1.35);
+  filter: contrast(1.24) saturate(1.22) sepia(0.1);
 }
 
 .jewelry-card__placeholder {
@@ -298,9 +324,18 @@
 
 /* Mobile: hover specs always visible, smaller padding */
 @media (max-width: 749px) {
-  .jewelry-3d-section { padding: 40px 16px; }
-  .jewelry-card { padding: 12px; }
-  .jewelry-card__hover-stats { opacity: 1; transform: translateY(0); }
+  .jewelry-3d-section {
+    padding: 40px 16px;
+  }
+
+  .jewelry-card {
+    padding: 12px;
+  }
+
+  .jewelry-card__hover-stats {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ---------- Fullscreen modal ---------- */
@@ -389,11 +424,310 @@
 }
 
 @media (max-width: 749px) {
-  .jewelry-modal { padding: 0; }
-  .jewelry-modal__inner { width: 100%; height: 100%; border-radius: 0; }
-  .jewelry-modal__meta { grid-template-columns: 1fr; gap: 12px; }
+  .jewelry-modal {
+    padding: 0;
+  }
+
+  .jewelry-modal__inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .jewelry-modal__meta {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  model-viewer { animation: none !important; }
+  model-viewer {
+    animation: none !important;
+  }
+}
+
+/* ==============================================================
+   CHARM BAR TRIO — Earrings · Rings · Bracelets
+   Each category gets its own unique editorial treatment.
+   ============================================================== */
+
+.charm-trio {
+  background: linear-gradient(180deg, #fff5f0 0%, #fffaec 50%, #fff5f0 100%);
+  padding: 0 0 8vh;
+}
+
+/* ---- Hero header ---- */
+.charm-trio__hero {
+  text-align: center;
+  padding: 14vh 6vw 8vh;
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.charm-trio__hero-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--adophies-gold, #deb071);
+  margin-bottom: 24px;
+}
+
+.charm-trio__hero-title {
+  font-family: var(--font-stack-header);
+  font-size: clamp(44px, 7vw, 96px);
+  line-height: 0.96;
+  color: var(--adophies-brown, #544541);
+  margin: 0 0 24px;
+  letter-spacing: -0.015em;
+  font-weight: 400;
+}
+
+.charm-trio__hero-title em {
+  font-style: italic;
+  color: var(--adophies-gold, #deb071);
+}
+
+.charm-trio__hero-sub {
+  color: var(--adophies-brown, #544541);
+  opacity: 0.78;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 auto 32px;
+  font-style: italic;
+}
+
+.charm-trio__nav {
+  display: inline-flex;
+  gap: 0;
+  border: 1px solid var(--adophies-gold-soft, rgba(222, 176, 113, 0.2));
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  padding: 4px;
+  margin-top: 8px;
+  backdrop-filter: blur(6px);
+}
+
+.charm-trio__nav a {
+  padding: 10px 22px;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--adophies-brown, #544541);
+  border-radius: 999px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.charm-trio__nav a:hover {
+  background: var(--adophies-gold, #deb071);
+  color: #fff;
+}
+
+/* ---- Category common intro ---- */
+.charm-cat {
+  padding: 12vh 6vw 6vh;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.charm-cat__intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  margin-bottom: 56px;
+  max-width: 820px;
+}
+
+.charm-cat__intro--center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  max-width: 620px;
+}
+
+.charm-cat__intro--right {
+  margin-left: auto;
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.charm-cat__intro--right>div {
+  order: 0;
+}
+
+.charm-cat__roman {
+  font-family: var(--font-stack-header);
+  font-style: italic;
+  font-size: clamp(56px, 6vw, 92px);
+  color: var(--adophies-gold, #deb071);
+  line-height: 1;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.charm-cat__intro--center .charm-cat__roman {
+  margin-bottom: 12px;
+}
+
+.charm-cat__eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--adophies-gold, #deb071);
+  margin-bottom: 8px;
+}
+
+.charm-cat__title {
+  font-family: var(--font-stack-header);
+  font-size: clamp(38px, 5vw, 64px);
+  color: var(--adophies-brown, #544541);
+  margin: 0 0 10px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.charm-cat__body {
+  color: var(--adophies-brown, #544541);
+  opacity: 0.76;
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0;
+  font-style: italic;
+}
+
+.charm-cat__intro--center .charm-cat__body,
+.charm-cat__intro--right .charm-cat__body {
+  margin-left: auto;
+}
+
+.charm-cat__intro--center .charm-cat__body {
+  margin-right: auto;
+}
+
+/* All three category grids share centered flex behavior so any item count
+   (5 rings, 6 earrings, 4 bracelets) flows cleanly with the last row centered. */
+.charm-cat__grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 28px;
+  margin: 0 auto;
+}
+
+.charm-cat__grid > .jewelry-card {
+  margin: 0 !important;
+  flex: 0 1 auto;
+}
+
+/* ---- EARRINGS: clean 3-up grid, 6 items → 3x2 ---- */
+.charm-cat--earrings {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(255, 220, 195, 0.4), transparent 40%),
+    transparent;
+}
+
+.charm-cat__grid--earrings {
+  max-width: 1100px;
+}
+
+.charm-cat__grid--earrings > .jewelry-card {
+  flex-basis: calc(33.333% - 28px);
+  max-width: 320px;
+  min-width: 240px;
+}
+
+/* ---- RINGS: 3-up, 5 items → 3 on row 1, 2 centered on row 2 ---- */
+.charm-cat--rings {
+  background:
+    linear-gradient(180deg, transparent, rgba(254, 239, 231, 0.6), transparent);
+  border-top: 1px solid var(--adophies-gold-soft, rgba(222, 176, 113, 0.18));
+  border-bottom: 1px solid var(--adophies-gold-soft, rgba(222, 176, 113, 0.18));
+}
+
+.charm-cat__grid--rings {
+  max-width: 1100px;
+}
+
+.charm-cat__grid--rings > .jewelry-card {
+  flex-basis: calc(33.333% - 28px);
+  max-width: 320px;
+  min-width: 240px;
+}
+
+/* ---- BRACELETS: 2-up wider cards, 4 items → 2x2 ---- */
+.charm-cat--bracelets {
+  background:
+    radial-gradient(circle at 15% 80%, rgba(255, 220, 195, 0.4), transparent 45%),
+    transparent;
+}
+
+.charm-cat__grid--bracelets {
+  max-width: 980px;
+  gap: 36px;
+}
+
+.charm-cat__grid--bracelets > .jewelry-card {
+  flex-basis: calc(50% - 36px);
+  max-width: 440px;
+  min-width: 280px;
+}
+
+.charm-cat__grid--bracelets .jewelry-card__media {
+  aspect-ratio: 4 / 3;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 990px) {
+  .charm-cat__grid--earrings > .jewelry-card,
+  .charm-cat__grid--rings > .jewelry-card {
+    flex-basis: calc(50% - 28px);
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  .charm-trio__hero {
+    padding: 10vh 5vw 6vh;
+  }
+
+  .charm-trio__hero-title {
+    font-size: clamp(36px, 11vw, 56px);
+  }
+
+  .charm-cat {
+    padding: 8vh 5vw 4vh;
+  }
+
+  .charm-cat__intro {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    gap: 6px;
+  }
+
+  .charm-cat__intro--right {
+    align-items: flex-end !important;
+    text-align: right !important;
+  }
+
+  .charm-cat__roman {
+    font-size: 56px;
+  }
+
+  .charm-cat__grid {
+    gap: 22px;
+    max-width: 360px;
+  }
+
+  .charm-cat__grid > .jewelry-card {
+    flex-basis: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
 }
