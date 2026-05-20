@@ -1,0 +1,47 @@
+{% comment %}
+  Adophies — hardcoded primary navigation.
+  Always shows the 4 pillars + Charm Bar regardless of Shopify menu config.
+  If the Shopify menu (passed via `linklist`) has items, they are appended.
+{% endcomment %}
+
+{%- assign nav_extra = linklists[linklist] -%}
+
+<ul class="site-nav list--inline{% if wrapper_class %} {{ wrapper_class }}{% endif %}" id="SiteNav">
+  <li class="site-nav--has-dropdown" data-has-dropdowns>
+    <a href="{{ routes.root_url }}collections" class="site-nav__link site-nav__link--main">
+      <span class="site-nav__label">Women's</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{ routes.root_url }}collections" class="site-nav__link">
+      <span class="site-nav__label">Hat Bar</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{ routes.root_url }}pages/charm-bar" class="site-nav__link">
+      <span class="site-nav__label">Charm Bar</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{ routes.root_url }}collections" class="site-nav__link">
+      <span class="site-nav__label">Baby</span>
+    </a>
+  </li>
+
+  {%- if nav_extra != blank -%}
+    {%- for link in nav_extra.links -%}
+      {%- assign label_lower = link.title | downcase -%}
+      {%- assign skip = false -%}
+      {%- if label_lower contains 'women' or label_lower contains 'hat' or label_lower contains 'charm' or label_lower contains 'baby' -%}
+        {%- assign skip = true -%}
+      {%- endif -%}
+      {%- unless skip -%}
+        <li>
+          <a href="{{ link.url }}" class="site-nav__link{% if link.active %} site-nav__link--active{% endif %}">
+            <span class="site-nav__label">{{ link.title | escape }}</span>
+          </a>
+        </li>
+      {%- endunless -%}
+    {%- endfor -%}
+  {%- endif -%}
+</ul>

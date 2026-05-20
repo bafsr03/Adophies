@@ -22,3 +22,71 @@
     <span class="marquee__item">Soft girl summer all year</span>
   </div>
 </section>
+
+<section class="adop-footer-rich" data-reveal>
+  <div class="adop-footer-rich__inner">
+
+    <div class="adop-footer-rich__brand">
+      <h3 class="adop-footer-rich__brand-title">Adophies<em>.</em></h3>
+      <p class="adop-footer-rich__brand-sub">A boutique in Abilene, Texas for the girls who love pretty things.</p>
+      <div class="adop-footer-rich__contact">
+        <span>202 Pine St, Suite 103 · Abilene, TX</span>
+        <span>Tue – Sat · 10:30am – 6pm</span>
+      </div>
+    </div>
+
+    <div class="adop-footer-rich__col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="{{ routes.root_url }}collections">Women's Clothing</a></li>
+        <li><a href="{{ routes.root_url }}collections">Hat Bar</a></li>
+        <li><a href="{{ routes.root_url }}pages/charm-bar">Charm Bar (3D)</a></li>
+        <li><a href="{{ routes.root_url }}collections">Baby</a></li>
+        <li><a href="{{ routes.root_url }}collections/new-arrivals">New Arrivals</a></li>
+      </ul>
+    </div>
+
+    <div class="adop-footer-rich__col">
+      <h4>Visit</h4>
+      <ul>
+        <li><a href="https://maps.google.com?daddr=202+pine+st+abilene+tx" target="_blank" rel="noopener">Get directions</a></li>
+        <li><a href="{{ routes.root_url }}pages/contact">Contact us</a></li>
+        <li><a href="{{ routes.root_url }}pages/judgeme_all_reviews">Reviews</a></li>
+        <li><a href="{{ routes.root_url }}policies/shipping-policy">Shipping</a></li>
+        <li><a href="{{ routes.root_url }}policies/refund-policy">Returns</a></li>
+      </ul>
+    </div>
+
+    <div class="adop-footer-rich__col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/shopadophies/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://shopadophies.com/shopify" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="{{ routes.account_url }}">My account</a></li>
+        <li><a href="{{ routes.cart_url }}">Cart</a></li>
+      </ul>
+    </div>
+
+    <div class="adop-footer-rich__newsletter">
+      <h4>Babe mail</h4>
+      <p>Soft girl drops, early access, secret sales.</p>
+      {%- form 'customer', class: 'adop-footer-rich__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="adop-footer-rich__input-row">
+          <input type="email"
+                 name="contact[email]"
+                 placeholder="your email"
+                 aria-label="Email address"
+                 required>
+          <button type="submit">Join</button>
+        </div>
+        {%- if form.posted_successfully? -%}
+          <p class="adop-footer-rich__form-success">You're on the list ✦</p>
+        {%- elsif form.errors -%}
+          <p class="adop-footer-rich__form-error">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+
+  </div>
+</section>
