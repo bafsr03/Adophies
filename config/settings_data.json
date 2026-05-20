@@ -408,6 +408,7 @@
           "fp_b": {
             "type": "pillar",
             "settings": {
+              "image": "shopify://shop_images/Brown_Photocentric_Outfit_of_The_Day_Instagram_Story_12_x_12_in_8.5_x_11_in_7.png",
               "fallback_asset": "pillar-baby.jpg",
               "title": "Baby",
               "subtitle": "Sweet things for the littlest ones.",
