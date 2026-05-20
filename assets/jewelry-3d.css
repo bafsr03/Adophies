@@ -82,9 +82,28 @@
 }
 
 .jewelry-grid--teaser {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  max-width: 1100px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  max-width: 920px;
+  gap: 22px;
 }
+/* Teaser cards: slightly smaller, with a touch of extra padding so the model has breathing room */
+.jewelry-3d-section--teaser .jewelry-card {
+  padding: 14px;
+  max-width: 280px;
+  margin: 0 auto;
+  width: 100%;
+}
+.jewelry-3d-section--teaser .jewelry-card__media {
+  aspect-ratio: 1 / 1;
+}
+.jewelry-3d-section--teaser .jewelry-card__viewer {
+  --poster-color: transparent;
+  background-color: transparent;
+  padding: 8%;            /* visual margin around the model inside the viewer */
+  box-sizing: border-box;
+}
+.jewelry-3d-section--teaser .jewelry-card__name { font-size: 16px; }
+.jewelry-3d-section--teaser .jewelry-card__price { font-size: 14px; margin-bottom: 10px; }
 
 .jewelry-grid--gallery {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
