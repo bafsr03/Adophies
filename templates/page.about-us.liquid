@@ -1,0 +1,373 @@
+{% comment %}
+  Adophies — About Us page template.
+
+  To use:
+    1. Shopify Admin → Online Store → Pages → Add page
+    2. Title: "About Us"   (URL handle becomes /pages/about-us)
+    3. Theme template dropdown → select "page.about-us"
+    4. The page.content textarea (in admin) is appended at the bottom
+       if you want to add extra hand-written copy.
+
+  This file is intentionally self-contained — uses existing classes
+  (.editorial-split, .marquee, .data-reveal hooks) plus a small
+  about-page-specific style block.
+{% endcomment %}
+
+<style>
+  .about-hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(ellipse at top, var(--adop-pink-100) 0%, var(--adop-cream) 60%);
+    overflow: hidden;
+    padding: 12vh 6vw 10vh;
+  }
+  .about-hero .blob-bg { width: 480px; height: 480px; }
+  .about-hero .blob-bg--a { top: -160px; left: -120px; }
+  .about-hero .blob-bg--b { bottom: -200px; right: -140px; opacity: 0.4; }
+  .about-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 880px;
+  }
+  .about-hero__eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--adop-gold);
+    margin-bottom: 22px;
+  }
+  .about-hero__title {
+    font-family: var(--font-stack-header);
+    font-size: clamp(48px, 8vw, 120px);
+    line-height: 0.95;
+    color: var(--adop-brown);
+    margin: 0 0 24px;
+    letter-spacing: -0.015em;
+    font-weight: 400;
+  }
+  .about-hero__title em {
+    font-style: italic;
+    color: var(--adop-gold);
+  }
+  .about-hero__lede {
+    font-size: clamp(16px, 1.6vw, 19px);
+    line-height: 1.6;
+    color: var(--adop-brown);
+    opacity: 0.82;
+    max-width: 640px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+  .about-hero__spinner {
+    margin-top: 40px;
+  }
+
+  /* Values strip — 3 columns */
+  .about-values {
+    background: var(--adop-cream);
+    padding: 12vh 6vw;
+    border-top: 1px solid var(--adop-gold-soft);
+    border-bottom: 1px solid var(--adop-gold-soft);
+  }
+  .about-values__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+  .about-value__number {
+    font-family: var(--font-stack-header);
+    font-style: italic;
+    font-size: 48px;
+    color: var(--adop-gold);
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  .about-value__title {
+    font-family: var(--font-stack-header);
+    font-size: 22px;
+    color: var(--adop-brown);
+    margin: 0 0 12px;
+    letter-spacing: 0.02em;
+  }
+  .about-value__body {
+    color: var(--adop-brown);
+    opacity: 0.78;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+  @media (max-width: 749px) {
+    .about-values__inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-values { padding: 8vh 6vw; }
+  }
+
+  /* Four worlds quick grid */
+  .about-worlds {
+    padding: 12vh 6vw;
+    background: var(--adop-cream);
+    text-align: center;
+  }
+  .about-worlds__heading {
+    font-family: var(--font-stack-header);
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--adop-brown);
+    margin: 0 0 12px;
+  }
+  .about-worlds__sub {
+    color: var(--adop-brown);
+    opacity: 0.78;
+    margin: 0 auto 56px;
+    max-width: 520px;
+    font-style: italic;
+  }
+  .about-worlds__grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .about-world {
+    text-align: left;
+    padding: 28px 24px;
+    background: #fff;
+    border-radius: 18px;
+    border: 1px solid var(--adop-gold-soft);
+    box-shadow: 0 4px 20px rgba(84,69,65,0.05);
+    transition: transform 0.4s var(--ease-soft), box-shadow 0.4s var(--ease-soft);
+  }
+  .about-world:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(84,69,65,0.10);
+  }
+  .about-world__icon {
+    font-family: var(--font-stack-header);
+    font-style: italic;
+    font-size: 32px;
+    color: var(--adop-gold);
+    margin-bottom: 10px;
+  }
+  .about-world__title {
+    font-family: var(--font-stack-header);
+    font-size: 18px;
+    color: var(--adop-brown);
+    margin: 0 0 6px;
+  }
+  .about-world__body {
+    color: var(--adop-brown);
+    opacity: 0.75;
+    font-size: 13px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  @media (max-width: 990px) { .about-worlds__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .about-worlds__grid { grid-template-columns: 1fr; } }
+
+  /* Closing visit card */
+  .about-visit {
+    padding: 12vh 6vw;
+    background: var(--adop-brown);
+    color: var(--adop-cream);
+    text-align: center;
+  }
+  .about-visit__eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--adop-gold);
+    margin-bottom: 18px;
+    display: inline-block;
+  }
+  .about-visit__title {
+    font-family: var(--font-stack-header);
+    font-size: clamp(36px, 5vw, 64px);
+    color: var(--adop-cream);
+    margin: 0 0 16px;
+    line-height: 1.05;
+  }
+  .about-visit__title em { color: var(--adop-gold); font-style: italic; }
+  .about-visit__body {
+    color: rgba(255,250,236,0.78);
+    max-width: 540px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+  }
+  .about-visit__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    background: var(--adop-gold);
+    color: #fff;
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: background-color 0.35s var(--ease-soft), color 0.35s var(--ease-soft);
+  }
+  .about-visit__cta:hover {
+    background: var(--adop-pink-100);
+    color: var(--adop-brown);
+  }
+
+  /* Admin-editable rich text block (from page.content) */
+  .about-content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 10vh 4vw;
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--adop-brown);
+  }
+</style>
+
+<!-- ============ HERO ============ -->
+<section class="about-hero">
+  <div class="blob-bg blob-bg--pink blob-bg--a"></div>
+  <div class="blob-bg blob-bg--gold blob-bg--b"></div>
+  <div class="about-hero__inner">
+    <span class="about-hero__eyebrow" data-reveal>Adophies — Est. for the girls</span>
+    <h1 class="about-hero__title" data-reveal style="--reveal-delay: 120ms">
+      For the girls who love <em>pretty things</em>.
+    </h1>
+    <p class="about-hero__lede" data-reveal style="--reveal-delay: 240ms">
+      A boutique in Abilene, Texas — four worlds under one roof: dresses, hats made yours,
+      charms to mix and match, and softness for the littlest ones.
+    </p>
+    <div class="about-hero__spinner" data-reveal style="--reveal-delay: 360ms">
+      {%- assign spinner_size = 110 -%}
+      {% include 'cocktail-spinner' %}
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<section class="marquee marquee--pink" style="--marquee-duration: 30s;">
+  <div class="marquee__track">
+    <span class="marquee__item">Hand-picked</span>
+    <span class="marquee__item">Made yours</span>
+    <span class="marquee__item">Adophies Cocktail Club</span>
+    <span class="marquee__item">Abilene, TX</span>
+  </div>
+</section>
+
+<!-- ============ STORY 1 — origin ============ -->
+<section class="editorial-split" data-reveal>
+  <div class="editorial-split__media">
+    <img class="editorial-split__media-img"
+         src="{{ 'editorial-1.jpg' | asset_url }}"
+         alt="Inside the Adophies boutique"
+         loading="lazy">
+  </div>
+  <div class="editorial-split__copy">
+    <span class="editorial-split__eyebrow">Our story</span>
+    <h2 class="editorial-split__title">
+      <span>It started with one rack.<br><em>It became a world.</em></span>
+    </h2>
+    <div class="editorial-split__body">
+      <p>Adophies opened with a small rack of dresses and a feeling — that getting ready should be a little ritual, not a chore. We grew the rack into a room, the room into a boutique, and the boutique into four worlds.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VALUES ============ -->
+<section class="about-values">
+  <div class="about-values__inner">
+    <div data-reveal>
+      <div class="about-value__number">01</div>
+      <h3 class="about-value__title">Picked, never piled.</h3>
+      <p class="about-value__body">Every piece is chosen because we'd wear it ourselves. If it doesn't make the cut for our own closets, it doesn't make the rack.</p>
+    </div>
+    <div data-reveal style="--reveal-delay: 120ms">
+      <div class="about-value__number">02</div>
+      <h3 class="about-value__title">Made yours.</h3>
+      <p class="about-value__body">The Hat Bar lets you press, burn and brand. The Charm Bar lets you mix and match. Nothing leaves the shop looking like anything else.</p>
+    </div>
+    <div data-reveal style="--reveal-delay: 240ms">
+      <div class="about-value__number">03</div>
+      <h3 class="about-value__title">Soft, but strong.</h3>
+      <p class="about-value__body">We're a small-town boutique with a soft-girl aesthetic and the kind of customer service that gets you texted on your birthday.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY 2 — what we do ============ -->
+<section class="editorial-split editorial-split--reverse" data-reveal>
+  <div class="editorial-split__media">
+    <img class="editorial-split__media-img"
+         src="{{ 'editorial-2.jpg' | asset_url }}"
+         alt="Adophies Charm Bar"
+         loading="lazy">
+  </div>
+  <div class="editorial-split__copy">
+    <span class="editorial-split__eyebrow">In the boutique</span>
+    <h2 class="editorial-split__title">
+      <span>Come for a charm.<br><em>Stay for a fitting.</em></span>
+    </h2>
+    <div class="editorial-split__body">
+      <p>Walk in, take your time. We'll help you build a charm necklace for your sister's birthday, brand a hat for your bachelorette weekend, and pick a dress for the dinner you almost said no to.</p>
+    </div>
+    <a href="{{ routes.root_url }}pages/charm-bar" class="editorial-split__cta" data-magnetic="0.2">
+      Visit the Charm Bar →
+    </a>
+  </div>
+</section>
+
+<!-- ============ FOUR WORLDS ============ -->
+<section class="about-worlds">
+  <h2 class="about-worlds__heading" data-reveal>Four worlds, one boutique.</h2>
+  <p class="about-worlds__sub" data-reveal style="--reveal-delay: 80ms">Pick your aisle.</p>
+  <div class="about-worlds__grid">
+    <div class="about-world" data-reveal>
+      <div class="about-world__icon">i.</div>
+      <h3 class="about-world__title">Women's Clothing</h3>
+      <p class="about-world__body">Dresses, sets, everyday softness. Picked for the way they move.</p>
+    </div>
+    <div class="about-world" data-reveal style="--reveal-delay: 100ms">
+      <div class="about-world__icon">ii.</div>
+      <h3 class="about-world__title">Hat Bar</h3>
+      <p class="about-world__body">Pressed, burned, branded — finished in the shop so it's actually yours.</p>
+    </div>
+    <div class="about-world" data-reveal style="--reveal-delay: 200ms">
+      <div class="about-world__icon">iii.</div>
+      <h3 class="about-world__title">Charm Bar</h3>
+      <p class="about-world__body">Tiny, dainty charms. Mix and match into a piece nobody else has.</p>
+    </div>
+    <div class="about-world" data-reveal style="--reveal-delay: 300ms">
+      <div class="about-world__icon">iv.</div>
+      <h3 class="about-world__title">Baby</h3>
+      <p class="about-world__body">Sweet things for the littlest ones. The softness scales down.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<section class="marquee marquee--gold" style="--marquee-duration: 24s;">
+  <div class="marquee__track">
+    <span class="marquee__item">Visit us</span>
+    <span class="marquee__item">202 Pine St</span>
+    <span class="marquee__item">Abilene, TX</span>
+    <span class="marquee__item">Tue – Sat</span>
+  </div>
+</section>
+
+<!-- ============ ADMIN-EDITABLE CONTENT (page.content) ============ -->
+{%- if page.content != blank -%}
+  <section class="about-content rte" data-reveal>{{ page.content }}</section>
+{%- endif -%}
+
+<!-- ============ VISIT CTA ============ -->
+<section class="about-visit" data-reveal>
+  <span class="about-visit__eyebrow">Come see us</span>
+  <h2 class="about-visit__title">Adophies, in <em>real life</em>.</h2>
+  <p class="about-visit__body">202 Pine St, Suite 103 · Abilene, TX · Tue – Sat · 10:30am – 6pm</p>
+  <a href="https://maps.google.com?daddr=202+pine+st+abilene+tx" target="_blank" rel="noopener" class="about-visit__cta" data-magnetic="0.25">
+    Get directions →
+  </a>
+</section>
