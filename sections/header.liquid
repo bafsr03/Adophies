@@ -153,7 +153,32 @@
 
     <nav class="mobile-nav-wrapper medium-up--hide critical-hidden" role="navigation">
       <ul id="MobileNav" class="mobile-nav">
+        {%- comment -%} Adophies hardcoded 4 pillars — always visible on mobile {%- endcomment -%}
+        <li class="mobile-nav__item border-bottom">
+          <a href="{{ routes.root_url }}collections" class="mobile-nav__sublist-link">
+            <span class="mobile-nav__label">Women's</span>
+          </a>
+        </li>
+        <li class="mobile-nav__item border-bottom">
+          <a href="{{ routes.root_url }}collections" class="mobile-nav__sublist-link">
+            <span class="mobile-nav__label">Hat Bar</span>
+          </a>
+        </li>
+        <li class="mobile-nav__item border-bottom">
+          <a href="{{ routes.root_url }}pages/charm-bar" class="mobile-nav__sublist-link">
+            <span class="mobile-nav__label">Charm Bar</span>
+          </a>
+        </li>
+        <li class="mobile-nav__item border-bottom">
+          <a href="{{ routes.root_url }}collections" class="mobile-nav__sublist-link">
+            <span class="mobile-nav__label">Baby</span>
+          </a>
+        </li>
         {% for link in linklists[section.settings.main_linklist].links %}
+          {%- assign label_lower = link.title | downcase -%}
+          {%- if label_lower contains 'women' or label_lower contains 'hat' or label_lower contains 'charm' or label_lower contains 'baby' or label_lower contains 'shop' -%}
+            {%- continue -%}
+          {%- endif -%}
           {%- assign outerLoopIndex = forloop.index -%}
 
           <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">

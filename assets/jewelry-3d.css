@@ -82,9 +82,11 @@
 }
 
 .jewelry-grid--teaser {
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  max-width: 780px;
-  gap: 18px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  max-width: 320px;
+  gap: 22px;
 }
 /* Teaser cards: smaller render area = lighter GPU work (3 viewers running simultaneously) */
 .jewelry-3d-section--teaser .jewelry-card {
