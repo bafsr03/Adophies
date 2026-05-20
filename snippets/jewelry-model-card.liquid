@@ -21,12 +21,26 @@
 {% endcomment %}
 
 {%- assign reveal_mode = 'interaction' -%}
+{%- assign is_teaser = false -%}
 {%- if card_eager == 'true' or card_eager == true -%}
   {%- assign reveal_mode = 'auto' -%}
+  {%- assign is_teaser = true -%}
 {%- endif -%}
 
-<article class="jewelry-card{% if card_eager == 'true' or card_eager == true %} jewelry-card--eager{% endif %}"
+{%- comment -%} Teaser mode = lighter render budget (no ground shadow, slower spin) {%- endcomment -%}
+{%- if is_teaser -%}
+  {%- assign mv_shadow = '0' -%}
+  {%- assign mv_rotate = '12deg' -%}
+  {%- assign mv_exposure = '1.3' -%}
+{%- else -%}
+  {%- assign mv_shadow = '0.45' -%}
+  {%- assign mv_rotate = '22deg' -%}
+  {%- assign mv_exposure = '1.35' -%}
+{%- endif -%}
+
+<article class="jewelry-card{% if is_teaser %} jewelry-card--eager jewelry-card--no-modal{% endif %}"
          data-jewelry-card
+         {% if is_teaser %}data-jewelry-no-modal data-jewelry-link="/pages/charm-bar"{% endif %}
          data-card-id="{{ card_id }}"
          data-model-url="{{ card_model_url }}"
          data-name="{{ card_name | escape }}"
@@ -34,9 +48,8 @@
          data-dimensions="{{ card_dimensions | escape }}"
          data-price="{{ card_price | escape }}">
 
-  <div class="jewelry-card__media" data-jewelry-trigger tabindex="0"
-       role="button"
-       aria-label="View {{ card_name | escape }} in 3D">
+  <div class="jewelry-card__media"
+       {% unless is_teaser %}data-jewelry-trigger tabindex="0" role="button" aria-label="View {{ card_name | escape }} in 3D"{% endunless %}>
 
     {%- if card_model_url != blank -%}
       <model-viewer
@@ -47,20 +60,21 @@
         loading="lazy"
         camera-controls
         auto-rotate
-        auto-rotate-delay="400"
-        rotation-per-second="22deg"
+        auto-rotate-delay="500"
+        rotation-per-second="{{ mv_rotate }}"
         interaction-prompt="none"
         environment-image="neutral"
         tone-mapping="commerce"
-        shadow-intensity="0.45"
+        shadow-intensity="{{ mv_shadow }}"
         shadow-softness="1"
-        exposure="1.35"
-        camera-orbit="0deg 75deg 135%"
-        field-of-view="28deg"
+        exposure="{{ mv_exposure }}"
+        camera-orbit="0deg 75deg 145%"
+        field-of-view="26deg"
         min-camera-orbit="auto auto 110%"
         max-camera-orbit="auto auto 180%"
         touch-action="pan-y"
         disable-tap
+        disable-pan
         alt="3D model of {{ card_name | escape }}">
         {%- if card_poster_url != blank -%}
           <img slot="poster" src="{{ card_poster_url }}" alt="{{ card_name | escape }}" loading="lazy">

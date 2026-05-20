@@ -82,14 +82,14 @@
 }
 
 .jewelry-grid--teaser {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  max-width: 920px;
-  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  max-width: 780px;
+  gap: 18px;
 }
-/* Teaser cards: slightly smaller, with a touch of extra padding so the model has breathing room */
+/* Teaser cards: smaller render area = lighter GPU work (3 viewers running simultaneously) */
 .jewelry-3d-section--teaser .jewelry-card {
-  padding: 14px;
-  max-width: 280px;
+  padding: 12px;
+  max-width: 230px;
   margin: 0 auto;
   width: 100%;
 }
@@ -99,11 +99,17 @@
 .jewelry-3d-section--teaser .jewelry-card__viewer {
   --poster-color: transparent;
   background-color: transparent;
-  padding: 8%;            /* visual margin around the model inside the viewer */
+  padding: 6%;
   box-sizing: border-box;
+  image-rendering: auto;
 }
-.jewelry-3d-section--teaser .jewelry-card__name { font-size: 16px; }
-.jewelry-3d-section--teaser .jewelry-card__price { font-size: 14px; margin-bottom: 10px; }
+.jewelry-3d-section--teaser .jewelry-card__name { font-size: 15px; }
+.jewelry-3d-section--teaser .jewelry-card__price { font-size: 13px; margin-bottom: 8px; }
+.jewelry-3d-section--teaser .jewelry-card__btn { padding: 8px 16px; font-size: 10px; }
+@media (max-width: 749px) {
+  .jewelry-grid--teaser { grid-template-columns: repeat(2, 1fr); max-width: 420px; }
+  .jewelry-3d-section--teaser .jewelry-card { max-width: 100%; padding: 10px; }
+}
 
 .jewelry-grid--gallery {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -135,6 +141,13 @@
   overflow: hidden;
   cursor: zoom-in;
   outline: none;
+}
+/* Teaser cards: clicking navigates to the accessories page, dragging rotates the model */
+.jewelry-card--no-modal .jewelry-card__media {
+  cursor: pointer;
+}
+.jewelry-card--no-modal .jewelry-card__media:active {
+  cursor: grabbing;
 }
 
 .jewelry-card__media:focus-visible {

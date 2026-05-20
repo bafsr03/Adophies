@@ -134,7 +134,16 @@
       if (card.__wired) return;
       card.__wired = true;
 
-      const trigger = card.querySelector('[data-jewelry-trigger]') || card;
+      // Teaser cards (data-jewelry-no-modal): click navigates to the accessories page,
+      // dragging on the <model-viewer> still rotates the model (drag is detected and
+      // suppresses the navigation).
+      if (card.hasAttribute('data-jewelry-no-modal')) {
+        wireNavOnClick(card);
+        return;
+      }
+
+      const trigger = card.querySelector('[data-jewelry-trigger]');
+      if (!trigger) return;
       const open = () => openModal(card);
       trigger.addEventListener('click', open);
       trigger.addEventListener('keydown', (e) => {
@@ -145,6 +154,31 @@
       });
     });
     return true;
+  }
+
+  function wireNavOnClick(card) {
+    const media = card.querySelector('.jewelry-card__media');
+    if (!media) return;
+    const url = card.getAttribute('data-jewelry-link') || '/pages/charm-bar';
+
+    let startX = 0, startY = 0, dragged = false;
+    const DRAG_THRESHOLD = 6;
+
+    media.addEventListener('pointerdown', (e) => {
+      startX = e.clientX;
+      startY = e.clientY;
+      dragged = false;
+    });
+    media.addEventListener('pointermove', (e) => {
+      if (Math.abs(e.clientX - startX) > DRAG_THRESHOLD ||
+          Math.abs(e.clientY - startY) > DRAG_THRESHOLD) {
+        dragged = true;
+      }
+    });
+    media.addEventListener('click', (e) => {
+      if (dragged) return;          // user was rotating, don't navigate
+      window.location.href = url;
+    });
   }
 
   function init() {
