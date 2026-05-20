@@ -81,12 +81,19 @@
   margin: 0 auto;
 }
 
+/* Desktop: 3 horizontal columns. Mobile: 1 vertical column. */
 .jewelry-grid--teaser {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  max-width: 320px;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
   gap: 22px;
+  max-width: 780px;
+  margin: 0 auto;
+}
+@media (max-width: 749px) {
+  .jewelry-grid--teaser {
+    grid-template-columns: 1fr !important;
+    max-width: 320px;
+  }
 }
 /* Teaser cards: smaller render area = lighter GPU work (3 viewers running simultaneously) */
 .jewelry-3d-section--teaser .jewelry-card {
