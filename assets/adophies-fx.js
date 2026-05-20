@@ -23,11 +23,21 @@
     initRevealObserver();
     initMarquees();
     initFloatingSpinner();
+    initStickyHeader();
     if (!REDUCED && !TOUCH) {
       initCustomCursor();
       initMagnetic();
     }
   });
+
+  /* ---------- Sticky header: toggle 'adop-header-scrolled' on body ---------- */
+  function initStickyHeader() {
+    const update = () => {
+      document.body.classList.toggle('adop-header-scrolled', window.scrollY > 24);
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  }
 
   /* ---------- Auto-tag common elements with data-reveal ---------- */
   function autoTagReveals() {
