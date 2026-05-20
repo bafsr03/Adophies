@@ -432,7 +432,7 @@
           "jt_m1": {
             "type": "model",
             "settings": {
-              "model_url": "",
+              "model_url": "https://cdn.shopify.com/3d/models/1c9b751c0ef167fd/Ring001.glb",
               "poster_url": "",
               "name": "Charm 01",
               "price": "$48",
