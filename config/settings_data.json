@@ -544,6 +544,14 @@
           "cta_label": "Open the Charm Bar",
           "cta_link": "/pages/charm-bar"
         }
+      },
+      "jewelry-3d-gallery": {
+        "type": "jewelry-3d-gallery",
+        "settings": {
+          "eyebrow": "The Adophies Charm Bar",
+          "title": "Build your own little world",
+          "subtitle": "Click any piece to spin it, zoom in, and see how it's made. Add the ones that feel like you."
+        }
       }
     },
     "content_for_index": [
