@@ -387,6 +387,7 @@
           "fp_h": {
             "type": "pillar",
             "settings": {
+              "image": "shopify://shop_images/Screenshot_2026-05-20_at_3.00.15_PM.png",
               "fallback_asset": "pillar-hat.jpg",
               "title": "Hat Bar",
               "subtitle": "Pressed, burned, made yours.",
