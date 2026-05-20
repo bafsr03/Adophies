@@ -14,6 +14,26 @@
   </style>
 {% endif %}
 
+{%- if section.settings.enable_logo_spin -%}
+  <style>
+    .site-header__logo-image--spin img {
+      animation: adophiesLogoSpin 9s linear infinite;
+      transform-origin: 50% 50%;
+      will-change: transform;
+    }
+    .site-header__logo-image--spin:hover img {
+      animation-play-state: paused;
+    }
+    @keyframes adophiesLogoSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .site-header__logo-image--spin img { animation: none; }
+    }
+  </style>
+{%- endif -%}
+
 {% include 'search-drawer' %}
 
 <div data-section-id="{{ section.id }}" data-section-type="header-section" data-header-section>
@@ -74,7 +94,7 @@
         {% endif %}
           {% if section.settings.logo %}
             {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-            <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}" data-image-loading-animation>
+            <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}{% if section.settings.enable_logo_spin %} site-header__logo-image--spin{% endif %}" data-image-loading-animation>
               {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
               <img class="lazyload js"
                    src="{{ section.settings.logo | img_url: '300x300' }}"
@@ -461,6 +481,13 @@
       "step": 5,
       "unit": "px",
       "default": 100
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_logo_spin",
+      "label": "Spin the logo (Adophies style)",
+      "info": "Slowly rotates the logo. Pauses on hover. Respects reduced-motion settings.",
+      "default": true
     },
     {
       "type": "link_list",

@@ -1,0 +1,105 @@
+{% comment %}
+  Adophies — reusable 3D jewelry card.
+
+  Used by both the homepage teaser and the dedicated charm-bar gallery.
+  Renders a <model-viewer> with poster-first loading, optional auto-rotate,
+  and a hover spec overlay. Click opens the shared fullscreen modal.
+
+  Required variables (set with {% assign %} before {% include %}):
+    card_model_url       direct .glb URL (Shopify Files CDN)
+    card_poster_url      2D poster image URL
+    card_name            display name
+    card_id              unique id (use block.id or forloop.index)
+
+  Optional:
+    card_price           e.g. "$48"
+    card_material        e.g. "14k Gold-filled"
+    card_dimensions      e.g. "18mm x 24mm"
+    card_product_url     PDP link
+    card_eager           "true" to load GLB immediately (teaser) vs
+                         click-to-reveal (gallery default)
+{% endcomment %}
+
+{%- assign reveal_mode = 'interaction' -%}
+{%- if card_eager == 'true' or card_eager == true -%}
+  {%- assign reveal_mode = 'auto' -%}
+{%- endif -%}
+
+<article class="jewelry-card{% if card_eager == 'true' or card_eager == true %} jewelry-card--eager{% endif %}"
+         data-jewelry-card
+         data-card-id="{{ card_id }}"
+         data-model-url="{{ card_model_url }}"
+         data-name="{{ card_name | escape }}"
+         data-material="{{ card_material | escape }}"
+         data-dimensions="{{ card_dimensions | escape }}"
+         data-price="{{ card_price | escape }}">
+
+  <div class="jewelry-card__media" data-jewelry-trigger tabindex="0"
+       role="button"
+       aria-label="View {{ card_name | escape }} in 3D">
+
+    {%- if card_model_url != blank -%}
+      <model-viewer
+        class="jewelry-card__viewer"
+        src="{{ card_model_url }}"
+        {% if card_poster_url != blank %}poster="{{ card_poster_url }}"{% endif %}
+        reveal="{{ reveal_mode }}"
+        loading="lazy"
+        camera-controls
+        auto-rotate
+        auto-rotate-delay="400"
+        rotation-per-second="22deg"
+        interaction-prompt="none"
+        shadow-intensity="0.6"
+        shadow-softness="0.8"
+        exposure="1.05"
+        touch-action="pan-y"
+        disable-tap
+        alt="3D model of {{ card_name | escape }}">
+        {%- if card_poster_url != blank -%}
+          <img slot="poster" src="{{ card_poster_url }}" alt="{{ card_name | escape }}" loading="lazy">
+        {%- endif -%}
+        <button slot="poster-button"
+                class="jewelry-card__reveal-btn"
+                type="button"
+                aria-label="Load 3D model of {{ card_name | escape }}">
+          <span class="jewelry-card__reveal-icon" aria-hidden="true">↻</span>
+          <span class="jewelry-card__reveal-text">View in 3D</span>
+        </button>
+      </model-viewer>
+    {%- else -%}
+      <div class="jewelry-card__placeholder">
+        <span>3D model coming soon</span>
+      </div>
+    {%- endif -%}
+
+    {%- if card_material != blank or card_dimensions != blank -%}
+      <div class="jewelry-card__hover-stats" aria-hidden="true">
+        {%- if card_material != blank -%}
+          <div class="jewelry-card__stat">
+            <span class="jewelry-card__stat-label">Material</span>
+            <span class="jewelry-card__stat-value">{{ card_material | escape }}</span>
+          </div>
+        {%- endif -%}
+        {%- if card_dimensions != blank -%}
+          <div class="jewelry-card__stat">
+            <span class="jewelry-card__stat-label">Size</span>
+            <span class="jewelry-card__stat-value">{{ card_dimensions | escape }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="jewelry-card__meta">
+    <h3 class="jewelry-card__name">{{ card_name | escape }}</h3>
+    {%- if card_price != blank -%}
+      <div class="jewelry-card__price">{{ card_price | escape }}</div>
+    {%- endif -%}
+    {%- if card_product_url != blank -%}
+      <a href="{{ card_product_url }}" class="jewelry-card__btn">
+        Shop {{ card_name | escape }}
+      </a>
+    {%- endif -%}
+  </div>
+</article>

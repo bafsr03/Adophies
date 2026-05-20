@@ -1,0 +1,84 @@
+{% comment %}
+  Adophies — Full 3D jewelry gallery.
+
+  Renders one card per block. Each card shows a 2D poster by default;
+  the GLB only downloads when the visitor clicks the card (via
+  reveal="interaction" on <model-viewer>). Clicking opens a fullscreen
+  modal with a single shared viewer — so even with 15+ blocks the GPU
+  only ever runs ONE active model at a time.
+
+  Designed for /pages/charm-bar (see templates/page.charm-bar.liquid).
+{% endcomment %}
+
+<link rel="stylesheet" href="{{ 'jewelry-3d.css' | asset_url }}">
+
+<section class="jewelry-3d-section jewelry-3d-section--gallery"
+         data-section-id="{{ section.id }}"
+         data-section-type="jewelry-3d-gallery">
+  <div class="jewelry-3d-section__header">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="jewelry-3d-section__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h1 class="jewelry-3d-section__title">{{ section.settings.title | escape }}</h1>
+    {%- endif -%}
+    {%- if section.settings.subtitle != blank -%}
+      <p class="jewelry-3d-section__subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="jewelry-grid jewelry-grid--gallery">
+    {%- for block in section.blocks -%}
+      {%- assign card_model_url = block.settings.model_url -%}
+      {%- assign card_poster_url = block.settings.poster | img_url: '600x' -%}
+      {%- if block.settings.poster == blank and block.settings.poster_url != blank -%}
+        {%- assign card_poster_url = block.settings.poster_url -%}
+      {%- endif -%}
+      {%- assign card_name = block.settings.name -%}
+      {%- assign card_price = block.settings.price -%}
+      {%- assign card_material = block.settings.material -%}
+      {%- assign card_dimensions = block.settings.dimensions -%}
+      {%- assign card_product_url = block.settings.product_url -%}
+      {%- assign card_id = block.id -%}
+      {%- assign card_eager = 'false' -%}
+      {% include 'jewelry-model-card' %}
+    {%- endfor -%}
+  </div>
+</section>
+
+<script src="{{ 'jewelry-3d.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Jewelry 3D gallery",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "The Adophies Charm Bar" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Build your own little world" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle",
+      "default": "Click any piece to spin it, zoom in, and see how it's made. Add the ones that feel like you." }
+  ],
+  "blocks": [
+    {
+      "type": "model",
+      "name": "3D model",
+      "settings": [
+        { "type": "url", "id": "model_url", "label": "GLB file URL (paste from Shopify Files)" },
+        { "type": "image_picker", "id": "poster", "label": "Poster image (recommended)" },
+        { "type": "url", "id": "poster_url", "label": "Poster URL (alternative)" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Charm name" },
+        { "type": "text", "id": "price", "label": "Price", "default": "$48" },
+        { "type": "text", "id": "material", "label": "Material", "default": "14k Gold-filled" },
+        { "type": "text", "id": "dimensions", "label": "Dimensions", "default": "18mm x 24mm" },
+        { "type": "url", "id": "product_url", "label": "Product page link" }
+      ]
+    }
+  ],
+  "max_blocks": 50,
+  "presets": [
+    {
+      "name": "Jewelry 3D gallery",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

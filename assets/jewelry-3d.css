@@ -1,0 +1,370 @@
+/* Adophies — 3D jewelry showcase styles
+   Used by:
+     - sections/jewelry-3d-teaser.liquid (homepage)
+     - sections/jewelry-3d-gallery.liquid (/pages/charm-bar)
+     - snippets/jewelry-model-card.liquid (the card itself)
+     - assets/jewelry-3d.js (modal markup) */
+
+:root {
+  --adophies-pink-50: #fff5f0;
+  --adophies-pink-100: #ffe3d6;
+  --adophies-pink-200: #f9c8b5;
+  --adophies-gold: #deb071;
+  --adophies-gold-soft: rgba(222, 176, 113, 0.18);
+  --adophies-brown: #544541;
+}
+
+/* ---------- Section wrappers ---------- */
+
+.jewelry-3d-section {
+  padding: 64px 24px;
+  background: linear-gradient(180deg, var(--adophies-pink-50) 0%, #fffaec 100%);
+  text-align: center;
+}
+
+.jewelry-3d-section__header {
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+
+.jewelry-3d-section__eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--adophies-gold);
+  margin-bottom: 12px;
+}
+
+.jewelry-3d-section__title {
+  font-family: var(--font-stack-header);
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--adophies-brown);
+  margin: 0 0 12px;
+  line-height: 1.15;
+}
+
+.jewelry-3d-section__subtitle {
+  color: var(--adophies-brown);
+  opacity: 0.78;
+  font-size: 16px;
+  margin: 0;
+}
+
+.jewelry-3d-section__cta {
+  margin-top: 40px;
+}
+
+.jewelry-3d-section__cta a {
+  display: inline-block;
+  padding: 14px 32px;
+  border: 1.5px solid var(--adophies-gold);
+  border-radius: 999px;
+  color: var(--adophies-brown);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.jewelry-3d-section__cta a:hover {
+  background: var(--adophies-gold);
+  color: #fff;
+}
+
+/* ---------- Grid layouts ---------- */
+
+.jewelry-grid {
+  display: grid;
+  gap: 28px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.jewelry-grid--teaser {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  max-width: 1100px;
+}
+
+.jewelry-grid--gallery {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* ---------- Card ---------- */
+
+.jewelry-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 4px 24px rgba(84, 69, 65, 0.06);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.jewelry-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(84, 69, 65, 0.12);
+}
+
+.jewelry-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--adophies-pink-50);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: zoom-in;
+  outline: none;
+}
+
+.jewelry-card__media:focus-visible {
+  outline: 2px solid var(--adophies-gold);
+  outline-offset: 2px;
+}
+
+.jewelry-card__viewer {
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+  background-color: transparent;
+}
+
+.jewelry-card__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--adophies-brown);
+  opacity: 0.5;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* The "View in 3D" reveal button shown over the poster */
+.jewelry-card__reveal-btn {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--adophies-gold-soft);
+  color: var(--adophies-brown);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.jewelry-card__reveal-icon {
+  display: inline-block;
+  font-size: 14px;
+}
+
+/* Hover specs floating over the model */
+.jewelry-card__hover-stats {
+  position: absolute;
+  inset: auto 14px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  background: rgba(255, 245, 240, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--adophies-gold-soft);
+  border-radius: 12px;
+  font-size: 12px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  text-align: left;
+}
+
+.jewelry-card:hover .jewelry-card__hover-stats {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.jewelry-card__stat {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--adophies-brown);
+}
+
+.jewelry-card__stat-label {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.jewelry-card__stat-value {
+  font-weight: 600;
+}
+
+/* Meta below the model */
+.jewelry-card__meta {
+  text-align: center;
+  padding: 16px 8px 4px;
+}
+
+.jewelry-card__name {
+  font-family: var(--font-stack-header);
+  font-size: 18px;
+  color: var(--adophies-brown);
+  margin: 0 0 4px;
+  letter-spacing: 0.04em;
+}
+
+.jewelry-card__price {
+  color: var(--adophies-gold);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.jewelry-card__btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid var(--adophies-gold);
+  border-radius: 999px;
+  color: var(--adophies-brown);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.jewelry-card__btn:hover {
+  background: var(--adophies-gold);
+  color: #fff;
+}
+
+/* Mobile: hover specs always visible, smaller padding */
+@media (max-width: 749px) {
+  .jewelry-3d-section { padding: 40px 16px; }
+  .jewelry-card { padding: 12px; }
+  .jewelry-card__hover-stats { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Fullscreen modal ---------- */
+
+.jewelry-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(84, 69, 65, 0.78);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.jewelry-modal[aria-hidden="false"] {
+  display: flex;
+}
+
+.jewelry-modal__inner {
+  position: relative;
+  width: min(960px, 100%);
+  height: min(80vh, 720px);
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.jewelry-modal__viewer {
+  flex: 1;
+  width: 100%;
+  background: var(--adophies-pink-50);
+}
+
+.jewelry-modal__meta {
+  padding: 20px 28px;
+  background: #fff;
+  border-top: 1px solid var(--adophies-gold-soft);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+
+.jewelry-modal__name {
+  font-family: var(--font-stack-header);
+  font-size: 22px;
+  color: var(--adophies-brown);
+  margin: 0 0 6px;
+}
+
+.jewelry-modal__specs {
+  display: flex;
+  gap: 18px;
+  font-size: 13px;
+  color: var(--adophies-brown);
+  opacity: 0.78;
+  flex-wrap: wrap;
+}
+
+.jewelry-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--adophies-gold-soft);
+  color: var(--adophies-brown);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.jewelry-modal__price {
+  color: var(--adophies-gold);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+@media (max-width: 749px) {
+  .jewelry-modal { padding: 0; }
+  .jewelry-modal__inner { width: 100%; height: 100%; border-radius: 0; }
+  .jewelry-modal__meta { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* ---------- Spinning logo (header) ---------- */
+
+.site-header__logo-image--spin img {
+  animation: adophiesLogoSpin 9s linear infinite;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.site-header__logo-image--spin:hover img {
+  animation-play-state: paused;
+}
+
+@keyframes adophiesLogoSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header__logo-image--spin img,
+  model-viewer { animation: none !important; }
+}
