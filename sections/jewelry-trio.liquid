@@ -1,15 +1,14 @@
 {% comment %}
-  Adophies — Charm Bar trio section.
+  Adophies — Jewelry trio section.
 
-  Renders THREE category sub-sections on /pages/charm-bar:
+  Renders THREE category sub-sections on /pages/jewelry:
     1. Earrings   (block type "earring")
     2. Rings      (block type "ring")
     3. Bracelets  (block type "bracelet")
 
   Each sub-section has its own editorial intro + grid styling.
-  Cards use the shared snippet/jewelry-model-card with the modal
-  open-on-click behavior (full gallery mode, not the inline-rotate
-  teaser mode).
+  Models auto-load when scrolled into view (reveal="auto" + loading="lazy")
+  so visitors see them without clicking.
 {% endcomment %}
 
 <link rel="stylesheet" href="{{ 'jewelry-3d.css' | asset_url }}">
@@ -18,13 +17,13 @@
 {%- assign rings     = section.blocks | where: 'type', 'ring' -%}
 {%- assign bracelets = section.blocks | where: 'type', 'bracelet' -%}
 
-<section class="charm-trio" data-section-id="{{ section.id }}" data-section-type="charm-bar-trio">
+<section class="charm-trio" data-section-id="{{ section.id }}" data-section-type="jewelry-trio">
 
   <!-- ============ HEADER ============ -->
   <header class="charm-trio__hero" data-reveal>
-    <span class="charm-trio__hero-eyebrow">{{ section.settings.hero_eyebrow | escape | default: 'Adophies / Charm Bar' }}</span>
-    <h1 class="charm-trio__hero-title">{{ section.settings.hero_title | default: 'Build your <em>little world</em>.' }}</h1>
-    <p class="charm-trio__hero-sub">{{ section.settings.hero_sub | default: 'Click any piece to rotate it, zoom in, and read the specs. Three worlds inside one bar.' }}</p>
+    <span class="charm-trio__hero-eyebrow">{{ section.settings.hero_eyebrow | escape | default: 'Adophies / Jewelry' }}</span>
+    <h1 class="charm-trio__hero-title">{{ section.settings.hero_title | default: 'Jewelry, <em>in motion</em>.' }}</h1>
+    <p class="charm-trio__hero-sub">{{ section.settings.hero_sub | default: 'Drag any piece to spin it. Hand-picked metal and stones that catch the light from every angle.' }}</p>
     <div class="charm-trio__nav" aria-label="Jump to category">
       <a href="#cat-earrings">Earrings</a>
       <a href="#cat-rings">Rings</a>
@@ -40,7 +39,7 @@
         <div>
           <span class="charm-cat__eyebrow">For the ears</span>
           <h2 class="charm-cat__title">Earrings.</h2>
-          <p class="charm-cat__body">Hover, spin, zoom. Pick the pair that catches the light the way you want it to.</p>
+          <p class="charm-cat__body">Drag, spin, zoom. Pick the pair that catches the light the way you want it to.</p>
         </div>
       </div>
       <div class="charm-cat__grid charm-cat__grid--earrings">
@@ -128,20 +127,21 @@
 
 {% schema %}
 {
-  "name": "Charm Bar trio",
+  "name": "Jewelry trio",
   "settings": [
-    { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "Adophies / Charm Bar" },
+    { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "Adophies / Jewelry" },
     { "type": "richtext", "id": "hero_title", "label": "Hero title (HTML)",
-      "default": "<p>Build your <em>little world</em>.</p>" },
+      "default": "<p>Jewelry, <em>in motion</em>.</p>" },
     { "type": "textarea", "id": "hero_sub", "label": "Hero subtitle",
-      "default": "Click any piece to rotate it, zoom in, and read the specs. Three worlds inside one bar." }
+      "default": "Drag any piece to spin it. Hand-picked metal and stones that catch the light from every angle." }
   ],
   "blocks": [
     {
       "type": "earring",
       "name": "Earring",
       "settings": [
-        { "type": "url", "id": "model_url", "label": "GLB file URL (Shopify Files CDN)" },
+        { "type": "url", "id": "model_url", "label": "GLB file URL (Shopify Files CDN)",
+          "info": "Paste the direct .glb URL. NOT a Shopify model preview page URL — it must end in .glb" },
         { "type": "image_picker", "id": "poster", "label": "Poster image" },
         { "type": "url", "id": "poster_url", "label": "Poster URL (alt)" },
         { "type": "text", "id": "name", "label": "Name", "default": "Earring" },
@@ -155,7 +155,8 @@
       "type": "ring",
       "name": "Ring",
       "settings": [
-        { "type": "url", "id": "model_url", "label": "GLB file URL (Shopify Files CDN)" },
+        { "type": "url", "id": "model_url", "label": "GLB file URL (Shopify Files CDN)",
+          "info": "Paste the direct .glb URL. NOT a Shopify model preview page URL — it must end in .glb" },
         { "type": "image_picker", "id": "poster", "label": "Poster image" },
         { "type": "url", "id": "poster_url", "label": "Poster URL (alt)" },
         { "type": "text", "id": "name", "label": "Name", "default": "Ring" },
@@ -169,7 +170,8 @@
       "type": "bracelet",
       "name": "Bracelet",
       "settings": [
-        { "type": "url", "id": "model_url", "label": "GLB file URL (Shopify Files CDN)" },
+        { "type": "url", "id": "model_url", "label": "GLB file URL (Shopify Files CDN)",
+          "info": "Paste the direct .glb URL. NOT a Shopify model preview page URL — it must end in .glb" },
         { "type": "image_picker", "id": "poster", "label": "Poster image" },
         { "type": "url", "id": "poster_url", "label": "Poster URL (alt)" },
         { "type": "text", "id": "name", "label": "Name", "default": "Bracelet" },
@@ -182,7 +184,7 @@
   ],
   "max_blocks": 50,
   "presets": [
-    { "name": "Charm Bar trio", "category": "Custom" }
+    { "name": "Jewelry trio", "category": "Custom" }
   ]
 }
 {% endschema %}

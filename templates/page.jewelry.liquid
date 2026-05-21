@@ -1,0 +1,19 @@
+{% comment %}
+  Adophies — Jewelry page template (formerly the Charm Bar 3D page).
+
+  To use:
+    1. Shopify Admin → Online Store → Pages → Add page
+    2. Title: "Jewelry"   (URL handle becomes /pages/jewelry)
+    3. Theme template dropdown → select "page.jewelry"
+    4. Open page in customizer to wire each block's GLB URL + poster.
+{% endcomment %}
+
+<div class="page-jewelry">
+  {% section 'jewelry-trio' %}
+
+  {%- if page.content != blank -%}
+    <div class="page-width text-center" style="padding: 40px 24px 80px;">
+      <div class="rte">{{ page.content }}</div>
+    </div>
+  {%- endif -%}
+</div>

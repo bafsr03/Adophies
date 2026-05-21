@@ -1,15 +1,130 @@
 {% comment %}
-  Custom page template for /pages/charm-bar.
-  Uses the dedicated charm-bar-trio section that splits into
-  Earrings / Rings / Bracelets sub-sections.
+  Adophies — Charm Bar (Coming Soon placeholder).
+
+  The 3D jewelry showcase that previously lived here moved to /pages/jewelry.
+  This page is reserved for an upcoming Charm Bar feature (custom builder etc.)
+  and currently displays a "Coming Soon" hold.
 {% endcomment %}
 
-<div class="page-charm-bar">
-  {% section 'charm-bar-trio' %}
+<style>
+  .charm-coming-soon {
+    position: relative;
+    min-height: 78vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(ellipse at top, var(--adop-pink-100) 0%, var(--adop-cream) 60%);
+    overflow: hidden;
+    padding: 14vh 6vw;
+  }
+  .charm-coming-soon .blob-bg { width: 480px; height: 480px; }
+  .charm-coming-soon .blob-bg--a { top: -160px; left: -120px; }
+  .charm-coming-soon .blob-bg--b { bottom: -200px; right: -140px; opacity: 0.45; }
+  .charm-coming-soon__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+  }
+  .charm-coming-soon__eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--adop-gold);
+    margin-bottom: 24px;
+  }
+  .charm-coming-soon__title {
+    font-family: var(--font-stack-header);
+    font-size: clamp(56px, 11vw, 152px);
+    line-height: 0.92;
+    color: var(--adop-brown);
+    margin: 0 0 18px;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+  .charm-coming-soon__title em {
+    font-style: italic;
+    color: var(--adop-gold);
+  }
+  .charm-coming-soon__sub {
+    font-size: clamp(15px, 1.5vw, 18px);
+    line-height: 1.65;
+    color: var(--adop-brown);
+    opacity: 0.78;
+    max-width: 520px;
+    margin: 0 auto 36px;
+    font-style: italic;
+  }
+  .charm-coming-soon__spinner {
+    margin-top: 8px;
+    margin-bottom: 36px;
+  }
+  .charm-coming-soon__cta-row {
+    display: inline-flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .charm-coming-soon__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: background-color 0.35s var(--ease-soft), color 0.35s var(--ease-soft), transform 0.35s var(--ease-soft);
+  }
+  .charm-coming-soon__cta--primary {
+    background: var(--adop-brown);
+    color: var(--adop-cream);
+  }
+  .charm-coming-soon__cta--primary:hover {
+    background: var(--adop-gold);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .charm-coming-soon__cta--ghost {
+    border: 1.5px solid var(--adop-brown);
+    color: var(--adop-brown);
+  }
+  .charm-coming-soon__cta--ghost:hover {
+    background: var(--adop-brown);
+    color: var(--adop-cream);
+  }
+</style>
 
-  {%- if page.content != blank -%}
-    <div class="page-width text-center" style="padding: 40px 24px 80px;">
-      <div class="rte">{{ page.content }}</div>
+<section class="charm-coming-soon">
+  <div class="blob-bg blob-bg--pink blob-bg--a"></div>
+  <div class="blob-bg blob-bg--gold blob-bg--b"></div>
+
+  <div class="charm-coming-soon__inner">
+    <span class="charm-coming-soon__eyebrow" data-reveal>Adophies / Charm Bar</span>
+    <h1 class="charm-coming-soon__title" data-reveal style="--reveal-delay:120ms">
+      Coming <em>soon</em>.
+    </h1>
+    <p class="charm-coming-soon__sub" data-reveal style="--reveal-delay:240ms">
+      Something special is on the way. A new way to mix, match and build your own pieces — sign up below to be the first to know.
+    </p>
+    <div class="charm-coming-soon__spinner" data-reveal style="--reveal-delay:340ms">
+      {%- assign spinner_size = 120 -%}
+      {% include 'cocktail-spinner' %}
     </div>
-  {%- endif -%}
-</div>
+    <div class="charm-coming-soon__cta-row" data-reveal style="--reveal-delay:440ms">
+      <a href="{{ routes.root_url }}pages/jewelry" class="charm-coming-soon__cta charm-coming-soon__cta--primary" data-magnetic="0.2">
+        Browse Jewelry →
+      </a>
+      <a href="{{ routes.root_url }}#newsletter" class="charm-coming-soon__cta charm-coming-soon__cta--ghost" data-magnetic="0.2">
+        Notify me
+      </a>
+    </div>
+  </div>
+</section>
+
+{%- if page.content != blank -%}
+  <div class="page-width text-center" style="padding: 40px 24px 80px;">
+    <div class="rte">{{ page.content }}</div>
+  </div>
+{%- endif -%}

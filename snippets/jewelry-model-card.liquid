@@ -20,10 +20,15 @@
                          click-to-reveal (gallery default)
 {% endcomment %}
 
-{%- assign reveal_mode = 'interaction' -%}
+{%- comment -%}
+  reveal="auto" always: model-viewer downloads + renders the GLB as soon as the
+  element is near the viewport (paired with loading="lazy"). No click needed.
+  card_eager still controls teaser-only behaviors: skip modal, drag-to-rotate,
+  click→navigate.
+{%- endcomment -%}
+{%- assign reveal_mode = 'auto' -%}
 {%- assign is_teaser = false -%}
 {%- if card_eager == 'true' or card_eager == true -%}
-  {%- assign reveal_mode = 'auto' -%}
   {%- assign is_teaser = true -%}
 {%- endif -%}
 
@@ -40,7 +45,7 @@
 
 <article class="jewelry-card{% if is_teaser %} jewelry-card--eager jewelry-card--no-modal{% endif %}"
          data-jewelry-card
-         {% if is_teaser %}data-jewelry-no-modal data-jewelry-link="/pages/charm-bar"{% endif %}
+         {% if is_teaser %}data-jewelry-no-modal data-jewelry-link="/pages/jewelry"{% endif %}
          data-card-id="{{ card_id }}"
          data-model-url="{{ card_model_url }}"
          data-name="{{ card_name | escape }}"
