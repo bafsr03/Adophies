@@ -654,7 +654,7 @@
           "ring_03": {
             "type": "ring",
             "settings": {
-              "model_url": "",
+              "model_url": "https://cdn.shopify.com/3d/models/9bc8183a3a81dc92/Ring003.glb",
               "poster_url": "",
               "name": "Ring003",
               "price": "$64",
