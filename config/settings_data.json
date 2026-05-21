@@ -376,6 +376,7 @@
           "fp_w": {
             "type": "pillar",
             "settings": {
+              "image": "shopify://shop_images/Scent_bar_4_x_5_in_7.png",
               "fallback_asset": "pillar-women.jpg",
               "title": "Women's Wear",
               "subtitle": "Dresses, sets and everyday softness.",
