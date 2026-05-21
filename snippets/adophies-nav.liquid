@@ -9,7 +9,7 @@
 <ul class="site-nav list--inline{% if wrapper_class %} {{ wrapper_class }}{% endif %}" id="SiteNav">
   <li class="site-nav--has-dropdown" data-has-dropdowns>
     <a href="{{ routes.root_url }}collections" class="site-nav__link site-nav__link--main">
-      <span class="site-nav__label">Women's</span>
+      <span class="site-nav__label">Women's Wear</span>
     </a>
   </li>
   <li>
@@ -18,13 +18,13 @@
     </a>
   </li>
   <li>
-    <a href="{{ routes.root_url }}pages/charm-bar" class="site-nav__link">
-      <span class="site-nav__label">Charm Bar</span>
+    <a href="{{ routes.root_url }}collections" class="site-nav__link">
+      <span class="site-nav__label">Jewelry</span>
     </a>
   </li>
   <li>
-    <a href="{{ routes.root_url }}collections" class="site-nav__link">
-      <span class="site-nav__label">Baby</span>
+    <a href="{{ routes.root_url }}pages/charm-bar" class="site-nav__link">
+      <span class="site-nav__label">Charm Bar</span>
     </a>
   </li>
 
@@ -32,7 +32,7 @@
     {%- for link in nav_extra.links -%}
       {%- assign label_lower = link.title | downcase -%}
       {%- assign skip = false -%}
-      {%- if label_lower contains 'women' or label_lower contains 'hat' or label_lower contains 'charm' or label_lower contains 'baby' or label_lower contains 'shop' -%}
+      {%- if label_lower contains 'women' or label_lower contains 'hat' or label_lower contains 'charm' or label_lower contains 'jewelry' or label_lower contains 'shop' -%}
         {%- assign skip = true -%}
       {%- endif -%}
       {%- unless skip -%}
