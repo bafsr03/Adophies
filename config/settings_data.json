@@ -558,7 +558,7 @@
           "earring_01": {
             "type": "earring",
             "settings": {
-              "model_url": "",
+              "model_url": "https://cdn.shopify.com/3d/models/74107b2ab167f601/earing001.glb",
               "poster_url": "",
               "name": "earing001",
               "price": "$48",
@@ -570,7 +570,7 @@
           "earring_02": {
             "type": "earring",
             "settings": {
-              "model_url": "",
+              "model_url": "https://cdn.shopify.com/3d/models/92021ea4fd9b9f31/earing002.glb",
               "poster_url": "",
               "name": "earing002",
               "price": "$48",
