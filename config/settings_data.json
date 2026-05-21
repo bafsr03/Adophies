@@ -618,7 +618,7 @@
           "earring_06": {
             "type": "earring",
             "settings": {
-              "model_url": "",
+              "model_url": "https://cdn.shopify.com/3d/models/d135f82d7ecdbd09/earing006.glb",
               "poster_url": "",
               "name": "earing006",
               "price": "$48",
