@@ -642,7 +642,7 @@
           "ring_02": {
             "type": "ring",
             "settings": {
-              "model_url": "",
+              "model_url": "https://cdn.shopify.com/3d/models/b03edc1f7d97bd62/Ring002.glb",
               "poster_url": "",
               "name": "Ring002",
               "price": "$64",
