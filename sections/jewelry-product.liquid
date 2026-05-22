@@ -16,14 +16,18 @@
     1. product.metafields.custom.model_url       (URL or single line text)
     2. Native Shopify 3D media uploaded to the product (.glb file in Media section)
     3. section.settings.fallback_model_url       (theme editor override)
-{%- endcomment -%}
-{%- assign model_url = product.metafields.custom.model_url -%}
 
-{%- if model_url == blank -%}
+  We stringify the metafield via `append: ''` because URL-type metafields return
+  a Liquid object that is truthy even when the underlying value is empty.
+{%- endcomment -%}
+{%- capture model_url -%}{{ product.metafields.custom.model_url }}{%- endcapture -%}
+{%- assign model_url = model_url | strip -%}
+
+{%- if model_url == '' -%}
   {%- for m in product.media -%}
     {%- if m.media_type == 'model' -%}
       {%- for s in m.sources -%}
-        {%- if s.format == 'glb' -%}
+        {%- if s.format == 'glb' and model_url == '' -%}
           {%- assign model_url = s.url -%}
         {%- endif -%}
       {%- endfor -%}
@@ -31,7 +35,7 @@
   {%- endfor -%}
 {%- endif -%}
 
-{%- if model_url == blank and section.settings.fallback_model_url != blank -%}
+{%- if model_url == '' and section.settings.fallback_model_url != '' -%}
   {%- assign model_url = section.settings.fallback_model_url -%}
 {%- endif -%}
 
@@ -56,32 +60,9 @@
 
     <!-- =================== MEDIA COLUMN =================== -->
     <div class="jewelry-product__media-col" data-reveal>
-
-      {%- if model_url != blank and images.size > 0 -%}
-        <div class="jewelry-product__view-toggle" role="tablist" aria-label="Media view">
-          <button type="button"
-                  class="jewelry-product__view-tab is-active"
-                  data-view-tab="3d"
-                  role="tab"
-                  aria-selected="true">
-            <span class="jewelry-product__view-tab-icon" aria-hidden="true">◐</span>
-            <span>3D Model</span>
-          </button>
-          <button type="button"
-                  class="jewelry-product__view-tab"
-                  data-view-tab="image"
-                  role="tab"
-                  aria-selected="false">
-            <span class="jewelry-product__view-tab-icon" aria-hidden="true">▣</span>
-            <span>Photo</span>
-          </button>
-          <span class="jewelry-product__view-glow" aria-hidden="true"></span>
-        </div>
-      {%- endif -%}
-
       <div class="jewelry-product__stage">
 
-        {%- if model_url != blank -%}
+        {%- if model_url != '' -%}
           <div class="jewelry-product__media jewelry-product__media--3d is-active"
                data-media data-media-type="3d">
             <model-viewer
@@ -114,7 +95,7 @@
         {%- endif -%}
 
         {%- for image in images -%}
-          <div class="jewelry-product__media jewelry-product__media--image{% if model_url == blank and forloop.first %} is-active{% endif %}"
+          <div class="jewelry-product__media jewelry-product__media--image{% if model_url == '' and forloop.first %} is-active{% endif %}"
                data-media data-media-type="image" data-index="{{ forloop.index0 }}">
             <img src="{{ image | img_url: '1400x' }}"
                  alt="{{ image.alt | default: product.title | escape }}"
@@ -123,17 +104,24 @@
         {%- endfor -%}
       </div>
 
-      {%- comment -%}
-        Image-only thumb rail (no 3D thumb — toggle pill at top handles 3D ↔ photo).
-        Only renders when there are 2+ images to navigate between.
-      {%- endcomment -%}
-      {%- if images.size > 1 -%}
-        <div class="jewelry-product__thumbs" role="tablist" aria-label="Product photos">
+      {%- if model_url != '' or images.size > 0 -%}
+        <div class="jewelry-product__thumbs" role="tablist" aria-label="Product media">
+          {%- if model_url != '' -%}
+            <button type="button"
+                    class="jewelry-product__thumb jewelry-product__thumb--3d is-active"
+                    data-thumb data-target="3d"
+                    role="tab" aria-selected="true"
+                    aria-label="View in 3D">
+              <span class="jewelry-product__thumb-3d-icon" aria-hidden="true">◐</span>
+              <span class="jewelry-product__thumb-3d-text">3D</span>
+            </button>
+          {%- endif -%}
+
           {%- for image in images -%}
             <button type="button"
-                    class="jewelry-product__thumb{% if model_url == blank and forloop.first %} is-active{% endif %}"
+                    class="jewelry-product__thumb{% if model_url == '' and forloop.first %} is-active{% endif %}"
                     data-thumb data-target="image" data-index="{{ forloop.index0 }}"
-                    role="tab" aria-selected="{% if model_url == blank and forloop.first %}true{% else %}false{% endif %}"
+                    role="tab" aria-selected="{% if model_url == '' and forloop.first %}true{% else %}false{% endif %}"
                     aria-label="View image {{ forloop.index }}">
               <img src="{{ image | img_url: '200x' }}" alt="" loading="lazy">
             </button>
