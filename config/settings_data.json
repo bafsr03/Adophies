@@ -656,11 +656,11 @@
             "settings": {
               "model_url": "https://cdn.shopify.com/3d/models/9bc8183a3a81dc92/Ring003.glb",
               "poster_url": "",
-              "name": "Ring003",
+              "name": "Gemstone Pyramid Ring",
               "price": "$64",
               "material": "14k Gold-filled",
               "dimensions": "Size 6",
-              "product_url": ""
+              "product_url": "shopify://products/gemstone-pyramid-ring"
             }
           },
           "ring_04": {
