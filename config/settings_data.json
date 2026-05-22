@@ -596,11 +596,11 @@
             "settings": {
               "model_url": "https://cdn.shopify.com/3d/models/2e3b4a52bb132c80/earing004.glb",
               "poster_url": "",
-              "name": "earing004",
+              "name": "Drop Hoop Earrings",
               "price": "$48",
               "material": "14k Gold-filled",
               "dimensions": "18mm x 24mm",
-              "product_url": ""
+              "product_url": "shopify://products/drop-hoop-earrings"
             }
           },
           "earring_05": {
