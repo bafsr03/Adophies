@@ -572,7 +572,7 @@
             "settings": {
               "model_url": "https://cdn.shopify.com/3d/models/92021ea4fd9b9f31/earing002.glb",
               "poster_url": "",
-              "name": "earing002",
+              "name": "Hoop Earrings",
               "price": "$48",
               "material": "14k Gold-filled",
               "dimensions": "18mm x 24mm",
@@ -765,6 +765,24 @@
           "display_type": "all",
           "sort": "alphabetical",
           "grid": 3
+        }
+      },
+      "jewelry-product": {
+        "type": "jewelry-product",
+        "settings": {
+          "show_payment_button": true,
+          "show_share_links": false,
+          "fallback_model_url": ""
+        }
+      },
+      "jewelry-related": {
+        "type": "jewelry-related",
+        "settings": {
+          "eyebrow": "Complete the set",
+          "title": "You may also like",
+          "earrings_collection": "earrings",
+          "rings_collection": "rings",
+          "bracelets_collection": "bracelets"
         }
       }
     },
