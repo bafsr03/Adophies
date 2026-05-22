@@ -43,8 +43,25 @@
   {%- assign mv_exposure = '1.75' -%}
 {%- endif -%}
 
+{%- comment -%}
+  Per-category framing. Bracelets get a tilted, zoomed-in camera.
+  Callers can pass card_camera_orbit / card_min_orbit / card_max_orbit / card_fov
+  to override; otherwise defaults are used.
+{%- endcomment -%}
+{%- assign mv_camera_orbit = card_camera_orbit | default: '0deg 75deg 145%' -%}
+{%- assign mv_min_orbit = card_min_orbit | default: 'auto auto 110%' -%}
+{%- assign mv_max_orbit = card_max_orbit | default: 'auto auto 180%' -%}
+{%- assign mv_fov = card_fov | default: '26deg' -%}
+
+{%- comment -%}
+  card_animation: 'rotate' (default 360 spin) or 'sway' (front-facing oscillation).
+  Sway disables auto-rotate; JS handles the back-and-forth motion.
+{%- endcomment -%}
+{%- assign mv_animation = card_animation | default: 'rotate' -%}
+
 <article class="jewelry-card{% if is_teaser %} jewelry-card--eager jewelry-card--no-modal{% endif %}"
          data-jewelry-card
+         data-jewelry-animation="{{ mv_animation }}"
          {% if is_teaser %}data-jewelry-no-modal data-jewelry-link="/pages/jewelry"{% endif %}
          data-card-id="{{ card_id }}"
          data-model-url="{{ card_model_url }}"
@@ -64,19 +81,19 @@
         reveal="{{ reveal_mode }}"
         loading="lazy"
         camera-controls
-        auto-rotate
+        {% if mv_animation != 'sway' %}auto-rotate
         auto-rotate-delay="500"
-        rotation-per-second="{{ mv_rotate }}"
+        rotation-per-second="{{ mv_rotate }}"{% endif %}
         interaction-prompt="none"
         environment-image="https://cdn.jsdelivr.net/gh/google/model-viewer@v4.0.0/packages/shared-assets/environments/aircraft_workshop_01_1k.hdr"
         tone-mapping="agx"
         shadow-intensity="{{ mv_shadow }}"
         shadow-softness="1.3"
         exposure="{{ mv_exposure }}"
-        camera-orbit="0deg 75deg 145%"
-        field-of-view="26deg"
-        min-camera-orbit="auto auto 110%"
-        max-camera-orbit="auto auto 180%"
+        camera-orbit="{{ mv_camera_orbit }}"
+        field-of-view="{{ mv_fov }}"
+        min-camera-orbit="{{ mv_min_orbit }}"
+        max-camera-orbit="{{ mv_max_orbit }}"
         touch-action="pan-y"
         disable-tap
         disable-pan

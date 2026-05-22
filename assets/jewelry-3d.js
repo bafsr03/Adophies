@@ -134,6 +134,13 @@
       if (card.__wired) return;
       card.__wired = true;
 
+      // Earrings (and any other "front only" piece) use a sway animation instead
+      // of a 360 spin — the back is uninteresting, so we oscillate the camera.
+      if (card.dataset.jewelryAnimation === 'sway') {
+        const viewer = card.querySelector('model-viewer');
+        if (viewer) wireSwayAnimation(viewer);
+      }
+
       // Teaser cards (data-jewelry-no-modal): click navigates to the accessories page,
       // dragging on the <model-viewer> still rotates the model (drag is detected and
       // suppresses the navigation).
@@ -154,6 +161,55 @@
       });
     });
     return true;
+  }
+
+  // Sway animation: oscillates camera theta back and forth around the front so
+  // viewers see the face of the piece (e.g. earrings) without ever spinning to
+  // the back. Pauses when the user drags, resumes after a short delay.
+  function wireSwayAnimation(viewer) {
+    if (viewer.__swayWired) return;
+    viewer.__swayWired = true;
+
+    const reducedMotion =
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) return;
+
+    const initialOrbit = viewer.getAttribute('camera-orbit') || '0deg 75deg 145%';
+    const parts = initialOrbit.trim().split(/\s+/);
+    const phi = parts[1] || '75deg';
+    const radius = parts[2] || '145%';
+
+    const AMPLITUDE_DEG = 32;     // how far it swings off-center
+    const PERIOD_MS = 6000;       // one full left→right→left cycle
+    const RESUME_DELAY_MS = 2200; // pause this long after user drag before resuming
+
+    let startTime = null;
+    let paused = false;
+    let resumeTimer = null;
+    let userTouchedAt = 0;
+
+    viewer.addEventListener('camera-change', (e) => {
+      if (e.detail && e.detail.source === 'user-interaction') {
+        paused = true;
+        userTouchedAt = performance.now();
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => {
+          paused = false;
+          startTime = null; // re-anchor phase from current moment for a smooth restart
+        }, RESUME_DELAY_MS);
+      }
+    });
+
+    function tick(now) {
+      if (!paused) {
+        if (startTime === null) startTime = now;
+        const t = (now - startTime) / PERIOD_MS;
+        const theta = Math.sin(t * Math.PI * 2) * AMPLITUDE_DEG;
+        viewer.cameraOrbit = theta.toFixed(2) + 'deg ' + phi + ' ' + radius;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
   }
 
   function wireNavOnClick(card) {
