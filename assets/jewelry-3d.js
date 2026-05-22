@@ -180,7 +180,7 @@
     const radius = parts[2] || '145%';
 
     const AMPLITUDE_DEG = 32;     // how far it swings off-center
-    const PERIOD_MS = 6000;       // one full left→right→left cycle
+    const PERIOD_MS = 7800;       // one full left→right→left cycle
     const RESUME_DELAY_MS = 2200; // pause this long after user drag before resuming
 
     let startTime = null;
@@ -234,6 +234,14 @@
     media.addEventListener('click', (e) => {
       if (dragged) return;          // user was rotating, don't navigate
       window.location.href = url;
+    });
+
+    // Keyboard activation when the media has role="link" + tabindex.
+    media.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        window.location.href = url;
+      }
     });
   }
 

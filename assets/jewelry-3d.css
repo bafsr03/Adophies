@@ -171,17 +171,15 @@
   background: var(--adophies-pink-50);
   border-radius: 12px;
   overflow: hidden;
-  cursor: zoom-in;
+  cursor: default;
   outline: none;
 }
 
-/* Teaser cards: clicking navigates to the accessories page, dragging rotates the model */
-.jewelry-card--no-modal .jewelry-card__media {
+/* Any card that navigates on click (teaser → /pages/jewelry, gallery → product page).
+   Model is autonomous — no drag, no zoom, no rotation by user. */
+.jewelry-card--no-modal .jewelry-card__media,
+.jewelry-card__media--linked {
   cursor: pointer;
-}
-
-.jewelry-card--no-modal .jewelry-card__media:active {
-  cursor: grabbing;
 }
 
 .jewelry-card__media:focus-visible {
@@ -240,6 +238,43 @@
 .jewelry-card__reveal-icon {
   display: inline-block;
   font-size: 14px;
+}
+
+/* Floating "View product" badge — only appears on linked gallery cards */
+.jewelry-card__view-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--adophies-brown);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--adophies-gold-soft);
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.jewelry-card:hover .jewelry-card__view-badge,
+.jewelry-card__media:focus-visible ~ .jewelry-card__view-badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 749px) {
+  .jewelry-card__view-badge {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Hover specs floating over the model */

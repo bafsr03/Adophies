@@ -1,0 +1,268 @@
+{% comment %}
+  Adophies — Jewelry product page.
+
+  Two-column layout:
+    Left: media stage (toggles between 3D viewer + product images), thumbnail rail.
+    Right: vendor, title, price, description, specs, variant selector, qty, ATC + Buy now.
+
+  3D model URL is read from product metafield `custom.model_url`.
+{% endcomment %}
+
+<link rel="stylesheet" href="{{ 'jewelry-3d.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'jewelry-product.css' | asset_url }}">
+
+{%- assign model_url = product.metafields.custom.model_url -%}
+{%- assign mat = product.metafields.custom.material -%}
+{%- assign dims = product.metafields.custom.dimensions -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign hero_poster = product.featured_media | img_url: '1400x' -%}
+{%- assign images = product.images -%}
+
+<section class="jewelry-product"
+         data-jewelry-product
+         data-section-id="{{ section.id }}">
+
+  <nav class="jewelry-product__breadcrumb" data-reveal>
+    <a href="/pages/jewelry">← Back to Jewelry</a>
+  </nav>
+
+  <div class="jewelry-product__grid">
+
+    <!-- =================== MEDIA COLUMN =================== -->
+    <div class="jewelry-product__media-col" data-reveal>
+      <div class="jewelry-product__stage">
+
+        {%- if model_url != blank -%}
+          <div class="jewelry-product__media jewelry-product__media--3d is-active"
+               data-media data-media-type="3d">
+            <model-viewer
+              class="jewelry-product__viewer"
+              src="{{ model_url }}"
+              {% if hero_poster != blank %}poster="{{ hero_poster }}"{% endif %}
+              reveal="auto"
+              loading="lazy"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="800"
+              rotation-per-second="18deg"
+              interaction-prompt="none"
+              environment-image="https://cdn.jsdelivr.net/gh/google/model-viewer@v4.0.0/packages/shared-assets/environments/aircraft_workshop_01_1k.hdr"
+              tone-mapping="agx"
+              shadow-intensity="0.45"
+              shadow-softness="1.2"
+              exposure="1.7"
+              camera-orbit="0deg 75deg 140%"
+              field-of-view="28deg"
+              min-camera-orbit="auto auto 80%"
+              max-camera-orbit="auto auto 220%"
+              alt="3D model of {{ product.title | escape }}">
+            </model-viewer>
+
+            <div class="jewelry-product__viewer-hint">
+              <span>Drag to spin · Scroll to zoom</span>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- for image in images -%}
+          <div class="jewelry-product__media jewelry-product__media--image{% if model_url == blank and forloop.first %} is-active{% endif %}"
+               data-media data-media-type="image" data-index="{{ forloop.index0 }}">
+            <img src="{{ image | img_url: '1400x' }}"
+                 alt="{{ image.alt | default: product.title | escape }}"
+                 loading="lazy">
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if model_url != blank or images.size > 0 -%}
+        <div class="jewelry-product__thumbs" role="tablist" aria-label="Product media">
+          {%- if model_url != blank -%}
+            <button type="button"
+                    class="jewelry-product__thumb jewelry-product__thumb--3d is-active"
+                    data-thumb data-target="3d"
+                    role="tab" aria-selected="true"
+                    aria-label="View in 3D">
+              <span class="jewelry-product__thumb-3d-icon" aria-hidden="true">◐</span>
+              <span class="jewelry-product__thumb-3d-text">3D</span>
+            </button>
+          {%- endif -%}
+
+          {%- for image in images -%}
+            <button type="button"
+                    class="jewelry-product__thumb{% if model_url == blank and forloop.first %} is-active{% endif %}"
+                    data-thumb data-target="image" data-index="{{ forloop.index0 }}"
+                    role="tab" aria-selected="{% if model_url == blank and forloop.first %}true{% else %}false{% endif %}"
+                    aria-label="View image {{ forloop.index }}">
+              <img src="{{ image | img_url: '200x' }}" alt="" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- =================== INFO COLUMN =================== -->
+    <div class="jewelry-product__info-col" data-reveal>
+      {%- if product.vendor != blank -%}
+        <span class="jewelry-product__eyebrow">{{ product.vendor }}</span>
+      {%- else -%}
+        <span class="jewelry-product__eyebrow">Adophies / Jewelry</span>
+      {%- endif -%}
+
+      <h1 class="jewelry-product__title">{{ product.title }}</h1>
+
+      <div class="jewelry-product__price-row">
+        <span class="jewelry-product__price" data-price>
+          {{ current_variant.price | money }}
+        </span>
+        {%- if current_variant.compare_at_price > current_variant.price -%}
+          <span class="jewelry-product__compare" data-compare-price>
+            {{ current_variant.compare_at_price | money }}
+          </span>
+        {%- endif -%}
+      </div>
+
+      <div class="jewelry-product__divider"></div>
+
+      {%- if product.description != blank -%}
+        <div class="jewelry-product__desc rte">
+          {{ product.description }}
+        </div>
+      {%- endif -%}
+
+      {%- if mat != blank or dims != blank -%}
+        <ul class="jewelry-product__specs">
+          {%- if mat != blank -%}
+            <li>
+              <span class="jewelry-product__spec-label">Material</span>
+              <span class="jewelry-product__spec-value">{{ mat }}</span>
+            </li>
+          {%- endif -%}
+          {%- if dims != blank -%}
+            <li>
+              <span class="jewelry-product__spec-label">Dimensions</span>
+              <span class="jewelry-product__spec-value">{{ dims }}</span>
+            </li>
+          {%- endif -%}
+        </ul>
+      {%- endif -%}
+
+      <div class="jewelry-product__divider"></div>
+
+      {%- form 'product', product,
+              class: 'jewelry-product__form',
+              data-product-form: '',
+              novalidate: 'novalidate' -%}
+
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <div class="jewelry-product__option">
+              <span class="jewelry-product__option-label">{{ option.name }}</span>
+              <div class="jewelry-product__swatches" role="radiogroup" aria-label="{{ option.name }}">
+                {%- for value in option.values -%}
+                  <button type="button"
+                          class="jewelry-product__swatch{% if option.selected_value == value %} is-active{% endif %}"
+                          data-option-value="{{ value | escape }}"
+                          data-option-index="{{ forloop.parentloop.index0 }}"
+                          role="radio"
+                          aria-checked="{% if option.selected_value == value %}true{% else %}false{% endif %}">
+                    {{ value }}
+                  </button>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        <select name="id" data-variant-select class="jewelry-product__variant-select">
+          {%- for variant in product.variants -%}
+            <option value="{{ variant.id }}"
+                    data-variant-options="{{ variant.options | join: '||' | escape }}"
+                    data-price="{{ variant.price | money }}"
+                    data-compare="{{ variant.compare_at_price | money }}"
+                    data-available="{{ variant.available }}"
+                    {% if variant == current_variant %}selected{% endif %}>
+              {{ variant.title }} — {{ variant.price | money }}
+            </option>
+          {%- endfor -%}
+        </select>
+
+        <div class="jewelry-product__qty-row">
+          <label class="jewelry-product__option-label" for="JewelryProductQty-{{ section.id }}">Quantity</label>
+          <div class="jewelry-product__qty">
+            <button type="button" class="jewelry-product__qty-btn" data-qty-step="-1" aria-label="Decrease">−</button>
+            <input id="JewelryProductQty-{{ section.id }}"
+                   type="number"
+                   name="quantity"
+                   value="1"
+                   min="1"
+                   data-qty-input>
+            <button type="button" class="jewelry-product__qty-btn" data-qty-step="1" aria-label="Increase">+</button>
+          </div>
+        </div>
+
+        <div class="jewelry-product__cta-row">
+          <button type="submit"
+                  class="jewelry-product__atc"
+                  data-atc
+                  {% unless current_variant.available %}disabled{% endunless %}>
+            <span data-atc-label>
+              {% if current_variant.available %}Add to cart{% else %}Sold out{% endif %}
+            </span>
+          </button>
+
+          {%- if section.settings.show_payment_button -%}
+            {{ form | payment_button }}
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.show_share_links -%}
+          <div class="jewelry-product__share">
+            <span>Share</span>
+            <a href="https://www.facebook.com/sharer.php?u={{ shop.url | append: product.url }}" target="_blank" rel="noopener" aria-label="Share on Facebook">FB</a>
+            <a href="https://twitter.com/intent/tweet?url={{ shop.url | append: product.url }}&text={{ product.title | url_encode }}" target="_blank" rel="noopener" aria-label="Share on Twitter">TW</a>
+            <a href="https://pinterest.com/pin/create/button/?url={{ shop.url | append: product.url }}&media={{ product.featured_media | img_url: '1024x' }}&description={{ product.title | url_encode }}" target="_blank" rel="noopener" aria-label="Share on Pinterest">PIN</a>
+          </div>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'jewelry-3d.js' | asset_url }}" defer></script>
+<script src="{{ 'jewelry-product.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Jewelry product",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Buy box"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_button",
+      "label": "Show dynamic checkout button",
+      "default": true,
+      "info": "Shop Pay / Apple Pay / etc."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share_links",
+      "label": "Show social share links",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Setup"
+    },
+    {
+      "type": "paragraph",
+      "content": "Set metafields on each product: custom.model_url (GLB URL), custom.material, custom.dimensions."
+    }
+  ],
+  "presets": [
+    { "name": "Jewelry product", "category": "Product" }
+  ]
+}
+{% endschema %}
