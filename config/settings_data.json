@@ -560,7 +560,7 @@
             "settings": {
               "model_url": "https://cdn.shopify.com/3d/models/b60241c63f0bc085/earing001.glb",
               "poster_url": "",
-              "name": "earing001",
+              "name": "sculpted-gold-earrings",
               "price": "$48",
               "material": "14k Gold-filled",
               "dimensions": "18mm x 24mm",
@@ -576,7 +576,7 @@
               "price": "$48",
               "material": "14k Gold-filled",
               "dimensions": "18mm x 24mm",
-              "product_url": ""
+              "product_url": "shopify://products/hoop-earrings"
             }
           },
           "earring_03": {
