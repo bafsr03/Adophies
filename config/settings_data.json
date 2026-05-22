@@ -620,11 +620,11 @@
             "settings": {
               "model_url": "https://cdn.shopify.com/3d/models/d135f82d7ecdbd09/earing006.glb",
               "poster_url": "",
-              "name": "earing006",
+              "name": "Solar Dome Earrings",
               "price": "$48",
               "material": "14k Gold-filled",
               "dimensions": "18mm x 24mm",
-              "product_url": ""
+              "product_url": "shopify://products/solar-dome-earrings"
             }
           },
           "ring_01": {
