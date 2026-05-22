@@ -1,0 +1,32 @@
+{% comment %}
+  Adophies — single card for the "You may also like" combo.
+
+  Required render args:
+    rel        — the product object
+    rel_label  — category label (Earring / Ring / Bracelet)
+{% endcomment %}
+
+<a href="{{ rel.url }}" class="jewelry-related__card" data-reveal>
+  <div class="jewelry-related__media">
+    {%- if rel.featured_media -%}
+      <img src="{{ rel.featured_media | img_url: '700x' }}"
+           alt="{{ rel.title | escape }}"
+           loading="lazy">
+    {%- else -%}
+      <div class="jewelry-related__placeholder">
+        <span>{{ rel_label }}</span>
+      </div>
+    {%- endif -%}
+    <span class="jewelry-related__chip">{{ rel_label }}</span>
+  </div>
+  <div class="jewelry-related__meta">
+    <h3 class="jewelry-related__name">{{ rel.title }}</h3>
+    <div class="jewelry-related__price">
+      <span>{{ rel.price | money }}</span>
+      {%- if rel.compare_at_price > rel.price -%}
+        <span class="jewelry-related__compare">{{ rel.compare_at_price | money }}</span>
+      {%- endif -%}
+    </div>
+    <span class="jewelry-related__arrow" aria-hidden="true">View →</span>
+  </div>
+</a>

@@ -550,3 +550,201 @@
     transform: none;
   }
 }
+
+/* ==============================================================
+   YOU MAY ALSO LIKE — Earring + Ring + Bracelet combo
+   ============================================================== */
+.jewelry-related {
+  background: linear-gradient(180deg, #fff5f0 0%, #fffaec 100%);
+  padding: 8vh 6vw 10vh;
+  position: relative;
+  border-top: 1px solid var(--adophies-gold-soft, rgba(222, 176, 113, 0.18));
+}
+
+.jewelry-related::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 85% 25%, rgba(255, 220, 195, 0.4), transparent 45%),
+    radial-gradient(circle at 15% 80%, rgba(222, 176, 113, 0.14), transparent 50%);
+  pointer-events: none;
+}
+
+.jewelry-related > * { position: relative; }
+
+.jewelry-related__header {
+  text-align: center;
+  margin: 0 auto 56px;
+  max-width: 720px;
+}
+
+.jewelry-related__eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--adophies-gold, #deb071);
+  margin-bottom: 14px;
+}
+
+.jewelry-related__title {
+  font-family: var(--font-stack-header);
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--adophies-brown, #544541);
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.jewelry-related__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .jewelry-related__grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    max-width: 420px;
+  }
+}
+
+/* Card */
+.jewelry-related__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(84, 69, 65, 0.06);
+  border: 1px solid var(--adophies-gold-soft, rgba(222, 176, 113, 0.16));
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  color: var(--adophies-brown, #544541);
+}
+
+.jewelry-related__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 38px rgba(84, 69, 65, 0.12);
+}
+
+.jewelry-related__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--adophies-pink-50, #fff5f0);
+  overflow: hidden;
+}
+
+.jewelry-related__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.jewelry-related__card:hover .jewelry-related__media img {
+  transform: scale(1.05);
+}
+
+.jewelry-related__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--adophies-brown, #544541);
+  opacity: 0.5;
+}
+
+.jewelry-related__chip {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 12px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--adophies-gold-soft, rgba(222, 176, 113, 0.4));
+  border-radius: 999px;
+  color: var(--adophies-brown, #544541);
+}
+
+.jewelry-related__meta {
+  padding: 20px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.jewelry-related__name {
+  font-family: var(--font-stack-header);
+  font-size: 18px;
+  color: var(--adophies-brown, #544541);
+  margin: 0;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+}
+
+.jewelry-related__price {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  color: var(--adophies-gold, #deb071);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.jewelry-related__compare {
+  color: var(--adophies-brown, #544541);
+  opacity: 0.5;
+  text-decoration: line-through;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.jewelry-related__arrow {
+  margin-top: 8px;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--adophies-gold, #deb071);
+  align-self: flex-start;
+  transition: transform 0.3s ease;
+}
+
+.jewelry-related__card:hover .jewelry-related__arrow {
+  transform: translateX(4px);
+}
+
+/* Reveal */
+[data-jewelry-related] [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+[data-jewelry-related] [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-jewelry-related] .jewelry-related__card:nth-child(2)[data-reveal] { transition-delay: 0.08s; }
+[data-jewelry-related] .jewelry-related__card:nth-child(3)[data-reveal] { transition-delay: 0.16s; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-jewelry-related] [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -140,7 +140,9 @@
 
   // ---- Reveal on scroll ----
   function wireReveal() {
-    const els = document.querySelectorAll('[data-jewelry-product] [data-reveal]');
+    const els = document.querySelectorAll(
+      '[data-jewelry-product] [data-reveal], [data-jewelry-related] [data-reveal]'
+    );
     if (!els.length || !('IntersectionObserver' in window)) {
       els.forEach((el) => el.classList.add('is-visible'));
       return;

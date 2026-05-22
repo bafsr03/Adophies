@@ -1,0 +1,106 @@
+{% comment %}
+  Adophies — "You may also like" combo on the jewelry product page.
+
+  Picks ONE product from each of three configured collections (earrings, rings,
+  bracelets) so visitors see a curated trio that completes the set. The current
+  product is filtered out so it never appears in its own related list.
+
+  Configure the three collection handles in the section settings.
+{% endcomment %}
+
+<link rel="stylesheet" href="{{ 'jewelry-product.css' | asset_url }}">
+
+{%- assign h_earrings = section.settings.earrings_collection -%}
+{%- assign h_rings = section.settings.rings_collection -%}
+{%- assign h_bracelets = section.settings.bracelets_collection -%}
+
+{%- assign col_earrings = collections[h_earrings] -%}
+{%- assign col_rings = collections[h_rings] -%}
+{%- assign col_bracelets = collections[h_bracelets] -%}
+
+{%- comment -%} Resolve one product per category, skipping the current product. {%- endcomment -%}
+{%- assign pick_earring = null -%}
+{%- if col_earrings != empty -%}
+  {%- for p in col_earrings.products limit: 8 -%}
+    {%- if p.handle != product.handle and p.available -%}
+      {%- assign pick_earring = p -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- assign pick_ring = null -%}
+{%- if col_rings != empty -%}
+  {%- for p in col_rings.products limit: 8 -%}
+    {%- if p.handle != product.handle and p.available -%}
+      {%- assign pick_ring = p -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- assign pick_bracelet = null -%}
+{%- if col_bracelets != empty -%}
+  {%- for p in col_bracelets.products limit: 8 -%}
+    {%- if p.handle != product.handle and p.available -%}
+      {%- assign pick_bracelet = p -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- assign has_any = false -%}
+{%- if pick_earring or pick_ring or pick_bracelet -%}
+  {%- assign has_any = true -%}
+{%- endif -%}
+
+{%- if has_any -%}
+  <section class="jewelry-related" data-jewelry-related>
+    <header class="jewelry-related__header" data-reveal>
+      <span class="jewelry-related__eyebrow">{{ section.settings.eyebrow | escape | default: 'Complete the set' }}</span>
+      <h2 class="jewelry-related__title">{{ section.settings.title | default: 'You may also like' }}</h2>
+    </header>
+
+    <div class="jewelry-related__grid">
+      {%- if pick_earring -%}
+        {%- assign rel = pick_earring -%}
+        {%- assign rel_label = 'Earring' -%}
+        {% render 'jewelry-related-card', rel: rel, rel_label: rel_label %}
+      {%- endif -%}
+      {%- if pick_ring -%}
+        {%- assign rel = pick_ring -%}
+        {%- assign rel_label = 'Ring' -%}
+        {% render 'jewelry-related-card', rel: rel, rel_label: rel_label %}
+      {%- endif -%}
+      {%- if pick_bracelet -%}
+        {%- assign rel = pick_bracelet -%}
+        {%- assign rel_label = 'Bracelet' -%}
+        {% render 'jewelry-related-card', rel: rel, rel_label: rel_label %}
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Jewelry — related",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Complete the set" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "You may also like" },
+    {
+      "type": "header",
+      "content": "Source collections"
+    },
+    {
+      "type": "paragraph",
+      "content": "Paste the collection handles (e.g. \"earrings\", \"rings\", \"bracelets\"). The section picks the first available product from each."
+    },
+    { "type": "text", "id": "earrings_collection", "label": "Earrings collection handle", "default": "earrings" },
+    { "type": "text", "id": "rings_collection", "label": "Rings collection handle", "default": "rings" },
+    { "type": "text", "id": "bracelets_collection", "label": "Bracelets collection handle", "default": "bracelets" }
+  ],
+  "presets": [
+    { "name": "Jewelry — related", "category": "Product" }
+  ]
+}
+{% endschema %}
