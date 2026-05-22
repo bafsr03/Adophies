@@ -728,11 +728,11 @@
             "settings": {
               "model_url": "https://cdn.shopify.com/3d/models/258da494cc1a029e/bracelet004.glb",
               "poster_url": "",
-              "name": "bracelet004",
+              "name": "Sculptural Gold Oval Link Chain Bracelet",
               "price": "$84",
               "material": "14k Gold-filled",
               "dimensions": "7\" adjustable",
-              "product_url": ""
+              "product_url": "shopify://products/sculptural-gold-oval-link-chain-bracelet"
             }
           }
         },
