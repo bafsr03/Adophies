@@ -157,11 +157,63 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  background: #fff;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(255, 220, 195, 0.55), transparent 62%),
+    radial-gradient(circle at 80% 0%, rgba(222, 176, 113, 0.18), transparent 55%),
+    linear-gradient(180deg, #fff5f0 0%, #ffe9da 55%, #fff5f0 100%);
   border-radius: 24px;
-  box-shadow: 0 14px 50px rgba(84, 69, 65, 0.08);
+  box-shadow:
+    0 18px 60px rgba(222, 176, 113, 0.18),
+    0 6px 22px rgba(84, 69, 65, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
   overflow: hidden;
-  border: 1px solid var(--adophies-gold-soft, rgba(222, 176, 113, 0.18));
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Soft shimmer overlay — adds a sunlit window-light feel */
+.jewelry-product__stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 28%, rgba(255, 255, 255, 0.55) 0%, transparent 32%),
+    radial-gradient(circle at 78% 70%, rgba(222, 176, 113, 0.14) 0%, transparent 42%);
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+}
+
+/* Pulsing halo behind the jewelry — breathes slowly for a dreamy effect */
+.jewelry-product__stage::after {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle,
+    rgba(255, 220, 195, 0.7) 0%,
+    rgba(255, 220, 195, 0.25) 38%,
+    transparent 70%);
+  filter: blur(28px);
+  pointer-events: none;
+  z-index: 0;
+  animation: jewelry-halo 7s ease-in-out infinite;
+}
+
+.jewelry-product__stage > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes jewelry-halo {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.75; }
+  50% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jewelry-product__stage::after { animation: none; }
 }
 
 .jewelry-product__media {
@@ -185,6 +237,8 @@
   --poster-color: transparent;
   background-color: transparent;
   filter: contrast(1.06) saturate(1.12) sepia(0.06);
+  transform: scale(0.72);
+  transform-origin: center center;
 }
 
 .jewelry-product__media--image img {

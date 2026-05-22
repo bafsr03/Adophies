@@ -100,13 +100,14 @@
               exposure="1.7"
               camera-orbit="0deg 75deg 140%"
               field-of-view="28deg"
-              min-camera-orbit="auto auto 80%"
-              max-camera-orbit="auto auto 220%"
+              touch-action="pan-y"
+              disable-zoom
+              disable-pan
               alt="3D model of {{ product.title | escape }}">
             </model-viewer>
 
             <div class="jewelry-product__viewer-hint">
-              <span>Drag to spin · Scroll to zoom</span>
+              <span>Drag to spin</span>
             </div>
           </div>
         {%- endif -%}

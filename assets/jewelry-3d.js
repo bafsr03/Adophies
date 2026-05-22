@@ -246,7 +246,11 @@
   }
 
   function init() {
-    if (!wireCards()) return;
+    const hasCards = wireCards();
+    // Also load model-viewer for any standalone <model-viewer> on the page
+    // (e.g. the product detail page) so it isn't stuck as an unregistered element.
+    const hasStandaloneViewer = !!document.querySelector('model-viewer');
+    if (!hasCards && !hasStandaloneViewer) return;
     loadModelViewer().catch((err) => {
       console.warn('[adophies] model-viewer failed to load:', err);
     });
