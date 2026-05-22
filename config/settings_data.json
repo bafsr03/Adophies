@@ -668,11 +668,11 @@
             "settings": {
               "model_url": "https://cdn.shopify.com/3d/models/5bfb8dccabb2af1e/Ring004.glb",
               "poster_url": "",
-              "name": "Ring004",
+              "name": "Studded Bubble Band Ring",
               "price": "$64",
               "material": "14k Gold-filled",
               "dimensions": "Size 6",
-              "product_url": ""
+              "product_url": "shopify://products/studded-bubble-band-ring"
             }
           },
           "ring_05": {
