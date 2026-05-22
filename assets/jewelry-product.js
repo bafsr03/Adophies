@@ -20,8 +20,53 @@
 
   function wireSection(section) {
     wireMediaThumbs(section);
+    wireViewToggle(section);
     wireQty(section);
     wireVariants(section);
+  }
+
+  // ---- 3D ↔ Photo view toggle ----
+  function wireViewToggle(section) {
+    const toggle = section.querySelector('.jewelry-product__view-toggle');
+    if (!toggle) return;
+    const tabs = toggle.querySelectorAll('[data-view-tab]');
+
+    function activate(mode) {
+      toggle.setAttribute('data-active', mode);
+      tabs.forEach((t) => {
+        const active = t.dataset.viewTab === mode;
+        t.classList.toggle('is-active', active);
+        t.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+
+      // Find matching thumb and click it so the existing media-thumb wiring runs.
+      if (mode === '3d') {
+        const t = section.querySelector('[data-thumb][data-target="3d"]');
+        if (t) t.click();
+      } else {
+        // First image thumb, or whichever was last active.
+        const lastImage = section.querySelector('[data-thumb][data-target="image"].is-active') ||
+                          section.querySelector('[data-thumb][data-target="image"]');
+        if (lastImage) lastImage.click();
+      }
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => activate(tab.dataset.viewTab));
+    });
+
+    // Also keep the toggle in sync if a user clicks the bottom thumb rail directly.
+    section.querySelectorAll('[data-thumb]').forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        const mode = thumb.dataset.target === '3d' ? '3d' : 'image';
+        toggle.setAttribute('data-active', mode);
+        tabs.forEach((t) => {
+          const active = t.dataset.viewTab === mode;
+          t.classList.toggle('is-active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+      });
+    });
   }
 
   // ---- Media thumbnails ----

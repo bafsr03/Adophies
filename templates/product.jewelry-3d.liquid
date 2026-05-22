@@ -11,6 +11,20 @@
     4. Theme template dropdown → select "product.jewelry-3d".
 {% endcomment %}
 
+{% comment %} Hide Judge.me review widgets on this template. {% endcomment %}
+<style>
+  .jdgm-widget,
+  .jdgm-rev-widg,
+  .jdgm-prev-badge,
+  .jdgm-all-reviews-rating-wrapper,
+  .jdgm-carousel-wrapper,
+  .jdgm-review-widget,
+  .jdgm-reviews-widget,
+  #judgeme_product_reviews,
+  [class^="jdgm-"],
+  [class*=" jdgm-"] { display: none !important; }
+</style>
+
 {% section 'jewelry-product' %}
 {% section 'jewelry-related' %}
 

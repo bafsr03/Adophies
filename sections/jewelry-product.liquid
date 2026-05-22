@@ -30,6 +30,29 @@
 
     <!-- =================== MEDIA COLUMN =================== -->
     <div class="jewelry-product__media-col" data-reveal>
+
+      {%- if model_url != blank and images.size > 0 -%}
+        <div class="jewelry-product__view-toggle" role="tablist" aria-label="Media view">
+          <button type="button"
+                  class="jewelry-product__view-tab is-active"
+                  data-view-tab="3d"
+                  role="tab"
+                  aria-selected="true">
+            <span class="jewelry-product__view-tab-icon" aria-hidden="true">◐</span>
+            <span>3D Model</span>
+          </button>
+          <button type="button"
+                  class="jewelry-product__view-tab"
+                  data-view-tab="image"
+                  role="tab"
+                  aria-selected="false">
+            <span class="jewelry-product__view-tab-icon" aria-hidden="true">▣</span>
+            <span>Photo</span>
+          </button>
+          <span class="jewelry-product__view-glow" aria-hidden="true"></span>
+        </div>
+      {%- endif -%}
+
       <div class="jewelry-product__stage">
 
         {%- if model_url != blank -%}
