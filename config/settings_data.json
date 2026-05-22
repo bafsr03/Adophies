@@ -584,11 +584,11 @@
             "settings": {
               "model_url": "https://cdn.shopify.com/3d/models/e00f861221c2776b/earing003.glb",
               "poster_url": "",
-              "name": "earing003",
+              "name": "Pavé Huggie Earrings",
               "price": "$48",
               "material": "14k Gold-filled",
               "dimensions": "18mm x 24mm",
-              "product_url": ""
+              "product_url": "shopify://products/pave-huggie-earrings"
             }
           },
           "earring_04": {
