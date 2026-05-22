@@ -677,6 +677,14 @@
   min-width: 240px;
 }
 
+/* Shrink the rendered 3D model inside earring + ring cards.
+   Card size stays the same; only the model-viewer canvas scales. */
+.charm-cat__grid--earrings .jewelry-card__viewer,
+.charm-cat__grid--rings .jewelry-card__viewer {
+  transform: scale(0.62);
+  transform-origin: center center;
+}
+
 /* ---- RINGS: 3-up, 5 items → 3 on row 1, 2 centered on row 2 ---- */
 .charm-cat--rings {
   background:

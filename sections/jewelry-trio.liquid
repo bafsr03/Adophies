@@ -56,10 +56,10 @@
           {%- assign card_product_url = block.settings.product_url -%}
           {%- assign card_id = block.id -%}
           {%- assign card_eager = 'false' -%}
-          {%- comment -%} Earrings: smaller model in card + front-facing sway (no 360 spin). {%- endcomment -%}
-          {%- assign card_camera_orbit = '0deg 78deg 205%' -%}
-          {%- assign card_min_orbit = 'auto auto 140%' -%}
-          {%- assign card_max_orbit = 'auto auto 240%' -%}
+          {%- comment -%} Earrings: front-facing sway (no 360 spin). CSS scales the model down. {%- endcomment -%}
+          {%- assign card_camera_orbit = '0deg 78deg 145%' -%}
+          {%- assign card_min_orbit = 'auto auto 110%' -%}
+          {%- assign card_max_orbit = 'auto auto 180%' -%}
           {%- assign card_fov = '26deg' -%}
           {%- assign card_animation = 'sway' -%}
           {% include 'jewelry-model-card' %}
@@ -91,10 +91,10 @@
           {%- assign card_product_url = block.settings.product_url -%}
           {%- assign card_id = block.id -%}
           {%- assign card_eager = 'false' -%}
-          {%- comment -%} Rings: smaller model in card — push camera out, keep 360 spin. {%- endcomment -%}
-          {%- assign card_camera_orbit = '0deg 75deg 205%' -%}
-          {%- assign card_min_orbit = 'auto auto 140%' -%}
-          {%- assign card_max_orbit = 'auto auto 240%' -%}
+          {%- comment -%} Rings: 360 spin. CSS scales the model down. {%- endcomment -%}
+          {%- assign card_camera_orbit = '0deg 75deg 145%' -%}
+          {%- assign card_min_orbit = 'auto auto 110%' -%}
+          {%- assign card_max_orbit = 'auto auto 180%' -%}
           {%- assign card_fov = '26deg' -%}
           {%- assign card_animation = 'rotate' -%}
           {% include 'jewelry-model-card' %}
