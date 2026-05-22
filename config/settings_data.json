@@ -608,11 +608,11 @@
             "settings": {
               "model_url": "https://cdn.shopify.com/3d/models/052520d47da17f0d/earing005.glb",
               "poster_url": "",
-              "name": "earing005",
+              "name": "Lumière Crystal Earrings",
               "price": "$48",
               "material": "14k Gold-filled",
               "dimensions": "18mm x 24mm",
-              "product_url": ""
+              "product_url": "shopify://products/lumiere-crystal-earrings"
             }
           },
           "earring_06": {
