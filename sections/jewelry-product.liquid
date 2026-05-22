@@ -23,6 +23,12 @@
 {%- capture model_url -%}{{ product.metafields.custom.model_url }}{%- endcapture -%}
 {%- assign model_url = model_url | strip -%}
 
+{%- comment -%} Shopify sometimes auto-prefixes the key with "custom_"; check that too. {%- endcomment -%}
+{%- if model_url == '' -%}
+  {%- capture model_url -%}{{ product.metafields.custom.custom_model_url }}{%- endcapture -%}
+  {%- assign model_url = model_url | strip -%}
+{%- endif -%}
+
 {%- if model_url == '' -%}
   {%- for m in product.media -%}
     {%- if m.media_type == 'model' -%}
@@ -39,8 +45,19 @@
   {%- assign model_url = section.settings.fallback_model_url -%}
 {%- endif -%}
 
-{%- assign mat = product.metafields.custom.material -%}
-{%- assign dims = product.metafields.custom.dimensions -%}
+{%- capture mat -%}{{ product.metafields.custom.material }}{%- endcapture -%}
+{%- assign mat = mat | strip -%}
+{%- if mat == '' -%}
+  {%- capture mat -%}{{ product.metafields.custom.custom_material }}{%- endcapture -%}
+  {%- assign mat = mat | strip -%}
+{%- endif -%}
+
+{%- capture dims -%}{{ product.metafields.custom.dimensions }}{%- endcapture -%}
+{%- assign dims = dims | strip -%}
+{%- if dims == '' -%}
+  {%- capture dims -%}{{ product.metafields.custom.custom_dimensions }}{%- endcapture -%}
+  {%- assign dims = dims | strip -%}
+{%- endif -%}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {%- assign hero_poster = product.featured_media | img_url: '1400x' -%}
 {%- assign images = product.images -%}
@@ -159,15 +176,15 @@
         </div>
       {%- endif -%}
 
-      {%- if mat != blank or dims != blank -%}
+      {%- if mat != '' or dims != '' -%}
         <ul class="jewelry-product__specs">
-          {%- if mat != blank -%}
+          {%- if mat != '' -%}
             <li>
               <span class="jewelry-product__spec-label">Material</span>
               <span class="jewelry-product__spec-value">{{ mat }}</span>
             </li>
           {%- endif -%}
-          {%- if dims != blank -%}
+          {%- if dims != '' -%}
             <li>
               <span class="jewelry-product__spec-label">Dimensions</span>
               <span class="jewelry-product__spec-value">{{ dims }}</span>
