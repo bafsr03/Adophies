@@ -5,9 +5,11 @@
   bracelets) so visitors see a curated trio that completes the set. The current
   product is filtered out so it never appears in its own related list.
 
-  Configure the three collection handles in the section settings.
+  Each card uses the same `jewelry-model-card` snippet + camera config as the
+  jewelry-trio page, so the look + animation are perfectly consistent.
 {% endcomment %}
 
+<link rel="stylesheet" href="{{ 'jewelry-3d.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'jewelry-product.css' | asset_url }}">
 
 {%- assign h_earrings = section.settings.earrings_collection -%}
@@ -18,7 +20,6 @@
 {%- assign col_rings = collections[h_rings] -%}
 {%- assign col_bracelets = collections[h_bracelets] -%}
 
-{%- comment -%} Resolve one product per category, skipping the current product. {%- endcomment -%}
 {%- assign pick_earring = null -%}
 {%- if col_earrings != empty -%}
   {%- for p in col_earrings.products limit: 8 -%}
@@ -62,24 +63,153 @@
     </header>
 
     <div class="jewelry-related__grid">
+
       {%- if pick_earring -%}
         {%- assign rel = pick_earring -%}
-        {%- assign rel_label = 'Earring' -%}
-        {% render 'jewelry-related-card', rel: rel, rel_label: rel_label %}
+        {%- capture model_resolved -%}{{ rel.metafields.custom.model_url }}{%- endcapture -%}
+        {%- assign model_resolved = model_resolved | strip -%}
+        {%- if model_resolved == '' -%}
+          {%- capture model_resolved -%}{{ rel.metafields.custom.custom_model_url }}{%- endcapture -%}
+          {%- assign model_resolved = model_resolved | strip -%}
+        {%- endif -%}
+        {%- if model_resolved == '' -%}
+          {%- for m in rel.media -%}
+            {%- if m.media_type == 'model' -%}
+              {%- for s in m.sources -%}
+                {%- if s.format == 'glb' and model_resolved == '' -%}{%- assign model_resolved = s.url -%}{%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+
+        <div class="jewelry-related__slot jewelry-related__slot--earring">
+          {%- assign card_model_url = model_resolved -%}
+          {%- assign card_poster_url = rel.featured_media | img_url: '700x' -%}
+          {%- assign card_name = rel.title -%}
+          {%- assign card_price = rel.price | money -%}
+          {%- capture card_material -%}{{ rel.metafields.custom.material }}{%- endcapture -%}
+          {%- assign card_material = card_material | strip -%}
+          {%- if card_material == '' -%}
+            {%- capture card_material -%}{{ rel.metafields.custom.custom_material }}{%- endcapture -%}
+            {%- assign card_material = card_material | strip -%}
+          {%- endif -%}
+          {%- capture card_dimensions -%}{{ rel.metafields.custom.dimensions }}{%- endcapture -%}
+          {%- assign card_dimensions = card_dimensions | strip -%}
+          {%- if card_dimensions == '' -%}
+            {%- capture card_dimensions -%}{{ rel.metafields.custom.custom_dimensions }}{%- endcapture -%}
+            {%- assign card_dimensions = card_dimensions | strip -%}
+          {%- endif -%}
+          {%- assign card_product_url = rel.url -%}
+          {%- assign card_id = rel.id | append: '-rel' -%}
+          {%- assign card_eager = 'false' -%}
+          {%- assign card_camera_orbit = '0deg 78deg 145%' -%}
+          {%- assign card_min_orbit = 'auto auto 110%' -%}
+          {%- assign card_max_orbit = 'auto auto 180%' -%}
+          {%- assign card_fov = '26deg' -%}
+          {%- assign card_animation = 'sway' -%}
+          {% include 'jewelry-model-card' %}
+        </div>
       {%- endif -%}
+
       {%- if pick_ring -%}
         {%- assign rel = pick_ring -%}
-        {%- assign rel_label = 'Ring' -%}
-        {% render 'jewelry-related-card', rel: rel, rel_label: rel_label %}
+        {%- capture model_resolved -%}{{ rel.metafields.custom.model_url }}{%- endcapture -%}
+        {%- assign model_resolved = model_resolved | strip -%}
+        {%- if model_resolved == '' -%}
+          {%- capture model_resolved -%}{{ rel.metafields.custom.custom_model_url }}{%- endcapture -%}
+          {%- assign model_resolved = model_resolved | strip -%}
+        {%- endif -%}
+        {%- if model_resolved == '' -%}
+          {%- for m in rel.media -%}
+            {%- if m.media_type == 'model' -%}
+              {%- for s in m.sources -%}
+                {%- if s.format == 'glb' and model_resolved == '' -%}{%- assign model_resolved = s.url -%}{%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+
+        <div class="jewelry-related__slot jewelry-related__slot--ring">
+          {%- assign card_model_url = model_resolved -%}
+          {%- assign card_poster_url = rel.featured_media | img_url: '700x' -%}
+          {%- assign card_name = rel.title -%}
+          {%- assign card_price = rel.price | money -%}
+          {%- capture card_material -%}{{ rel.metafields.custom.material }}{%- endcapture -%}
+          {%- assign card_material = card_material | strip -%}
+          {%- if card_material == '' -%}
+            {%- capture card_material -%}{{ rel.metafields.custom.custom_material }}{%- endcapture -%}
+            {%- assign card_material = card_material | strip -%}
+          {%- endif -%}
+          {%- capture card_dimensions -%}{{ rel.metafields.custom.dimensions }}{%- endcapture -%}
+          {%- assign card_dimensions = card_dimensions | strip -%}
+          {%- if card_dimensions == '' -%}
+            {%- capture card_dimensions -%}{{ rel.metafields.custom.custom_dimensions }}{%- endcapture -%}
+            {%- assign card_dimensions = card_dimensions | strip -%}
+          {%- endif -%}
+          {%- assign card_product_url = rel.url -%}
+          {%- assign card_id = rel.id | append: '-rel' -%}
+          {%- assign card_eager = 'false' -%}
+          {%- assign card_camera_orbit = '0deg 75deg 145%' -%}
+          {%- assign card_min_orbit = 'auto auto 110%' -%}
+          {%- assign card_max_orbit = 'auto auto 180%' -%}
+          {%- assign card_fov = '26deg' -%}
+          {%- assign card_animation = 'rotate' -%}
+          {% include 'jewelry-model-card' %}
+        </div>
       {%- endif -%}
+
       {%- if pick_bracelet -%}
         {%- assign rel = pick_bracelet -%}
-        {%- assign rel_label = 'Bracelet' -%}
-        {% render 'jewelry-related-card', rel: rel, rel_label: rel_label %}
+        {%- capture model_resolved -%}{{ rel.metafields.custom.model_url }}{%- endcapture -%}
+        {%- assign model_resolved = model_resolved | strip -%}
+        {%- if model_resolved == '' -%}
+          {%- capture model_resolved -%}{{ rel.metafields.custom.custom_model_url }}{%- endcapture -%}
+          {%- assign model_resolved = model_resolved | strip -%}
+        {%- endif -%}
+        {%- if model_resolved == '' -%}
+          {%- for m in rel.media -%}
+            {%- if m.media_type == 'model' -%}
+              {%- for s in m.sources -%}
+                {%- if s.format == 'glb' and model_resolved == '' -%}{%- assign model_resolved = s.url -%}{%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+
+        <div class="jewelry-related__slot jewelry-related__slot--bracelet">
+          {%- assign card_model_url = model_resolved -%}
+          {%- assign card_poster_url = rel.featured_media | img_url: '700x' -%}
+          {%- assign card_name = rel.title -%}
+          {%- assign card_price = rel.price | money -%}
+          {%- capture card_material -%}{{ rel.metafields.custom.material }}{%- endcapture -%}
+          {%- assign card_material = card_material | strip -%}
+          {%- if card_material == '' -%}
+            {%- capture card_material -%}{{ rel.metafields.custom.custom_material }}{%- endcapture -%}
+            {%- assign card_material = card_material | strip -%}
+          {%- endif -%}
+          {%- capture card_dimensions -%}{{ rel.metafields.custom.dimensions }}{%- endcapture -%}
+          {%- assign card_dimensions = card_dimensions | strip -%}
+          {%- if card_dimensions == '' -%}
+            {%- capture card_dimensions -%}{{ rel.metafields.custom.custom_dimensions }}{%- endcapture -%}
+            {%- assign card_dimensions = card_dimensions | strip -%}
+          {%- endif -%}
+          {%- assign card_product_url = rel.url -%}
+          {%- assign card_id = rel.id | append: '-rel' -%}
+          {%- assign card_eager = 'false' -%}
+          {%- assign card_camera_orbit = '-28deg 60deg 105%' -%}
+          {%- assign card_min_orbit = 'auto auto 85%' -%}
+          {%- assign card_max_orbit = 'auto auto 160%' -%}
+          {%- assign card_fov = '22deg' -%}
+          {%- assign card_animation = 'rotate' -%}
+          {% include 'jewelry-model-card' %}
+        </div>
       {%- endif -%}
+
     </div>
   </section>
 {%- endif -%}
+
+<script src="{{ 'jewelry-3d.js' | asset_url }}" defer></script>
 
 {% schema %}
 {

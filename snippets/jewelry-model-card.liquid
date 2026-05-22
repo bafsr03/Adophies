@@ -129,6 +129,12 @@
           <span class="jewelry-card__reveal-text">View in 3D</span>
         </button>
       </model-viewer>
+    {%- elsif card_poster_url != blank -%}
+      {%- comment -%} No GLB yet → gracefully show the product photo. {%- endcomment -%}
+      <img class="jewelry-card__fallback-img"
+           src="{{ card_poster_url }}"
+           alt="{{ card_name | escape }}"
+           loading="lazy">
     {%- else -%}
       <div class="jewelry-card__placeholder">
         <span>3D model coming soon</span>

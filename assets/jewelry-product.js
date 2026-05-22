@@ -15,7 +15,8 @@
     const sections = document.querySelectorAll('[data-jewelry-product]');
     if (!sections.length) return;
     sections.forEach(wireSection);
-    wireReveal();
+    // Reveal animation intentionally disabled — was causing intermittent
+    // flash-then-hide on slower devices when the observer fired late.
   }
 
   function wireSection(section) {
@@ -185,13 +186,17 @@
 
   // ---- Reveal on scroll ----
   function wireReveal() {
+    if (!('IntersectionObserver' in window)) return; // CSS keeps content visible.
+
+    const sections = document.querySelectorAll('[data-jewelry-product], [data-jewelry-related]');
     const els = document.querySelectorAll(
       '[data-jewelry-product] [data-reveal], [data-jewelry-related] [data-reveal]'
     );
-    if (!els.length || !('IntersectionObserver' in window)) {
-      els.forEach((el) => el.classList.add('is-visible'));
-      return;
-    }
+    if (!els.length) return;
+
+    // Arm the reveal: now CSS hides elements until they become .is-visible.
+    sections.forEach((s) => s.classList.add('js-reveal-armed'));
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

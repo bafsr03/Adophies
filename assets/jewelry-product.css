@@ -60,22 +60,8 @@
   }
 }
 
-/* ---------- Reveal animations ---------- */
-[data-jewelry-product] [data-reveal] {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
-              transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-[data-jewelry-product] [data-reveal].is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-[data-jewelry-product] .jewelry-product__info-col[data-reveal] {
-  transition-delay: 0.12s;
-}
+/* Reveal animation removed — caused flash-and-hide issues across themes.
+   data-reveal attributes are kept in markup but produce no visual effect. */
 
 /* ---------- View mode toggle (3D ↔ Photo) ---------- */
 .jewelry-product__view-toggle {
@@ -721,6 +707,24 @@
   gap: 28px;
   max-width: 1180px;
   margin: 0 auto;
+  align-items: stretch;
+}
+
+.jewelry-related__slot {
+  display: flex;
+}
+
+.jewelry-related__slot > .jewelry-card {
+  width: 100%;
+  margin: 0;
+}
+
+/* Mirror the jewelry-trio per-category model scaling so the related cards
+   feel identical to the trio cards on /pages/jewelry. */
+.jewelry-related__slot--earring .jewelry-card__viewer,
+.jewelry-related__slot--ring .jewelry-card__viewer {
+  transform: scale(0.62);
+  transform-origin: center center;
 }
 
 @media (max-width: 900px) {
@@ -753,9 +757,32 @@
 .jewelry-related__media {
   position: relative;
   aspect-ratio: 1 / 1;
-  background: var(--adophies-pink-50, #fff5f0);
+  background:
+    radial-gradient(circle at 50% 100%, rgba(255, 220, 195, 0.5), transparent 60%),
+    radial-gradient(circle at 80% 10%, rgba(222, 176, 113, 0.14), transparent 50%),
+    linear-gradient(180deg, #fff5f0 0%, #ffe9da 60%, #fff5f0 100%);
   overflow: hidden;
 }
+
+/* 3D-mode cards get a subtle pulsing halo behind the model */
+.jewelry-related__card--3d .jewelry-related__media::before {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle,
+    rgba(255, 220, 195, 0.55) 0%,
+    rgba(255, 220, 195, 0.2) 40%,
+    transparent 72%);
+  filter: blur(22px);
+  pointer-events: none;
+  animation: jewelry-halo 7s ease-in-out infinite;
+}
+
+.jewelry-related__media > * { position: relative; z-index: 1; }
 
 .jewelry-related__media img {
   width: 100%;
@@ -765,8 +792,19 @@
   transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.jewelry-related__card:hover .jewelry-related__media img {
+.jewelry-related__card:not(.jewelry-related__card--3d):hover .jewelry-related__media img {
   transform: scale(1.05);
+}
+
+.jewelry-related__viewer {
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+  background-color: transparent;
+  filter: contrast(1.05) saturate(1.12) sepia(0.06);
+  transform: scale(0.78);
+  transform-origin: center center;
+  pointer-events: none; /* model is decorative; whole card is the link */
 }
 
 .jewelry-related__placeholder {
@@ -844,25 +882,4 @@
   transform: translateX(4px);
 }
 
-/* Reveal */
-[data-jewelry-related] [data-reveal] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
-              transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-[data-jewelry-related] [data-reveal].is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-[data-jewelry-related] .jewelry-related__card:nth-child(2)[data-reveal] { transition-delay: 0.08s; }
-[data-jewelry-related] .jewelry-related__card:nth-child(3)[data-reveal] { transition-delay: 0.16s; }
-
-@media (prefers-reduced-motion: reduce) {
-  [data-jewelry-related] [data-reveal] {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
+/* Reveal animation removed for the related section as well. */
