@@ -704,11 +704,11 @@
             "settings": {
               "model_url": "https://cdn.shopify.com/3d/models/a663d2d575ab4caa/bracelet002.glb",
               "poster_url": "",
-              "name": "bracelet002",
+              "name": "Round Chain Bracelet",
               "price": "$84",
               "material": "14k Gold-filled",
               "dimensions": "7\" adjustable",
-              "product_url": ""
+              "product_url": "shopify://products/round-chain-bracelet"
             }
           },
           "bracelet_03": {
