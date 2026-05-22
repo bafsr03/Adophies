@@ -201,11 +201,17 @@
     });
 
     function tick(now) {
-      if (!paused) {
+      // Skip work entirely when the viewer is scrolled off-screen — the
+      // visibility observer (watchViewerVisibility) sets viewer.__visiblyOnScreen.
+      const onScreen = viewer.__visiblyOnScreen !== false;
+      if (!paused && onScreen) {
         if (startTime === null) startTime = now;
         const t = (now - startTime) / PERIOD_MS;
         const theta = Math.sin(t * Math.PI * 2) * AMPLITUDE_DEG;
         viewer.cameraOrbit = theta.toFixed(2) + 'deg ' + phi + ' ' + radius;
+      } else if (!onScreen) {
+        // Reset phase so we resume smoothly from rest when scrolled back into view.
+        startTime = null;
       }
       requestAnimationFrame(tick);
     }
@@ -251,9 +257,36 @@
     // (e.g. the product detail page) so it isn't stuck as an unregistered element.
     const hasStandaloneViewer = !!document.querySelector('model-viewer');
     if (!hasCards && !hasStandaloneViewer) return;
-    loadModelViewer().catch((err) => {
-      console.warn('[adophies] model-viewer failed to load:', err);
-    });
+    loadModelViewer()
+      .then(() => {
+        // Pause animations when off-screen to save GPU/battery.
+        document.querySelectorAll('model-viewer').forEach(watchViewerVisibility);
+      })
+      .catch((err) => {
+        console.warn('[adophies] model-viewer failed to load:', err);
+      });
+  }
+
+  // Pauses auto-rotate (and the sway loop) when a viewer is scrolled out of view.
+  function watchViewerVisibility(viewer) {
+    if (viewer.__visWired) return;
+    viewer.__visWired = true;
+    if (!('IntersectionObserver' in window)) return;
+
+    const hadAutoRotate = viewer.hasAttribute('auto-rotate');
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const visible = entry.isIntersecting;
+        viewer.__visiblyOnScreen = visible;
+        if (hadAutoRotate) {
+          if (visible) viewer.setAttribute('auto-rotate', '');
+          else viewer.removeAttribute('auto-rotate');
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '120px 0px' });
+
+    io.observe(viewer);
   }
 
   if (document.readyState === 'loading') {
