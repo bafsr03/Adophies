@@ -11,12 +11,38 @@
 <link rel="stylesheet" href="{{ 'jewelry-3d.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'jewelry-product.css' | asset_url }}">
 
+{%- comment -%}
+  3D model URL resolution order (first hit wins):
+    1. product.metafields.custom.model_url       (URL or single line text)
+    2. Native Shopify 3D media uploaded to the product (.glb file in Media section)
+    3. section.settings.fallback_model_url       (theme editor override)
+{%- endcomment -%}
 {%- assign model_url = product.metafields.custom.model_url -%}
+
+{%- if model_url == blank -%}
+  {%- for m in product.media -%}
+    {%- if m.media_type == 'model' -%}
+      {%- for s in m.sources -%}
+        {%- if s.format == 'glb' -%}
+          {%- assign model_url = s.url -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if model_url == blank and section.settings.fallback_model_url != blank -%}
+  {%- assign model_url = section.settings.fallback_model_url -%}
+{%- endif -%}
+
 {%- assign mat = product.metafields.custom.material -%}
 {%- assign dims = product.metafields.custom.dimensions -%}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {%- assign hero_poster = product.featured_media | img_url: '1400x' -%}
 {%- assign images = product.images -%}
+
+{%- comment -%} Strip native model media from images so we don't show it as a photo. {%- endcomment -%}
+{%- assign images_only = product.media | where: 'media_type', 'image' -%}
 
 <section class="jewelry-product"
          data-jewelry-product
@@ -97,19 +123,12 @@
         {%- endfor -%}
       </div>
 
-      {%- if model_url != blank or images.size > 0 -%}
-        <div class="jewelry-product__thumbs" role="tablist" aria-label="Product media">
-          {%- if model_url != blank -%}
-            <button type="button"
-                    class="jewelry-product__thumb jewelry-product__thumb--3d is-active"
-                    data-thumb data-target="3d"
-                    role="tab" aria-selected="true"
-                    aria-label="View in 3D">
-              <span class="jewelry-product__thumb-3d-icon" aria-hidden="true">◐</span>
-              <span class="jewelry-product__thumb-3d-text">3D</span>
-            </button>
-          {%- endif -%}
-
+      {%- comment -%}
+        Image-only thumb rail (no 3D thumb — toggle pill at top handles 3D ↔ photo).
+        Only renders when there are 2+ images to navigate between.
+      {%- endcomment -%}
+      {%- if images.size > 1 -%}
+        <div class="jewelry-product__thumbs" role="tablist" aria-label="Product photos">
           {%- for image in images -%}
             <button type="button"
                     class="jewelry-product__thumb{% if model_url == blank and forloop.first %} is-active{% endif %}"
@@ -277,11 +296,21 @@
     },
     {
       "type": "header",
+      "content": "3D model fallback"
+    },
+    {
+      "type": "url",
+      "id": "fallback_model_url",
+      "label": "Fallback GLB URL",
+      "info": "Used if the product has no custom.model_url metafield and no native 3D media. Must end in .glb"
+    },
+    {
+      "type": "header",
       "content": "Setup"
     },
     {
       "type": "paragraph",
-      "content": "Set metafields on each product: custom.model_url (GLB URL), custom.material, custom.dimensions."
+      "content": "Preferred: upload the .glb file directly to the product's Media section in Shopify Admin. Or set product metafields custom.model_url / custom.material / custom.dimensions."
     }
   ],
   "presets": [
