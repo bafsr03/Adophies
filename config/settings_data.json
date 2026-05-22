@@ -716,11 +716,11 @@
             "settings": {
               "model_url": "https://cdn.shopify.com/3d/models/39ea5c2f5b73e833/bracelet003.glb",
               "poster_url": "",
-              "name": "bracelet003",
+              "name": "Solitaire Prism Bracelet",
               "price": "$84",
               "material": "14k Gold-filled",
               "dimensions": "7\" adjustable",
-              "product_url": ""
+              "product_url": "shopify://products/solitaire-prism-bracelet"
             }
           },
           "bracelet_04": {
