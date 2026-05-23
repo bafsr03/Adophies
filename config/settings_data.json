@@ -761,8 +761,26 @@
       },
       "list-collections-template": {
         "type": "list-collections-template",
+        "blocks": {
+          "collection_HzEVgz": {
+            "type": "collection",
+            "settings": {
+              "collection": "jewelry"
+            }
+          },
+          "collection_rexpx4": {
+            "type": "collection",
+            "settings": {
+              "collection": "new-arrivals"
+            }
+          }
+        },
+        "block_order": [
+          "collection_HzEVgz",
+          "collection_rexpx4"
+        ],
         "settings": {
-          "display_type": "all",
+          "display_type": "selected",
           "sort": "alphabetical",
           "grid": 3
         }
