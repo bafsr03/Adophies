@@ -376,7 +376,7 @@
           "fp_w": {
             "type": "pillar",
             "settings": {
-              "image": "shopify://shop_images/Scent_bar_4_x_5_in_7.png",
+              "image": "shopify://shop_images/Scent_bar_11.png",
               "fallback_asset": "pillar-women.jpg",
               "title": "Women's Wear",
               "subtitle": "Dresses, sets and everyday softness.",
@@ -488,7 +488,7 @@
           "reverse": false,
           "fallback_asset": "editorial-1.jpg",
           "eyebrow": "Inside the boutique",
-          "title": "<p>The Hat Bar.<br><em>Pressed, burned, made yours.</em></p>",
+          "title": "<p>The Hat Bar.<br/><em>Pressed, burned, made yours.</em></p>",
           "body": "<p>Pick the brim. Pick the band. We shape, brand and finish each hat in the shop so you walk out with something nobody else has.</p>",
           "cta_label": "Visit the Hat Bar",
           "cta_link": "shopify://collections"
