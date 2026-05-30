@@ -473,6 +473,7 @@
           "jt_m2",
           "jt_m3"
         ],
+        "disabled": true,
         "settings": {
           "eyebrow": "The Charm Bar",
           "title": "Pieces that move with you",
