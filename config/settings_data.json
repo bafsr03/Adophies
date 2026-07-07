@@ -506,7 +506,7 @@
           "reverse": false,
           "fallback_asset": "editorial-1.jpg",
           "eyebrow": "Inside the boutique",
-          "title": "<p>The Hat Bar.<br/><em>Pressed, burned, made yours.</em></p>",
+          "title": "The Hat Bar.<br><em>Pressed, burned, made yours.</em>",
           "body": "<p>Pick the brim. Pick the band. We shape, brand and finish each hat in the shop so you walk out with something nobody else has.</p>",
           "cta_label": "Visit the Hat Bar",
           "cta_link": "shopify://collections"

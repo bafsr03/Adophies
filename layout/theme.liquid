@@ -55,8 +55,12 @@
   {%- endcapture -%}
   <title>{{ seo_title | strip }}</title>
 
-  {%- if page_description -%}
-    <meta name="description" content="{{ page_description | escape }}">
+  {%- assign meta_description = page_description -%}
+  {%- if request.page_type == 'index' and meta_description == blank -%}
+    {%- assign meta_description = "For the girls who love pretty things — a boutique in Abilene, TX with four worlds: dresses, a custom Hat Bar, jewelry that shines, and charms to mix and match." -%}
+  {%- endif -%}
+  {%- if meta_description != blank -%}
+    <meta name="description" content="{{ meta_description | escape }}">
   {%- endif -%}
 
   {% include 'social-meta-tags' %}
