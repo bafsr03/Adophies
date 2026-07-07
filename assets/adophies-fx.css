@@ -187,6 +187,7 @@ img { transition: transform 0.6s var(--ease-soft); }
 .hero-video {
   position: relative;
   height: clamp(560px, 92vh, 900px);
+  margin-top: -55px;
   overflow: hidden;
   background: var(--adop-brown);
 }
@@ -1786,7 +1787,7 @@ body.adop-header-scrolled #shopify-section-header {
    ============================================================== */
 
 @media (max-width: 749px) {
-  .hero-video { height: clamp(520px, 86vh, 760px); }
+  .hero-video { height: clamp(520px, 86vh, 760px); margin-top: -35px; }
   .hero-video__content { padding: 0 5vw 6vh; }
   .hero-video__title { font-size: clamp(40px, 13vw, 64px); }
   .hero-video__subtitle { font-size: 14px; max-width: 86vw; }
