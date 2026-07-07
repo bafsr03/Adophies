@@ -24,7 +24,11 @@
   <link rel="preload" as="font" href="{{ base_font_bold | font_url }}" type="font/woff2" crossorigin>
 
   {% if settings.favicon != blank %}
-    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon | img_url: '32x32' }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ settings.favicon | img_url: '48x48' }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ settings.favicon | img_url: '192x192' }}">
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '48x48' }}" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon | img_url: '180x180' }}">
   {% endif %}
 
   {%- assign formatted_initial_value = gift_card.initial_value | money_without_trailing_zeros: gift_card.currency -%}
