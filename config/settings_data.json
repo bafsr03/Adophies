@@ -331,6 +331,24 @@
           "spinner_link": "/pages/charm-bar"
         }
       },
+      "hero_3d_main": {
+        "type": "hero-3d",
+        "settings": {
+          "model_url": "https://cdn.shopify.com/3d/models/9b3d04aaa37a7506/storefront.glb",
+          "bg_color": "#f6ece3",
+          "cta_label": "Step inside",
+          "cta_link": "shopify://collections",
+          "camera_orbit_desktop": "0deg 90deg 42%",
+          "field_of_view_desktop": 13,
+          "camera_orbit_mobile": "0deg 90deg 30%",
+          "field_of_view_mobile": 16,
+          "camera_target": "auto 3m auto",
+          "zoom_factor": 0.55,
+          "mannequin_yaw_offset": 12,
+          "shadow_intensity": 0.6,
+          "exposure": 1.2
+        }
+      },
       "marquee_top": {
         "type": "marquee-strip",
         "blocks": {
@@ -806,7 +824,7 @@
       }
     },
     "content_for_index": [
-      "hero_video_main",
+      "hero_3d_main",
       "marquee_top",
       "four_pillars_main",
       "jewelry_teaser_main",
