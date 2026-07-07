@@ -318,19 +318,6 @@
           "show_view_all": false
         }
       },
-      "hero_video_main": {
-        "type": "hero-video",
-        "settings": {
-          "custom_video_url": "https://cdn.shopify.com/videos/c/o/v/3121ef4735b34b1d9ce45c340f78150b.mp4",
-          "eyebrow": "Adophies — est. for the girls",
-          "title": "<p>For the girls<br/>who love <em>pretty things</em>.</p>",
-          "subtitle": "A boutique in Abilene with four worlds inside: dresses, hats made yours, jewelry that shines, and charms to mix and match.",
-          "cta_label": "Step inside",
-          "cta_link": "shopify://collections",
-          "show_spinner": true,
-          "spinner_link": "/pages/charm-bar"
-        }
-      },
       "marquee_top": {
         "type": "marquee-strip",
         "blocks": {
@@ -488,7 +475,7 @@
           "reverse": false,
           "fallback_asset": "editorial-1.jpg",
           "eyebrow": "Inside the boutique",
-          "title": "The Hat Bar.<br><em>Pressed, burned, made yours.</em>",
+          "title": "<p>The Hat Bar.<br/><em>Pressed, burned, made yours.</em></p>",
           "body": "<p>Pick the brim. Pick the band. We shape, brand and finish each hat in the shop so you walk out with something nobody else has.</p>",
           "cta_label": "Visit the Hat Bar",
           "cta_link": "shopify://collections"
@@ -803,10 +790,24 @@
           "rings_collection": "rings",
           "bracelets_collection": "bracelets"
         }
+      },
+      "hero_video_jhQF7X": {
+        "type": "hero-video",
+        "name": "Hero video",
+        "settings": {
+          "custom_video_url": "",
+          "eyebrow": "Adophies — est. for the girls",
+          "title": "<p>For the girls<br/>who love <em>pretty things</em>.</p>",
+          "subtitle": "A boutique in Abilene with four worlds inside: dresses, hats made yours, jewelry that shines, and charms to mix and match.",
+          "cta_label": "Step inside",
+          "cta_link": "",
+          "show_spinner": true,
+          "spinner_link": ""
+        }
       }
     },
     "content_for_index": [
-      "hero_video_main",
+      "hero_video_jhQF7X",
       "marquee_top",
       "four_pillars_main",
       "jewelry_teaser_main",
