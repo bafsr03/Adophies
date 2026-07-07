@@ -37,7 +37,9 @@
       <span class="editorial-split__eyebrow">{{ section.settings.eyebrow | escape }}</span>
     {%- endif -%}
     {%- if section.settings.title != blank -%}
-      <h2 class="editorial-split__title">{{ section.settings.title }}</h2>
+      {%- comment -%} Strip block <p> so the heading stays valid inline HTML (avoids raw <p> leaking into Google snippets). {%- endcomment -%}
+      {%- assign clean_title = section.settings.title | replace: '</p><p>', '<br>' | replace: '<p>', '' | replace: '</p>', '' -%}
+      <h2 class="editorial-split__title">{{ clean_title }}</h2>
     {%- endif -%}
     {%- if section.settings.body != blank -%}
       <div class="editorial-split__body">{{ section.settings.body }}</div>
