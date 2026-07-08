@@ -421,8 +421,6 @@
           "jt_m1": {
             "type": "model",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/b03edc1f7d97bd62/Ring002.glb",
-              "poster_url": "",
               "name": "Charm 01",
               "price": "$48",
               "material": "14k Gold-filled",
@@ -433,8 +431,6 @@
           "jt_m2": {
             "type": "model",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/f348ed4d67117eb7/Ring001.glb",
-              "poster_url": "",
               "name": "Charm 02",
               "price": "$64",
               "material": "Sterling Silver",
@@ -445,8 +441,6 @@
           "jt_m3": {
             "type": "model",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/9bc8183a3a81dc92/Ring003.glb",
-              "poster_url": "",
               "name": "Charm 03",
               "price": "$52",
               "material": "14k Gold-filled",
@@ -546,8 +540,7 @@
           "earring_01": {
             "type": "earring",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/b60241c63f0bc085/earing001.glb",
-              "poster_url": "",
+              "poster": "shopify://shop_images/EB6183B7-352F-434C-9BDF-EBE46C5653EA.png",
               "name": "sculpted-gold-earrings",
               "price": "$48",
               "material": "14k Gold-filled",
@@ -558,8 +551,6 @@
           "earring_02": {
             "type": "earring",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/92021ea4fd9b9f31/earing002.glb",
-              "poster_url": "",
               "name": "Hoop Earrings",
               "price": "$48",
               "material": "14k Gold-filled",
@@ -570,8 +561,6 @@
           "earring_03": {
             "type": "earring",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/e00f861221c2776b/earing003.glb",
-              "poster_url": "",
               "name": "Pavé Huggie Earrings",
               "price": "$48",
               "material": "14k Gold-filled",
@@ -582,8 +571,6 @@
           "earring_04": {
             "type": "earring",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/2e3b4a52bb132c80/earing004.glb",
-              "poster_url": "",
               "name": "Drop Hoop Earrings",
               "price": "$48",
               "material": "14k Gold-filled",
@@ -594,8 +581,6 @@
           "earring_05": {
             "type": "earring",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/052520d47da17f0d/earing005.glb",
-              "poster_url": "",
               "name": "Lumière Crystal Earrings",
               "price": "$48",
               "material": "14k Gold-filled",
@@ -606,8 +591,6 @@
           "earring_06": {
             "type": "earring",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/d135f82d7ecdbd09/earing006.glb",
-              "poster_url": "",
               "name": "Solar Dome Earrings",
               "price": "$48",
               "material": "14k Gold-filled",
@@ -618,8 +601,6 @@
           "ring_01": {
             "type": "ring",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/f348ed4d67117eb7/Ring001.glb",
-              "poster_url": "",
               "name": "Round and Marquise Cut Diamond ring",
               "price": "$64",
               "material": "14k Gold-filled",
@@ -630,8 +611,6 @@
           "ring_02": {
             "type": "ring",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/b03edc1f7d97bd62/Ring002.glb",
-              "poster_url": "",
               "name": "Vermeil Three Stone Ring",
               "price": "$64",
               "material": "14k Gold-filled",
@@ -642,8 +621,6 @@
           "ring_03": {
             "type": "ring",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/9bc8183a3a81dc92/Ring003.glb",
-              "poster_url": "",
               "name": "Gemstone Pyramid Ring",
               "price": "$64",
               "material": "14k Gold-filled",
@@ -654,8 +631,6 @@
           "ring_04": {
             "type": "ring",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/5bfb8dccabb2af1e/Ring004.glb",
-              "poster_url": "",
               "name": "Studded Bubble Band Ring",
               "price": "$64",
               "material": "14k Gold-filled",
@@ -666,8 +641,6 @@
           "ring_05": {
             "type": "ring",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/a8762326044a883f/Ring005.glb",
-              "poster_url": "",
               "name": "Youthway Multicolor Zircon Rings",
               "price": "$64",
               "material": "14k Gold-filled",
@@ -678,8 +651,6 @@
           "bracelet_01": {
             "type": "bracelet",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/6ed752276e75ae8c/bracelet001.glb",
-              "poster_url": "",
               "name": "shell Pearl Snake bracelet",
               "price": "$84",
               "material": "14k Gold-filled",
@@ -690,8 +661,6 @@
           "bracelet_02": {
             "type": "bracelet",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/a663d2d575ab4caa/bracelet002.glb",
-              "poster_url": "",
               "name": "Round Chain Bracelet",
               "price": "$84",
               "material": "14k Gold-filled",
@@ -702,8 +671,6 @@
           "bracelet_03": {
             "type": "bracelet",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/39ea5c2f5b73e833/bracelet003.glb",
-              "poster_url": "",
               "name": "Solitaire Prism Bracelet",
               "price": "$84",
               "material": "14k Gold-filled",
@@ -714,8 +681,6 @@
           "bracelet_04": {
             "type": "bracelet",
             "settings": {
-              "model_url": "https://cdn.shopify.com/3d/models/258da494cc1a029e/bracelet004.glb",
-              "poster_url": "",
               "name": "Sculptural Gold Oval Link Chain Bracelet",
               "price": "$84",
               "material": "14k Gold-filled",
@@ -742,6 +707,7 @@
           "bracelet_04"
         ],
         "settings": {
+          "hero_image": "shopify://shop_images/IMG_4847.jpg",
           "hero_eyebrow": "Adophies / Jewelry",
           "hero_title": "<p>Jewelry, <em>made to be worn</em>.</p>",
           "hero_sub": "Hand-picked metal and stones, photographed up close so you can see every detail."
@@ -777,8 +743,7 @@
         "type": "jewelry-product",
         "settings": {
           "show_payment_button": true,
-          "show_share_links": false,
-          "fallback_model_url": ""
+          "show_share_links": false
         }
       },
       "jewelry-related": {
