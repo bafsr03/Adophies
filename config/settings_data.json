@@ -545,6 +545,7 @@
               "price": "$48",
               "material": "14k Gold-filled",
               "dimensions": "18mm x 24mm",
+              "product": "sculpted-gold-earrings",
               "product_url": "shopify://products/sculpted-gold-earrings"
             }
           },
@@ -555,6 +556,7 @@
               "price": "$48",
               "material": "14k Gold-filled",
               "dimensions": "18mm x 24mm",
+              "product": "hoop-earrings",
               "product_url": "shopify://products/hoop-earrings"
             }
           },
@@ -565,6 +567,7 @@
               "price": "$48",
               "material": "14k Gold-filled",
               "dimensions": "18mm x 24mm",
+              "product": "pave-huggie-earrings",
               "product_url": "shopify://products/pave-huggie-earrings"
             }
           },
@@ -575,6 +578,7 @@
               "price": "$48",
               "material": "14k Gold-filled",
               "dimensions": "18mm x 24mm",
+              "product": "drop-hoop-earrings",
               "product_url": "shopify://products/drop-hoop-earrings"
             }
           },
@@ -585,6 +589,7 @@
               "price": "$48",
               "material": "14k Gold-filled",
               "dimensions": "18mm x 24mm",
+              "product": "lumiere-crystal-earrings",
               "product_url": "shopify://products/lumiere-crystal-earrings"
             }
           },
@@ -595,6 +600,7 @@
               "price": "$48",
               "material": "14k Gold-filled",
               "dimensions": "18mm x 24mm",
+              "product": "solar-dome-earrings",
               "product_url": "shopify://products/solar-dome-earrings"
             }
           },
@@ -605,6 +611,7 @@
               "price": "$64",
               "material": "14k Gold-filled",
               "dimensions": "Size 6",
+              "product": "round-and-marquise-cut-diamond-ring",
               "product_url": "shopify://products/round-and-marquise-cut-diamond-ring"
             }
           },
@@ -615,6 +622,7 @@
               "price": "$64",
               "material": "14k Gold-filled",
               "dimensions": "Size 6",
+              "product": "vermeil-three-stone-ring",
               "product_url": "shopify://products/vermeil-three-stone-ring"
             }
           },
@@ -625,6 +633,7 @@
               "price": "$64",
               "material": "14k Gold-filled",
               "dimensions": "Size 6",
+              "product": "gemstone-pyramid-ring",
               "product_url": "shopify://products/gemstone-pyramid-ring"
             }
           },
@@ -635,6 +644,7 @@
               "price": "$64",
               "material": "14k Gold-filled",
               "dimensions": "Size 6",
+              "product": "studded-bubble-band-ring",
               "product_url": "shopify://products/studded-bubble-band-ring"
             }
           },
@@ -645,6 +655,7 @@
               "price": "$64",
               "material": "14k Gold-filled",
               "dimensions": "Size 6",
+              "product": "youthway-multicolor-zircon-rings",
               "product_url": "shopify://products/youthway-multicolor-zircon-rings"
             }
           },
@@ -655,6 +666,7 @@
               "price": "$84",
               "material": "14k Gold-filled",
               "dimensions": "7\" adjustable",
+              "product": "shell-pearl-snake-bracelet",
               "product_url": "shopify://products/shell-pearl-snake-bracelet"
             }
           },
@@ -665,6 +677,7 @@
               "price": "$84",
               "material": "14k Gold-filled",
               "dimensions": "7\" adjustable",
+              "product": "round-chain-bracelet",
               "product_url": "shopify://products/round-chain-bracelet"
             }
           },
@@ -675,6 +688,7 @@
               "price": "$84",
               "material": "14k Gold-filled",
               "dimensions": "7\" adjustable",
+              "product": "solitaire-prism-bracelet",
               "product_url": "shopify://products/solitaire-prism-bracelet"
             }
           },
@@ -685,6 +699,7 @@
               "price": "$84",
               "material": "14k Gold-filled",
               "dimensions": "7\" adjustable",
+              "product": "sculptural-gold-oval-link-chain-bracelet",
               "product_url": "shopify://products/sculptural-gold-oval-link-chain-bracelet"
             }
           }

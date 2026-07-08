@@ -1,0 +1,51 @@
+{% comment %}
+  Adophies — resolves a jewelry card from a linked Shopify product, then
+  renders the shared jewelry-model-card.
+
+  The product is the single source of truth: name, price, image, and the
+  Material / Size overlay all come from it, so the jewelry-page card and the
+  product ("inner") page always match. Edit the product in Shopify Admin →
+  Products (title, Media, price, metafields) and both update.
+
+  Required args (set with {% assign %} before {% include %}):
+    card_source_product      a product object (from a product picker)
+    card_id                  unique id for this card
+
+  Optional:
+    card_source_product_url  legacy "shopify://products/<handle>" fallback,
+                             used only if card_source_product is empty
+{% endcomment %}
+
+{%- assign jpc_product = card_source_product -%}
+
+{%- comment -%} Fallback: resolve a legacy shopify://products/<handle> link. {%- endcomment -%}
+{%- if jpc_product == blank and card_source_product_url != blank -%}
+  {%- assign jpc_handle = card_source_product_url | split: '/' | last -%}
+  {%- assign jpc_product = all_products[jpc_handle] -%}
+{%- endif -%}
+
+{%- if jpc_product != blank -%}
+  {%- capture card_material -%}{{ jpc_product.metafields.custom.material }}{%- endcapture -%}
+  {%- assign card_material = card_material | strip -%}
+  {%- if card_material == '' -%}
+    {%- capture card_material -%}{{ jpc_product.metafields.custom.custom_material }}{%- endcapture -%}
+    {%- assign card_material = card_material | strip -%}
+  {%- endif -%}
+
+  {%- capture card_dimensions -%}{{ jpc_product.metafields.custom.dimensions }}{%- endcapture -%}
+  {%- assign card_dimensions = card_dimensions | strip -%}
+  {%- if card_dimensions == '' -%}
+    {%- capture card_dimensions -%}{{ jpc_product.metafields.custom.custom_dimensions }}{%- endcapture -%}
+    {%- assign card_dimensions = card_dimensions | strip -%}
+  {%- endif -%}
+
+  {%- assign card_name = jpc_product.title -%}
+  {%- assign card_price = jpc_product.price | money -%}
+  {%- assign card_product_url = jpc_product.url -%}
+  {%- assign card_poster_url = '' -%}
+  {%- if jpc_product.featured_media != blank -%}
+    {%- assign card_poster_url = jpc_product.featured_media | img_url: '900x' -%}
+  {%- endif -%}
+
+  {% include 'jewelry-model-card' %}
+{%- endif -%}

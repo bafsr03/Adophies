@@ -55,17 +55,10 @@
       </div>
       <div class="charm-cat__grid charm-cat__grid--earrings">
         {%- for block in earrings -%}
-          {%- assign card_poster_url = '' -%}
-          {%- if block.settings.poster != blank -%}
-            {%- assign card_poster_url = block.settings.poster | img_url: '900x' -%}
-          {%- endif -%}
-          {%- assign card_name = block.settings.name -%}
-          {%- assign card_price = block.settings.price -%}
-          {%- assign card_material = block.settings.material -%}
-          {%- assign card_dimensions = block.settings.dimensions -%}
-          {%- assign card_product_url = block.settings.product_url -%}
+          {%- assign card_source_product = block.settings.product -%}
+          {%- assign card_source_product_url = block.settings.product_url -%}
           {%- assign card_id = block.id -%}
-          {% include 'jewelry-model-card' %}
+          {% include 'jewelry-product-card' %}
         {%- endfor -%}
       </div>
     </article>
@@ -82,17 +75,10 @@
       </div>
       <div class="charm-cat__grid charm-cat__grid--rings">
         {%- for block in rings -%}
-          {%- assign card_poster_url = '' -%}
-          {%- if block.settings.poster != blank -%}
-            {%- assign card_poster_url = block.settings.poster | img_url: '900x' -%}
-          {%- endif -%}
-          {%- assign card_name = block.settings.name -%}
-          {%- assign card_price = block.settings.price -%}
-          {%- assign card_material = block.settings.material -%}
-          {%- assign card_dimensions = block.settings.dimensions -%}
-          {%- assign card_product_url = block.settings.product_url -%}
+          {%- assign card_source_product = block.settings.product -%}
+          {%- assign card_source_product_url = block.settings.product_url -%}
           {%- assign card_id = block.id -%}
-          {% include 'jewelry-model-card' %}
+          {% include 'jewelry-product-card' %}
         {%- endfor -%}
       </div>
     </article>
@@ -111,17 +97,10 @@
       </div>
       <div class="charm-cat__grid charm-cat__grid--bracelets">
         {%- for block in bracelets -%}
-          {%- assign card_poster_url = '' -%}
-          {%- if block.settings.poster != blank -%}
-            {%- assign card_poster_url = block.settings.poster | img_url: '900x' -%}
-          {%- endif -%}
-          {%- assign card_name = block.settings.name -%}
-          {%- assign card_price = block.settings.price -%}
-          {%- assign card_material = block.settings.material -%}
-          {%- assign card_dimensions = block.settings.dimensions -%}
-          {%- assign card_product_url = block.settings.product_url -%}
+          {%- assign card_source_product = block.settings.product -%}
+          {%- assign card_source_product_url = block.settings.product_url -%}
           {%- assign card_id = block.id -%}
-          {% include 'jewelry-model-card' %}
+          {% include 'jewelry-product-card' %}
         {%- endfor -%}
       </div>
     </article>
@@ -145,39 +124,24 @@
       "type": "earring",
       "name": "Earring",
       "settings": [
-        { "type": "image_picker", "id": "poster", "label": "Product image",
-          "info": "Upload the product photo. You can swap it any time here." },
-        { "type": "text", "id": "name", "label": "Name", "default": "Earring" },
-        { "type": "text", "id": "price", "label": "Price", "default": "$48" },
-        { "type": "text", "id": "material", "label": "Material", "default": "14k Gold-filled" },
-        { "type": "text", "id": "dimensions", "label": "Dimensions", "default": "—" },
-        { "type": "url", "id": "product_url", "label": "Product page link" }
+        { "type": "product", "id": "product", "label": "Product",
+          "info": "Pick the earring product. Its name, price and photo come from the product itself — edit those in Shopify Admin → Products and the card + product page both update." }
       ]
     },
     {
       "type": "ring",
       "name": "Ring",
       "settings": [
-        { "type": "image_picker", "id": "poster", "label": "Product image",
-          "info": "Upload the product photo. You can swap it any time here." },
-        { "type": "text", "id": "name", "label": "Name", "default": "Ring" },
-        { "type": "text", "id": "price", "label": "Price", "default": "$64" },
-        { "type": "text", "id": "material", "label": "Material", "default": "14k Gold-filled" },
-        { "type": "text", "id": "dimensions", "label": "Dimensions", "default": "—" },
-        { "type": "url", "id": "product_url", "label": "Product page link" }
+        { "type": "product", "id": "product", "label": "Product",
+          "info": "Pick the ring product. Its name, price and photo come from the product itself — edit those in Shopify Admin → Products and the card + product page both update." }
       ]
     },
     {
       "type": "bracelet",
       "name": "Bracelet",
       "settings": [
-        { "type": "image_picker", "id": "poster", "label": "Product image",
-          "info": "Upload the product photo. You can swap it any time here." },
-        { "type": "text", "id": "name", "label": "Name", "default": "Bracelet" },
-        { "type": "text", "id": "price", "label": "Price", "default": "$84" },
-        { "type": "text", "id": "material", "label": "Material", "default": "14k Gold-filled" },
-        { "type": "text", "id": "dimensions", "label": "Dimensions", "default": "—" },
-        { "type": "url", "id": "product_url", "label": "Product page link" }
+        { "type": "product", "id": "product", "label": "Product",
+          "info": "Pick the bracelet product. Its name, price and photo come from the product itself — edit those in Shopify Admin → Products and the card + product page both update." }
       ]
     }
   ],

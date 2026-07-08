@@ -1,36 +1,13 @@
 {% comment %}
   Adophies — renders one card in the "You may also like" grid.
 
-  Uses the related product's featured image + specs and includes the shared
-  jewelry-model-card snippet.
+  Delegates to jewelry-product-card so the related card resolves name / price /
+  image / specs from the product exactly like the /pages/jewelry cards.
 
   Required args (set via {% assign %} before including):
     rel                   — the product object
     rel_category_label    — 'earring' | 'ring' | 'bracelet'
 {% endcomment %}
-
-{%- capture card_material -%}{{ rel.metafields.custom.material }}{%- endcapture -%}
-{%- assign card_material = card_material | strip -%}
-{%- if card_material == '' -%}
-  {%- capture card_material -%}{{ rel.metafields.custom.custom_material }}{%- endcapture -%}
-  {%- assign card_material = card_material | strip -%}
-{%- endif -%}
-
-{%- capture card_dimensions -%}{{ rel.metafields.custom.dimensions }}{%- endcapture -%}
-{%- assign card_dimensions = card_dimensions | strip -%}
-{%- if card_dimensions == '' -%}
-  {%- capture card_dimensions -%}{{ rel.metafields.custom.custom_dimensions }}{%- endcapture -%}
-  {%- assign card_dimensions = card_dimensions | strip -%}
-{%- endif -%}
-
-{%- assign card_poster_url = '' -%}
-{%- if rel.featured_media != blank -%}
-  {%- assign card_poster_url = rel.featured_media | img_url: '900x' -%}
-{%- endif -%}
-{%- assign card_name = rel.title -%}
-{%- assign card_price = rel.price | money -%}
-{%- assign card_product_url = rel.url -%}
-{%- assign card_id = rel.id | append: '-rel' -%}
 
 {%- if rel_category_label == 'bracelet' -%}
   {%- assign slot_modifier = 'bracelet' -%}
@@ -40,6 +17,10 @@
   {%- assign slot_modifier = 'earring' -%}
 {%- endif -%}
 
+{%- assign card_source_product = rel -%}
+{%- assign card_source_product_url = '' -%}
+{%- assign card_id = rel.id | append: '-rel' -%}
+
 <div class="jewelry-related__slot jewelry-related__slot--{{ slot_modifier }}">
-  {% include 'jewelry-model-card' %}
+  {% include 'jewelry-product-card' %}
 </div>
