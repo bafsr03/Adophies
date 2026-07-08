@@ -1,13 +1,13 @@
 {% comment %}
-  Adophies — reusable 3D jewelry card.
+  Adophies — reusable jewelry product card.
 
-  Used by both the homepage teaser and the dedicated charm-bar gallery.
-  Renders a <model-viewer> with poster-first loading, optional auto-rotate,
-  and a hover spec overlay. Click opens the shared fullscreen modal.
+  Used by the homepage teaser, the /pages/jewelry trio, the gallery, and the
+  "you may also like" related grid. Renders a single uploaded product photo
+  with a hover spec overlay (Material / Size) and a name / price / "Shop now"
+  meta block. Clicking the card navigates to the product page.
 
   Required variables (set with {% assign %} before {% include %}):
-    card_model_url       direct .glb URL (Shopify Files CDN)
-    card_poster_url      2D poster image URL
+    card_poster_url      product photo URL (from the block's "Product image")
     card_name            display name
     card_id              unique id (use block.id or forloop.index)
 
@@ -15,129 +15,42 @@
     card_price           e.g. "$48"
     card_material        e.g. "14k Gold-filled"
     card_dimensions      e.g. "18mm x 24mm"
-    card_product_url     PDP link
-    card_eager           "true" to load GLB immediately (teaser) vs
-                         click-to-reveal (gallery default)
+    card_product_url     PDP link (makes the whole card clickable + shows badge)
 {% endcomment %}
 
-{%- comment -%}
-  reveal="auto" always: model-viewer downloads + renders the GLB as soon as the
-  element is near the viewport (paired with loading="lazy"). No click needed.
-  card_eager still controls teaser-only behaviors: skip modal, drag-to-rotate,
-  click→navigate.
-{%- endcomment -%}
-{%- assign reveal_mode = 'auto' -%}
-{%- assign is_teaser = false -%}
-{%- if card_eager == 'true' or card_eager == true -%}
-  {%- assign is_teaser = true -%}
+{%- assign has_pdp_link = false -%}
+{%- if card_product_url != blank -%}
+  {%- assign has_pdp_link = true -%}
 {%- endif -%}
 
-{%- comment -%} Teaser mode = lighter render budget (no ground shadow, slower spin) {%- endcomment -%}
-{%- if is_teaser -%}
-  {%- assign mv_shadow = '0' -%}
-  {%- assign mv_rotate = '9deg' -%}
-  {%- assign mv_exposure = '1.7' -%}
-{%- else -%}
-  {%- assign mv_shadow = '0.3' -%}
-  {%- assign mv_rotate = '16deg' -%}
-  {%- assign mv_exposure = '1.75' -%}
-{%- endif -%}
-
-{%- comment -%}
-  Per-category framing. Bracelets get a tilted, zoomed-in camera.
-  Callers can pass card_camera_orbit / card_min_orbit / card_max_orbit / card_fov
-  to override; otherwise defaults are used.
-{%- endcomment -%}
-{%- assign mv_camera_orbit = card_camera_orbit | default: '0deg 75deg 145%' -%}
-{%- assign mv_min_orbit = card_min_orbit | default: 'auto auto 110%' -%}
-{%- assign mv_max_orbit = card_max_orbit | default: 'auto auto 180%' -%}
-{%- assign mv_fov = card_fov | default: '26deg' -%}
-
-{%- comment -%}
-  card_animation: 'rotate' (default 360 spin) or 'sway' (front-facing oscillation).
-  Sway disables auto-rotate; JS handles the back-and-forth motion.
-{%- endcomment -%}
-{%- assign mv_animation = card_animation | default: 'rotate' -%}
-
-{%- comment -%}
-  card_link_url: where a click on the card should navigate. Teaser hardcodes
-  /pages/jewelry; gallery cards use the block's product_url.
-{%- endcomment -%}
-{%- if is_teaser -%}
-  {%- assign card_link_url = '/pages/jewelry' -%}
-{%- else -%}
-  {%- assign card_link_url = card_product_url -%}
-{%- endif -%}
-
-<article class="jewelry-card{% if is_teaser %} jewelry-card--eager jewelry-card--no-modal{% endif %}{% if is_teaser == false and card_link_url != blank %} jewelry-card--linked{% endif %}"
+<article class="jewelry-card{% if has_pdp_link %} jewelry-card--linked{% endif %}"
          data-jewelry-card
-         data-jewelry-animation="{{ mv_animation }}"
-         {% if card_link_url != blank %}data-jewelry-no-modal data-jewelry-link="{{ card_link_url }}"{% endif %}
          data-card-id="{{ card_id }}"
-         data-model-url="{{ card_model_url }}"
          data-name="{{ card_name | escape }}"
          data-material="{{ card_material | escape }}"
          data-dimensions="{{ card_dimensions | escape }}"
          data-price="{{ card_price | escape }}">
 
   {%- comment -%}
-    Click behavior:
-      - is_teaser (homepage): drag rotates, click navigates to /pages/jewelry (handled
-        via data-jewelry-no-modal in <article> + JS wireNavOnClick).
-      - Gallery card with product_url: drag rotates, click navigates to PDP. Same path.
-      - Gallery card without product_url: just a static 3D viewer (no nav).
+    Media is a real <a> when a product link exists, so the whole photo is
+    clickable natively — no JavaScript needed.
   {%- endcomment -%}
-  {%- assign has_pdp_link = false -%}
-  {%- if is_teaser == false and card_product_url != blank -%}
-    {%- assign has_pdp_link = true -%}
+  {%- if has_pdp_link -%}
+    <a href="{{ card_product_url }}"
+       class="jewelry-card__media jewelry-card__media--linked"
+       aria-label="View {{ card_name | escape }} product page">
+  {%- else -%}
+    <div class="jewelry-card__media">
   {%- endif -%}
 
-  <div class="jewelry-card__media{% if has_pdp_link %} jewelry-card__media--linked{% endif %}"
-       {% if has_pdp_link %}tabindex="0" role="link" aria-label="View {{ card_name | escape }} product page"{% endif %}>
-
-    {%- if card_model_url != blank -%}
-      <model-viewer
-        class="jewelry-card__viewer"
-        src="{{ card_model_url }}"
-        {% if card_poster_url != blank %}poster="{{ card_poster_url }}"{% endif %}
-        reveal="{{ reveal_mode }}"
-        loading="lazy"
-        {% if mv_animation != 'sway' %}auto-rotate
-        auto-rotate-delay="500"
-        rotation-per-second="{{ mv_rotate }}"{% endif %}
-        interaction-prompt="none"
-        environment-image="https://cdn.jsdelivr.net/gh/google/model-viewer@v4.0.0/packages/shared-assets/environments/aircraft_workshop_01_1k.hdr"
-        tone-mapping="agx"
-        shadow-intensity="{{ mv_shadow }}"
-        shadow-softness="1.3"
-        exposure="{{ mv_exposure }}"
-        camera-orbit="{{ mv_camera_orbit }}"
-        field-of-view="{{ mv_fov }}"
-        touch-action="pan-y"
-        disable-tap
-        disable-pan
-        disable-zoom
-        alt="3D model of {{ card_name | escape }}">
-        {%- if card_poster_url != blank -%}
-          <img slot="poster" src="{{ card_poster_url }}" alt="{{ card_name | escape }}" loading="lazy">
-        {%- endif -%}
-        <button slot="poster-button"
-                class="jewelry-card__reveal-btn"
-                type="button"
-                aria-label="Load 3D model of {{ card_name | escape }}">
-          <span class="jewelry-card__reveal-icon" aria-hidden="true">↻</span>
-          <span class="jewelry-card__reveal-text">View in 3D</span>
-        </button>
-      </model-viewer>
-    {%- elsif card_poster_url != blank -%}
-      {%- comment -%} No GLB yet → gracefully show the product photo. {%- endcomment -%}
+    {%- if card_poster_url != blank -%}
       <img class="jewelry-card__fallback-img"
            src="{{ card_poster_url }}"
            alt="{{ card_name | escape }}"
            loading="lazy">
     {%- else -%}
       <div class="jewelry-card__placeholder">
-        <span>3D model coming soon</span>
+        <span>Photo coming soon</span>
       </div>
     {%- endif -%}
 
@@ -161,7 +74,7 @@
         {%- endif -%}
       </div>
     {%- endif -%}
-  </div>
+  {%- if has_pdp_link -%}</a>{%- else -%}</div>{%- endif -%}
 
   <div class="jewelry-card__meta">
     <h3 class="jewelry-card__name">{{ card_name | escape }}</h3>

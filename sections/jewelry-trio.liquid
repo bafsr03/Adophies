@@ -20,14 +20,25 @@
 <section class="charm-trio" data-section-id="{{ section.id }}" data-section-type="jewelry-trio">
 
   <!-- ============ HEADER ============ -->
-  <header class="charm-trio__hero" data-reveal>
-    <span class="charm-trio__hero-eyebrow">{{ section.settings.hero_eyebrow | escape | default: 'Adophies / Jewelry' }}</span>
-    <h1 class="charm-trio__hero-title">{{ section.settings.hero_title | default: 'Jewelry, <em>in motion</em>.' }}</h1>
-    <p class="charm-trio__hero-sub">{{ section.settings.hero_sub | default: 'Drag any piece to spin it. Hand-picked metal and stones that catch the light from every angle.' }}</p>
-    <div class="charm-trio__nav" aria-label="Jump to category">
-      <a href="#cat-earrings">Earrings</a>
-      <a href="#cat-rings">Rings</a>
-      <a href="#cat-bracelets">Bracelets</a>
+  {%- assign has_hero_image = false -%}
+  {%- if section.settings.hero_image != blank -%}{%- assign has_hero_image = true -%}{%- endif -%}
+  <header class="charm-trio__hero{% if has_hero_image %} charm-trio__hero--split{% endif %}" data-reveal>
+    {%- if has_hero_image -%}
+      <div class="charm-trio__hero-media">
+        <img src="{{ section.settings.hero_image | img_url: '1200x' }}"
+             alt="{{ section.settings.hero_title | strip_html | escape }}"
+             loading="lazy">
+      </div>
+    {%- endif -%}
+    <div class="charm-trio__hero-text">
+      <span class="charm-trio__hero-eyebrow">{{ section.settings.hero_eyebrow | escape | default: 'Adophies / Jewelry' }}</span>
+      <h1 class="charm-trio__hero-title">{{ section.settings.hero_title | default: 'Jewelry, made to be worn.' }}</h1>
+      <p class="charm-trio__hero-sub">{{ section.settings.hero_sub | default: 'Hand-picked metal and stones, photographed up close so you can see every detail.' }}</p>
+      <div class="charm-trio__nav" aria-label="Jump to category">
+        <a href="#cat-earrings">Earrings</a>
+        <a href="#cat-rings">Rings</a>
+        <a href="#cat-bracelets">Bracelets</a>
+      </div>
     </div>
   </header>
 
@@ -39,15 +50,14 @@
         <div>
           <span class="charm-cat__eyebrow">For the ears</span>
           <h2 class="charm-cat__title">Earrings.</h2>
-          <p class="charm-cat__body">Drag, spin, zoom. Pick the pair that catches the light the way you want it to.</p>
+          <p class="charm-cat__body">Everyday pairs and statement drops, photographed up close so you can find the ones that feel like you.</p>
         </div>
       </div>
       <div class="charm-cat__grid charm-cat__grid--earrings">
         {%- for block in earrings -%}
-          {%- assign card_model_url = block.settings.model_url -%}
-          {%- assign card_poster_url = block.settings.poster | img_url: '600x' -%}
-          {%- if block.settings.poster == blank and block.settings.poster_url != blank -%}
-            {%- assign card_poster_url = block.settings.poster_url -%}
+          {%- assign card_poster_url = '' -%}
+          {%- if block.settings.poster != blank -%}
+            {%- assign card_poster_url = block.settings.poster | img_url: '900x' -%}
           {%- endif -%}
           {%- assign card_name = block.settings.name -%}
           {%- assign card_price = block.settings.price -%}
@@ -55,13 +65,6 @@
           {%- assign card_dimensions = block.settings.dimensions -%}
           {%- assign card_product_url = block.settings.product_url -%}
           {%- assign card_id = block.id -%}
-          {%- assign card_eager = 'false' -%}
-          {%- comment -%} Earrings: front-facing sway (no 360 spin). CSS scales the model down. {%- endcomment -%}
-          {%- assign card_camera_orbit = '0deg 78deg 145%' -%}
-          {%- assign card_min_orbit = 'auto auto 110%' -%}
-          {%- assign card_max_orbit = 'auto auto 180%' -%}
-          {%- assign card_fov = '26deg' -%}
-          {%- assign card_animation = 'sway' -%}
           {% include 'jewelry-model-card' %}
         {%- endfor -%}
       </div>
@@ -79,10 +82,9 @@
       </div>
       <div class="charm-cat__grid charm-cat__grid--rings">
         {%- for block in rings -%}
-          {%- assign card_model_url = block.settings.model_url -%}
-          {%- assign card_poster_url = block.settings.poster | img_url: '600x' -%}
-          {%- if block.settings.poster == blank and block.settings.poster_url != blank -%}
-            {%- assign card_poster_url = block.settings.poster_url -%}
+          {%- assign card_poster_url = '' -%}
+          {%- if block.settings.poster != blank -%}
+            {%- assign card_poster_url = block.settings.poster | img_url: '900x' -%}
           {%- endif -%}
           {%- assign card_name = block.settings.name -%}
           {%- assign card_price = block.settings.price -%}
@@ -90,13 +92,6 @@
           {%- assign card_dimensions = block.settings.dimensions -%}
           {%- assign card_product_url = block.settings.product_url -%}
           {%- assign card_id = block.id -%}
-          {%- assign card_eager = 'false' -%}
-          {%- comment -%} Rings: 360 spin. CSS scales the model down. {%- endcomment -%}
-          {%- assign card_camera_orbit = '0deg 75deg 145%' -%}
-          {%- assign card_min_orbit = 'auto auto 110%' -%}
-          {%- assign card_max_orbit = 'auto auto 180%' -%}
-          {%- assign card_fov = '26deg' -%}
-          {%- assign card_animation = 'rotate' -%}
           {% include 'jewelry-model-card' %}
         {%- endfor -%}
       </div>
@@ -116,10 +111,9 @@
       </div>
       <div class="charm-cat__grid charm-cat__grid--bracelets">
         {%- for block in bracelets -%}
-          {%- assign card_model_url = block.settings.model_url -%}
-          {%- assign card_poster_url = block.settings.poster | img_url: '600x' -%}
-          {%- if block.settings.poster == blank and block.settings.poster_url != blank -%}
-            {%- assign card_poster_url = block.settings.poster_url -%}
+          {%- assign card_poster_url = '' -%}
+          {%- if block.settings.poster != blank -%}
+            {%- assign card_poster_url = block.settings.poster | img_url: '900x' -%}
           {%- endif -%}
           {%- assign card_name = block.settings.name -%}
           {%- assign card_price = block.settings.price -%}
@@ -127,13 +121,6 @@
           {%- assign card_dimensions = block.settings.dimensions -%}
           {%- assign card_product_url = block.settings.product_url -%}
           {%- assign card_id = block.id -%}
-          {%- assign card_eager = 'false' -%}
-          {%- comment -%} Bracelets: tilt the camera + pull it closer for a more dynamic, zoomed-in frame. {%- endcomment -%}
-          {%- assign card_camera_orbit = '-28deg 60deg 105%' -%}
-          {%- assign card_min_orbit = 'auto auto 85%' -%}
-          {%- assign card_max_orbit = 'auto auto 160%' -%}
-          {%- assign card_fov = '22deg' -%}
-          {%- assign card_animation = 'rotate' -%}
           {% include 'jewelry-model-card' %}
         {%- endfor -%}
       </div>
@@ -141,27 +128,25 @@
   {%- endif -%}
 </section>
 
-<script src="{{ 'jewelry-3d.js' | asset_url }}" defer></script>
-
 {% schema %}
 {
   "name": "Jewelry trio",
   "settings": [
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image",
+      "info": "Large lifestyle/editorial photo shown at the top, next to the intro text. Upload your own here." },
     { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "Adophies / Jewelry" },
     { "type": "richtext", "id": "hero_title", "label": "Hero title (HTML)",
-      "default": "<p>Jewelry, <em>in motion</em>.</p>" },
+      "default": "<p>Jewelry, made to be worn.</p>" },
     { "type": "textarea", "id": "hero_sub", "label": "Hero subtitle",
-      "default": "Drag any piece to spin it. Hand-picked metal and stones that catch the light from every angle." }
+      "default": "Hand-picked metal and stones, photographed up close so you can see every detail." }
   ],
   "blocks": [
     {
       "type": "earring",
       "name": "Earring",
       "settings": [
-        { "type": "url", "id": "model_url", "label": "GLB file URL (Shopify Files CDN)",
-          "info": "Paste the direct .glb URL. NOT a Shopify model preview page URL — it must end in .glb" },
-        { "type": "image_picker", "id": "poster", "label": "Poster image" },
-        { "type": "url", "id": "poster_url", "label": "Poster URL (alt)" },
+        { "type": "image_picker", "id": "poster", "label": "Product image",
+          "info": "Upload the product photo. You can swap it any time here." },
         { "type": "text", "id": "name", "label": "Name", "default": "Earring" },
         { "type": "text", "id": "price", "label": "Price", "default": "$48" },
         { "type": "text", "id": "material", "label": "Material", "default": "14k Gold-filled" },
@@ -173,10 +158,8 @@
       "type": "ring",
       "name": "Ring",
       "settings": [
-        { "type": "url", "id": "model_url", "label": "GLB file URL (Shopify Files CDN)",
-          "info": "Paste the direct .glb URL. NOT a Shopify model preview page URL — it must end in .glb" },
-        { "type": "image_picker", "id": "poster", "label": "Poster image" },
-        { "type": "url", "id": "poster_url", "label": "Poster URL (alt)" },
+        { "type": "image_picker", "id": "poster", "label": "Product image",
+          "info": "Upload the product photo. You can swap it any time here." },
         { "type": "text", "id": "name", "label": "Name", "default": "Ring" },
         { "type": "text", "id": "price", "label": "Price", "default": "$64" },
         { "type": "text", "id": "material", "label": "Material", "default": "14k Gold-filled" },
@@ -188,10 +171,8 @@
       "type": "bracelet",
       "name": "Bracelet",
       "settings": [
-        { "type": "url", "id": "model_url", "label": "GLB file URL (Shopify Files CDN)",
-          "info": "Paste the direct .glb URL. NOT a Shopify model preview page URL — it must end in .glb" },
-        { "type": "image_picker", "id": "poster", "label": "Poster image" },
-        { "type": "url", "id": "poster_url", "label": "Poster URL (alt)" },
+        { "type": "image_picker", "id": "poster", "label": "Product image",
+          "info": "Upload the product photo. You can swap it any time here." },
         { "type": "text", "id": "name", "label": "Name", "default": "Bracelet" },
         { "type": "text", "id": "price", "label": "Price", "default": "$84" },
         { "type": "text", "id": "material", "label": "Material", "default": "14k Gold-filled" },

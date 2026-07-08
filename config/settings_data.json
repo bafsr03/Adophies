@@ -464,7 +464,7 @@
         "settings": {
           "eyebrow": "The Charm Bar",
           "title": "Pieces that move with you",
-          "subtitle": "Hover, spin, and explore. Each piece hand-curated for the girls who love pretty things.",
+          "subtitle": "Hand-curated pieces for the girls who love pretty things.",
           "cta_label": "View the full Jewelry collection",
           "cta_link": "/pages/jewelry"
         }
@@ -537,7 +537,7 @@
         "settings": {
           "eyebrow": "The Adophies Charm Bar",
           "title": "Build your own little world",
-          "subtitle": "Click any piece to spin it, zoom in, and see how it's made. Add the ones that feel like you."
+          "subtitle": "Explore each piece up close. Add the ones that feel like you."
         }
       },
       "jewelry-trio": {
@@ -743,8 +743,8 @@
         ],
         "settings": {
           "hero_eyebrow": "Adophies / Jewelry",
-          "hero_title": "<p>Jewelry, <em>in motion</em>.</p>",
-          "hero_sub": "Drag any piece to spin it. Hand-picked metal and stones that catch the light from every angle."
+          "hero_title": "<p>Jewelry, <em>made to be worn</em>.</p>",
+          "hero_sub": "Hand-picked metal and stones, photographed up close so you can see every detail."
         }
       },
       "list-collections-template": {

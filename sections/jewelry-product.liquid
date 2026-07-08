@@ -2,48 +2,11 @@
   Adophies — Jewelry product page.
 
   Two-column layout:
-    Left: media stage (toggles between 3D viewer + product images), thumbnail rail.
+    Left: product image stage + thumbnail rail (images from the product's Media).
     Right: vendor, title, price, description, specs, variant selector, qty, ATC + Buy now.
-
-  3D model URL is read from product metafield `custom.model_url`.
 {% endcomment %}
 
-<link rel="stylesheet" href="{{ 'jewelry-3d.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'jewelry-product.css' | asset_url }}">
-
-{%- comment -%}
-  3D model URL resolution order (first hit wins):
-    1. product.metafields.custom.model_url       (URL or single line text)
-    2. Native Shopify 3D media uploaded to the product (.glb file in Media section)
-    3. section.settings.fallback_model_url       (theme editor override)
-
-  We stringify the metafield via `append: ''` because URL-type metafields return
-  a Liquid object that is truthy even when the underlying value is empty.
-{%- endcomment -%}
-{%- capture model_url -%}{{ product.metafields.custom.model_url }}{%- endcapture -%}
-{%- assign model_url = model_url | strip -%}
-
-{%- comment -%} Shopify sometimes auto-prefixes the key with "custom_"; check that too. {%- endcomment -%}
-{%- if model_url == '' -%}
-  {%- capture model_url -%}{{ product.metafields.custom.custom_model_url }}{%- endcapture -%}
-  {%- assign model_url = model_url | strip -%}
-{%- endif -%}
-
-{%- if model_url == '' -%}
-  {%- for m in product.media -%}
-    {%- if m.media_type == 'model' -%}
-      {%- for s in m.sources -%}
-        {%- if s.format == 'glb' and model_url == '' -%}
-          {%- assign model_url = s.url -%}
-        {%- endif -%}
-      {%- endfor -%}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endif -%}
-
-{%- if model_url == '' and section.settings.fallback_model_url != '' -%}
-  {%- assign model_url = section.settings.fallback_model_url -%}
-{%- endif -%}
 
 {%- capture mat -%}{{ product.metafields.custom.material }}{%- endcapture -%}
 {%- assign mat = mat | strip -%}
@@ -59,11 +22,7 @@
   {%- assign dims = dims | strip -%}
 {%- endif -%}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
-{%- assign hero_poster = product.featured_media | img_url: '1400x' -%}
 {%- assign images = product.images -%}
-
-{%- comment -%} Strip native model media from images so we don't show it as a photo. {%- endcomment -%}
-{%- assign images_only = product.media | where: 'media_type', 'image' -%}
 
 <section class="jewelry-product"
          data-jewelry-product
@@ -78,42 +37,8 @@
     <!-- =================== MEDIA COLUMN =================== -->
     <div class="jewelry-product__media-col" data-reveal>
       <div class="jewelry-product__stage">
-
-        {%- if model_url != '' -%}
-          <div class="jewelry-product__media jewelry-product__media--3d is-active"
-               data-media data-media-type="3d">
-            <model-viewer
-              class="jewelry-product__viewer"
-              src="{{ model_url }}"
-              {% if hero_poster != blank %}poster="{{ hero_poster }}"{% endif %}
-              reveal="auto"
-              loading="lazy"
-              camera-controls
-              auto-rotate
-              auto-rotate-delay="800"
-              rotation-per-second="18deg"
-              interaction-prompt="none"
-              environment-image="https://cdn.jsdelivr.net/gh/google/model-viewer@v4.0.0/packages/shared-assets/environments/aircraft_workshop_01_1k.hdr"
-              tone-mapping="agx"
-              shadow-intensity="0.45"
-              shadow-softness="1.2"
-              exposure="1.7"
-              camera-orbit="0deg 75deg 140%"
-              field-of-view="28deg"
-              touch-action="pan-y"
-              disable-zoom
-              disable-pan
-              alt="3D model of {{ product.title | escape }}">
-            </model-viewer>
-
-            <div class="jewelry-product__viewer-hint">
-              <span>Drag to spin</span>
-            </div>
-          </div>
-        {%- endif -%}
-
         {%- for image in images -%}
-          <div class="jewelry-product__media jewelry-product__media--image{% if model_url == '' and forloop.first %} is-active{% endif %}"
+          <div class="jewelry-product__media jewelry-product__media--image{% if forloop.first %} is-active{% endif %}"
                data-media data-media-type="image" data-index="{{ forloop.index0 }}">
             <img src="{{ image | img_url: '1400x' }}"
                  alt="{{ image.alt | default: product.title | escape }}"
@@ -122,24 +47,13 @@
         {%- endfor -%}
       </div>
 
-      {%- if model_url != '' or images.size > 0 -%}
+      {%- if images.size > 0 -%}
         <div class="jewelry-product__thumbs" role="tablist" aria-label="Product media">
-          {%- if model_url != '' -%}
-            <button type="button"
-                    class="jewelry-product__thumb jewelry-product__thumb--3d is-active"
-                    data-thumb data-target="3d"
-                    role="tab" aria-selected="true"
-                    aria-label="View in 3D">
-              <span class="jewelry-product__thumb-3d-icon" aria-hidden="true">◐</span>
-              <span class="jewelry-product__thumb-3d-text">3D</span>
-            </button>
-          {%- endif -%}
-
           {%- for image in images -%}
             <button type="button"
-                    class="jewelry-product__thumb{% if model_url == '' and forloop.first %} is-active{% endif %}"
+                    class="jewelry-product__thumb{% if forloop.first %} is-active{% endif %}"
                     data-thumb data-target="image" data-index="{{ forloop.index0 }}"
-                    role="tab" aria-selected="{% if model_url == '' and forloop.first %}true{% else %}false{% endif %}"
+                    role="tab" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
                     aria-label="View image {{ forloop.index }}">
               <img src="{{ image | img_url: '200x' }}" alt="" loading="lazy">
             </button>
@@ -276,7 +190,6 @@
   </div>
 </section>
 
-<script src="{{ 'jewelry-3d.js' | asset_url }}" defer></script>
 <script src="{{ 'jewelry-product.js' | asset_url }}" defer></script>
 
 {% schema %}
@@ -302,21 +215,11 @@
     },
     {
       "type": "header",
-      "content": "3D model fallback"
-    },
-    {
-      "type": "url",
-      "id": "fallback_model_url",
-      "label": "Fallback GLB URL",
-      "info": "Used if the product has no custom.model_url metafield and no native 3D media. Must end in .glb"
-    },
-    {
-      "type": "header",
       "content": "Setup"
     },
     {
       "type": "paragraph",
-      "content": "Preferred: upload the .glb file directly to the product's Media section in Shopify Admin. Or set product metafields custom.model_url / custom.material / custom.dimensions."
+      "content": "Product photos come from the product's Media section in Shopify Admin. Material and dimensions can be set via the product metafields custom.material / custom.dimensions."
     }
   ],
   "presets": [
