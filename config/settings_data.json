@@ -591,13 +591,6 @@
               "product": "vermeil-three-stone-ring"
             }
           },
-          "ring_03": {
-            "type": "ring",
-            "disabled": true,
-            "settings": {
-              "product": "gemstone-pyramid-ring"
-            }
-          },
           "ring_04": {
             "type": "ring",
             "disabled": true,
@@ -609,6 +602,12 @@
             "type": "ring",
             "settings": {
               "product": "youthway-multicolor-zircon-rings"
+            }
+          },
+          "ring_03": {
+            "type": "ring",
+            "settings": {
+              "product": "gemstone-pyramid-ring"
             }
           },
           "bracelet_01": {
@@ -648,9 +647,9 @@
           "earring_06",
           "ring_01",
           "ring_02",
-          "ring_03",
           "ring_04",
           "ring_05",
+          "ring_03",
           "bracelet_01",
           "bracelet_02",
           "bracelet_03",
