@@ -616,18 +616,16 @@
               "product": "shell-pearl-snake-bracelet"
             }
           },
-          "bracelet_02": {
-            "type": "bracelet",
-            "disabled": true,
-            "settings": {
-              "product": "round-chain-bracelet"
-            }
-          },
           "bracelet_03": {
             "type": "bracelet",
-            "disabled": true,
             "settings": {
               "product": "solitaire-prism-bracelet"
+            }
+          },
+          "bracelet_02": {
+            "type": "bracelet",
+            "settings": {
+              "product": "round-chain-bracelet"
             }
           },
           "bracelet_04": {
@@ -651,8 +649,8 @@
           "ring_05",
           "ring_03",
           "bracelet_01",
-          "bracelet_02",
           "bracelet_03",
+          "bracelet_02",
           "bracelet_04"
         ],
         "settings": {
