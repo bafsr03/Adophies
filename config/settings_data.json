@@ -630,7 +630,6 @@
           },
           "bracelet_04": {
             "type": "bracelet",
-            "disabled": true,
             "settings": {
               "product": "sculptural-gold-oval-link-chain-bracelet"
             }
