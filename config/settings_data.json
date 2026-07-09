@@ -539,168 +539,104 @@
         "blocks": {
           "earring_01": {
             "type": "earring",
+            "disabled": true,
             "settings": {
-              "poster": "shopify://shop_images/EB6183B7-352F-434C-9BDF-EBE46C5653EA.png",
-              "name": "sculpted-gold-earrings",
-              "price": "$48",
-              "material": "14k Gold-filled",
-              "dimensions": "18mm x 24mm",
-              "product": "sculpted-gold-earrings",
-              "product_url": "shopify://products/sculpted-gold-earrings"
+              "product": "sculpted-gold-earrings"
             }
           },
           "earring_02": {
             "type": "earring",
+            "disabled": true,
             "settings": {
-              "name": "Hoop Earrings",
-              "price": "$48",
-              "material": "14k Gold-filled",
-              "dimensions": "18mm x 24mm",
-              "product": "hoop-earrings",
-              "product_url": "shopify://products/hoop-earrings"
+              "product": "hoop-earrings"
             }
           },
           "earring_03": {
             "type": "earring",
+            "disabled": true,
             "settings": {
-              "name": "Pavé Huggie Earrings",
-              "price": "$48",
-              "material": "14k Gold-filled",
-              "dimensions": "18mm x 24mm",
-              "product": "pave-huggie-earrings",
-              "product_url": "shopify://products/pave-huggie-earrings"
+              "product": "pave-huggie-earrings"
             }
           },
           "earring_04": {
             "type": "earring",
+            "disabled": true,
             "settings": {
-              "name": "Drop Hoop Earrings",
-              "price": "$48",
-              "material": "14k Gold-filled",
-              "dimensions": "18mm x 24mm",
-              "product": "drop-hoop-earrings",
-              "product_url": "shopify://products/drop-hoop-earrings"
+              "product": "drop-hoop-earrings"
             }
           },
           "earring_05": {
             "type": "earring",
+            "disabled": true,
             "settings": {
-              "name": "Lumière Crystal Earrings",
-              "price": "$48",
-              "material": "14k Gold-filled",
-              "dimensions": "18mm x 24mm",
-              "product": "lumiere-crystal-earrings",
-              "product_url": "shopify://products/lumiere-crystal-earrings"
+              "product": "lumiere-crystal-earrings"
             }
           },
           "earring_06": {
             "type": "earring",
+            "disabled": true,
             "settings": {
-              "name": "Solar Dome Earrings",
-              "price": "$48",
-              "material": "14k Gold-filled",
-              "dimensions": "18mm x 24mm",
-              "product": "solar-dome-earrings",
-              "product_url": "shopify://products/solar-dome-earrings"
+              "product": "solar-dome-earrings"
             }
           },
           "ring_01": {
             "type": "ring",
             "settings": {
-              "name": "Round and Marquise Cut Diamond ring",
-              "price": "$64",
-              "material": "14k Gold-filled",
-              "dimensions": "Size 6",
-              "product": "round-and-marquise-cut-diamond-ring",
-              "product_url": "shopify://products/round-and-marquise-cut-diamond-ring"
+              "product": "round-and-marquise-cut-diamond-ring"
             }
           },
           "ring_02": {
             "type": "ring",
+            "disabled": true,
             "settings": {
-              "name": "Vermeil Three Stone Ring",
-              "price": "$64",
-              "material": "14k Gold-filled",
-              "dimensions": "Size 6",
-              "product": "vermeil-three-stone-ring",
-              "product_url": "shopify://products/vermeil-three-stone-ring"
+              "product": "vermeil-three-stone-ring"
             }
           },
           "ring_03": {
             "type": "ring",
+            "disabled": true,
             "settings": {
-              "name": "Gemstone Pyramid Ring",
-              "price": "$64",
-              "material": "14k Gold-filled",
-              "dimensions": "Size 6",
-              "product": "gemstone-pyramid-ring",
-              "product_url": "shopify://products/gemstone-pyramid-ring"
+              "product": "gemstone-pyramid-ring"
             }
           },
           "ring_04": {
             "type": "ring",
+            "disabled": true,
             "settings": {
-              "name": "Studded Bubble Band Ring",
-              "price": "$64",
-              "material": "14k Gold-filled",
-              "dimensions": "Size 6",
-              "product": "studded-bubble-band-ring",
-              "product_url": "shopify://products/studded-bubble-band-ring"
+              "product": "studded-bubble-band-ring"
             }
           },
           "ring_05": {
             "type": "ring",
             "settings": {
-              "name": "Youthway Multicolor Zircon Rings",
-              "price": "$64",
-              "material": "14k Gold-filled",
-              "dimensions": "Size 6",
-              "product": "youthway-multicolor-zircon-rings",
-              "product_url": "shopify://products/youthway-multicolor-zircon-rings"
+              "product": "youthway-multicolor-zircon-rings"
             }
           },
           "bracelet_01": {
             "type": "bracelet",
             "settings": {
-              "name": "shell Pearl Snake bracelet",
-              "price": "$84",
-              "material": "14k Gold-filled",
-              "dimensions": "7\" adjustable",
-              "product": "shell-pearl-snake-bracelet",
-              "product_url": "shopify://products/shell-pearl-snake-bracelet"
+              "product": "shell-pearl-snake-bracelet"
             }
           },
           "bracelet_02": {
             "type": "bracelet",
+            "disabled": true,
             "settings": {
-              "name": "Round Chain Bracelet",
-              "price": "$84",
-              "material": "14k Gold-filled",
-              "dimensions": "7\" adjustable",
-              "product": "round-chain-bracelet",
-              "product_url": "shopify://products/round-chain-bracelet"
+              "product": "round-chain-bracelet"
             }
           },
           "bracelet_03": {
             "type": "bracelet",
+            "disabled": true,
             "settings": {
-              "name": "Solitaire Prism Bracelet",
-              "price": "$84",
-              "material": "14k Gold-filled",
-              "dimensions": "7\" adjustable",
-              "product": "solitaire-prism-bracelet",
-              "product_url": "shopify://products/solitaire-prism-bracelet"
+              "product": "solitaire-prism-bracelet"
             }
           },
           "bracelet_04": {
             "type": "bracelet",
+            "disabled": true,
             "settings": {
-              "name": "Sculptural Gold Oval Link Chain Bracelet",
-              "price": "$84",
-              "material": "14k Gold-filled",
-              "dimensions": "7\" adjustable",
-              "product": "sculptural-gold-oval-link-chain-bracelet",
-              "product_url": "shopify://products/sculptural-gold-oval-link-chain-bracelet"
+              "product": "sculptural-gold-oval-link-chain-bracelet"
             }
           }
         },
