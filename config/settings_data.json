@@ -587,7 +587,6 @@
           },
           "ring_02": {
             "type": "ring",
-            "disabled": true,
             "settings": {
               "product": "vermeil-three-stone-ring"
             }
