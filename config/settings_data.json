@@ -539,7 +539,6 @@
         "blocks": {
           "earring_01": {
             "type": "earring",
-            "disabled": true,
             "settings": {
               "product": "sculpted-gold-earrings"
             }
