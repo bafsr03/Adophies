@@ -28,7 +28,8 @@
     </a>
   </li>
   {%- comment -%} Sale tab only renders once a collection with handle "sale" has products {%- endcomment -%}
-  {%- if collections['sale'].products_count > 0 -%}
+  {%- assign sale_count = collections['sale'].products_count | default: 0 | plus: 0 -%}
+  {%- if sale_count > 0 -%}
   <li>
     <a href="{{ routes.root_url }}collections/sale" class="site-nav__link site-nav__link--sale{% if collections['sale'].url == request.path %} site-nav__link--active{% endif %}">
       <span class="site-nav__label">Sale</span>
