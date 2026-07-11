@@ -27,12 +27,20 @@
       <span class="site-nav__label">Charm Bar</span>
     </a>
   </li>
+  {%- comment -%} Sale tab only renders once a collection with handle "sale" has products {%- endcomment -%}
+  {%- if collections['sale'].products_count > 0 -%}
+  <li>
+    <a href="{{ routes.root_url }}collections/sale" class="site-nav__link site-nav__link--sale{% if collections['sale'].url == request.path %} site-nav__link--active{% endif %}">
+      <span class="site-nav__label">Sale</span>
+    </a>
+  </li>
+  {%- endif -%}
 
   {%- if nav_extra != blank -%}
     {%- for link in nav_extra.links -%}
       {%- assign label_lower = link.title | downcase -%}
       {%- assign skip = false -%}
-      {%- if label_lower contains 'women' or label_lower contains 'hat' or label_lower contains 'charm' or label_lower contains 'jewelry' or label_lower contains 'shop' -%}
+      {%- if label_lower contains 'women' or label_lower contains 'hat' or label_lower contains 'charm' or label_lower contains 'jewelry' or label_lower contains 'shop' or label_lower contains 'sale' -%}
         {%- assign skip = true -%}
       {%- endif -%}
       {%- unless skip -%}

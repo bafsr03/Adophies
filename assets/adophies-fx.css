@@ -973,6 +973,10 @@ body.adop-header-scrolled #shopify-section-header {
 }
 .mobile-nav__item--active { background-color: var(--adop-pink-50) !important; }
 
+/* SALE tab — gold so it stands out from the brown pillars but stays on-palette */
+.site-nav__link--sale .site-nav__label,
+.mobile-nav__link--sale .mobile-nav__label { color: var(--adop-gold); }
+
 /* Pad the page so sticky header doesn't overlap on jumps */
 .main-content { scroll-margin-top: 100px; }
 
