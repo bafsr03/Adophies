@@ -550,7 +550,6 @@
           },
           "earring_03": {
             "type": "earring",
-            "disabled": true,
             "settings": {
               "product": "pave-huggie-earrings"
             }
