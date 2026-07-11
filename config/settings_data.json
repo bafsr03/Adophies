@@ -556,14 +556,12 @@
           },
           "earring_04": {
             "type": "earring",
-            "disabled": true,
             "settings": {
               "product": "drop-hoop-earrings"
             }
           },
           "earring_05": {
             "type": "earring",
-            "disabled": true,
             "settings": {
               "product": "lumiere-crystal-earrings"
             }
