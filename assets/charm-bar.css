@@ -205,10 +205,10 @@
   box-shadow: 0 12px 30px rgba(84, 69, 65, 0.28);
 }
 .cb-tray__label { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.8; margin-bottom: 8px; }
-.cb-tray__items { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
+.cb-tray__items { display: flex; gap: 12px; overflow-x: auto; padding: 10px 8px 8px; }
 .cb-tray__chip {
-  position: relative; flex: none; width: 52px; height: 52px; border-radius: 12px;
-  border: none; background: #fff; padding: 5px; cursor: pointer;
+  position: relative; flex: none; width: 66px; height: 66px; border-radius: 14px;
+  border: none; background: #fff; padding: 8px; cursor: pointer;
 }
 .cb-tray__chip img { width: 100%; height: 100%; object-fit: contain; }
 .cb-tray__n { position: absolute; bottom: -4px; left: -4px; background: var(--adop-gold); color: #fff; font-size: 11px; font-weight: 700; border-radius: 999px; min-width: 18px; height: 18px; display: grid; place-items: center; padding: 0 4px; }
