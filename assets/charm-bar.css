@@ -3,6 +3,8 @@
  * Mobile-first; sticky action bar; four-step wizard.
  */
 
+.cb, .cb *, .cb *::before, .cb *::after { box-sizing: border-box; }
+
 .cb {
   --cb-radius: 20px;
   --cb-ease: var(--ease-soft, cubic-bezier(0.22, 0.61, 0.36, 1));
@@ -13,7 +15,7 @@
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 40px clamp(20px, 5vw, 84px) 140px;
+  padding: 40px clamp(20px, 5vw, 84px) 124px;
   color: var(--adop-brown);
 }
 
@@ -22,6 +24,12 @@
 .cb-blob--b { width: 460px; height: 460px; bottom: -180px; right: -160px; opacity: 0.4; }
 
 .cb > *:not(.cb-blob) { position: relative; z-index: 1; }
+
+/* Section background stays full-bleed; inner content is centered + capped so
+   sparse steps don't look lonely and the footer aligns under the content. */
+.cb-head, .cb-stepper, .cb-stage-wrap {
+  max-width: 1080px; margin-left: auto; margin-right: auto;
+}
 
 /* ---------- Head ---------- */
 .cb-head { text-align: center; margin-bottom: 26px; }
@@ -91,9 +99,14 @@
 .cb-basetab.is-active { background: var(--adop-brown); color: var(--adop-cream); }
 
 /* ---------- Cards (base + charm) ---------- */
-.cb-bases { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
-.cb-charms { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
-@media (max-width: 480px) { .cb-charms { grid-template-columns: repeat(2, 1fr); } }
+.cb-bases { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
+.cb-bases > * { flex: 0 1 240px; max-width: 260px; }
+.cb-charms { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+.cb-charms > * { flex: 0 1 170px; max-width: 182px; }
+@media (max-width: 480px) {
+  .cb-charms > * { flex-basis: calc(50% - 8px); max-width: none; }
+  .cb-bases > * { flex-basis: 300px; }
+}
 
 .cb-card {
   position: relative; display: flex; flex-direction: column; text-align: left;
@@ -185,11 +198,11 @@
 .cb-chip.is-active { background: var(--adop-gold); border-color: var(--adop-gold); color: #fff; }
 .cb-chip--fav.is-active { background: #d94b4b; border-color: #d94b4b; }
 
-/* ---------- Selected tray ---------- */
+/* ---------- Selected tray (in normal flow, compact + centered) ---------- */
 .cb-tray {
-  position: sticky; bottom: 84px; margin-top: 20px; padding: 12px 14px;
+  margin: 24px auto 0; padding: 12px 16px; max-width: 620px;
   background: var(--adop-brown); color: var(--adop-cream); border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(84, 69, 65, 0.28); z-index: 5;
+  box-shadow: 0 12px 30px rgba(84, 69, 65, 0.28);
 }
 .cb-tray__label { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.8; margin-bottom: 8px; }
 .cb-tray__items { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
@@ -245,11 +258,12 @@
 .cb-summary__row { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--cb-line); font-size: 14px; }
 .cb-summary__total { display: flex; justify-content: space-between; padding-top: 12px; font-family: var(--font-stack-header); font-size: 22px; }
 
-/* ---------- Sticky action bar ---------- */
+/* ---------- Action bar (in-flow centered footer on desktop) ---------- */
 .cb-actionbar {
-  position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
-  z-index: 60; display: flex; align-items: center; gap: 14px;
-  width: min(680px, calc(100% - 24px)); padding: 10px 12px 10px 20px;
+  position: relative; z-index: 1;
+  display: flex; align-items: center; gap: 14px;
+  width: 100%; max-width: 680px; margin: 34px auto 0;
+  padding: 10px 12px 10px 20px;
   background: #fff; border-radius: 999px; box-shadow: 0 14px 40px rgba(84, 69, 65, 0.22);
   border: 1px solid var(--cb-line);
 }
@@ -272,11 +286,21 @@
 @keyframes cb-shake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-5px); } 40%,80% { transform: translateX(5px); } }
 .cb-actionbar__next.is-loading { opacity: 0.7; pointer-events: none; }
 
-@media (max-width: 560px) {
-  .cb { padding-bottom: 120px; }
-  .cb-actionbar { bottom: 10px; padding-left: 16px; gap: 8px; }
-  .cb-actionbar__next { padding: 13px 18px; }
-  .cb-tray { bottom: 92px; }
+/* Desktop keeps the footer in normal flow (base rule above). Mobile pins it to
+   the bottom of the viewport so the CTA is always reachable. */
+@media (min-width: 768px) {
+  .cb { padding-bottom: 48px; }
+}
+
+@media (max-width: 767px) {
+  .cb { padding-bottom: 108px; }
+  .cb .cb-actionbar {
+    position: fixed; z-index: 60;
+    left: 50%; right: auto; transform: translateX(-50%); bottom: 10px;
+    margin: 0; width: calc(100% - 20px); max-width: 680px;
+    padding-left: 16px; gap: 8px;
+  }
+  .cb .cb-actionbar__next { padding: 13px 18px; }
 }
 
 /* ---------- Reduced motion ---------- */
