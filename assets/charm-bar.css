@@ -10,9 +10,10 @@
   --cb-line: rgba(84, 69, 65, 0.14);
   position: relative;
   overflow: hidden;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 40px 18px 140px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 40px clamp(20px, 5vw, 84px) 140px;
   color: var(--adop-brown);
 }
 
