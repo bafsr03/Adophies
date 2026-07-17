@@ -1,0 +1,257 @@
+{% comment %}
+  Adophies — Charm Bar Builder.
+
+  A four-step builder (Base → Charms → Arrange → Preview) that lets shoppers
+  design a custom charm piece and add the whole thing to cart (base chain +
+  every charm, as separate line items).
+
+  DATA MODEL (see CHARM-BAR-GUIDE.md):
+    - A "bases" collection   (handle set below) — chains / bracelets / keychains
+      / safety pins. Product TYPE drives the Step-1 tab (Necklace, Bracelet, …).
+      Length shown from metafield custom.length. Optional "Metal" variant option.
+    - A "charms" collection  (handle set below) — one product per charm.
+      Size from metafield custom.size, intention from tags or custom.intention.
+      Optional "Metal" variant option. Transparent PNG image preferred.
+
+  The page is SELF-SHOWING: until both collections exist and have products, it
+  renders a friendly empty-state instead of erroring.
+{% endcomment %}
+
+{{ 'charm-bar.css' | asset_url | stylesheet_tag }}
+
+{%- assign bases_col = collections[section.settings.bases_collection] -%}
+{%- assign charms_col = collections[section.settings.charms_collection] -%}
+{%- assign bases_count = bases_col.products_count | plus: 0 -%}
+{%- assign charms_count = charms_col.products_count | plus: 0 -%}
+
+<section
+  class="cb"
+  data-charm-bar
+  data-cb-min="{{ section.settings.min_charms }}"
+  data-cb-max="{{ section.settings.max_charms }}"
+  data-cb-cart-url="{{ routes.cart_url }}"
+  data-reveal
+>
+  <div class="blob-bg blob-bg--pink cb-blob cb-blob--a"></div>
+  <div class="blob-bg blob-bg--gold cb-blob cb-blob--b"></div>
+
+  <header class="cb-head">
+    <span class="cb-eyebrow">{{ section.settings.eyebrow | escape }}</span>
+    <h1 class="cb-title">{{ section.settings.heading }}</h1>
+    <p class="cb-intro">{{ section.settings.intro }}</p>
+  </header>
+
+  {%- if bases_count == 0 or charms_count == 0 -%}
+    {%- comment -%} Empty-state — no products yet. {%- endcomment -%}
+    <div class="cb-empty">
+      <div class="cb-empty__spinner">
+        {%- assign spinner_size = 96 -%}
+        {% include 'cocktail-spinner' %}
+      </div>
+      <h2 class="cb-empty__title">{{ section.settings.empty_title }}</h2>
+      <p class="cb-empty__text">{{ section.settings.empty_text }}</p>
+    </div>
+  {%- else -%}
+
+    {%- comment -%} ---------- Catalog JSON ---------- {%- endcomment -%}
+    <script type="application/json" data-charm-bar-data>
+    {
+      "bases": [
+        {%- for product in bases_col.products -%}
+          {
+            "id": {{ product.id | json }},
+            "title": {{ product.title | json }},
+            "type": {{ product.type | default: 'Base' | json }},
+            "length": {{ product.metafields.custom.length | default: '' | json }},
+            "price": {{ product.price | json }},
+            "priceLabel": {{ product.price | money | strip_html | json }},
+            "image": {%- if product.featured_image -%}{{ product.featured_image | img_url: '700x' | json }}{%- else -%}""{%- endif -%},
+            "available": {{ product.available | json }},
+            "variants": [
+              {%- for variant in product.variants -%}
+                {
+                  "id": {{ variant.id | json }},
+                  "metal": {%- assign metal = '' -%}
+                    {%- for opt in product.options_with_values -%}
+                      {%- assign optname = opt.name | downcase -%}
+                      {%- if optname == 'metal' -%}
+                        {%- case forloop.index -%}
+                          {%- when 1 -%}{%- assign metal = variant.option1 -%}
+                          {%- when 2 -%}{%- assign metal = variant.option2 -%}
+                          {%- when 3 -%}{%- assign metal = variant.option3 -%}
+                        {%- endcase -%}
+                      {%- endif -%}
+                    {%- endfor -%}{{ metal | json }},
+                  "available": {{ variant.available | json }},
+                  "price": {{ variant.price | json }},
+                  "priceLabel": {{ variant.price | money | strip_html | json }}
+                }{%- unless forloop.last -%},{%- endunless -%}
+              {%- endfor -%}
+            ]
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ],
+      "charms": [
+        {%- for product in charms_col.products -%}
+          {%- assign intention = product.metafields.custom.intention | default: '' -%}
+          {
+            "id": {{ product.id | json }},
+            "title": {{ product.title | json }},
+            "size": {{ product.metafields.custom.size | default: '' | json }},
+            "intention": {{ intention | json }},
+            "tags": {{ product.tags | json }},
+            "price": {{ product.price | json }},
+            "priceLabel": {{ product.price | money | strip_html | json }},
+            "image": {%- if product.featured_image -%}{{ product.featured_image | img_url: '600x' | json }}{%- else -%}""{%- endif -%},
+            "available": {{ product.available | json }},
+            "variants": [
+              {%- for variant in product.variants -%}
+                {
+                  "id": {{ variant.id | json }},
+                  "metal": {%- assign metal = '' -%}
+                    {%- for opt in product.options_with_values -%}
+                      {%- assign optname = opt.name | downcase -%}
+                      {%- if optname == 'metal' -%}
+                        {%- case forloop.index -%}
+                          {%- when 1 -%}{%- assign metal = variant.option1 -%}
+                          {%- when 2 -%}{%- assign metal = variant.option2 -%}
+                          {%- when 3 -%}{%- assign metal = variant.option3 -%}
+                        {%- endcase -%}
+                      {%- endif -%}
+                    {%- endfor -%}{{ metal | json }},
+                  "available": {{ variant.available | json }},
+                  "price": {{ variant.price | json }},
+                  "priceLabel": {{ variant.price | money | strip_html | json }}
+                }{%- unless forloop.last -%},{%- endunless -%}
+              {%- endfor -%}
+            ]
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    }
+    </script>
+
+    {%- comment -%} ---------- Stepper ---------- {%- endcomment -%}
+    <ol class="cb-stepper" aria-label="Builder steps">
+      <li class="cb-stepper__item is-active" data-cb-step="1"><span class="cb-stepper__dot">1</span><span class="cb-stepper__label">{{ section.settings.step1_label }}</span></li>
+      <li class="cb-stepper__item" data-cb-step="2"><span class="cb-stepper__dot">2</span><span class="cb-stepper__label">{{ section.settings.step2_label }}</span></li>
+      <li class="cb-stepper__item" data-cb-step="3"><span class="cb-stepper__dot">3</span><span class="cb-stepper__label">{{ section.settings.step3_label }}</span></li>
+      <li class="cb-stepper__item" data-cb-step="4"><span class="cb-stepper__dot">4</span><span class="cb-stepper__label">{{ section.settings.step4_label }}</span></li>
+    </ol>
+
+    <div class="cb-stage-wrap">
+      {%- comment -%} ---------- Step 1 · Base ---------- {%- endcomment -%}
+      <div class="cb-panel is-active" data-cb-panel="1">
+        <div class="cb-panel__head">
+          <h2 class="cb-panel__title">{{ section.settings.step1_heading }}</h2>
+          <p class="cb-panel__sub">{{ section.settings.step1_sub }}</p>
+        </div>
+        <div class="cb-basetabs" data-cb-base-tabs role="tablist"></div>
+        <div class="cb-bases" data-cb-bases></div>
+      </div>
+
+      {%- comment -%} ---------- Step 2 · Charms ---------- {%- endcomment -%}
+      <div class="cb-panel" data-cb-panel="2" hidden>
+        <div class="cb-panel__head">
+          <h2 class="cb-panel__title">{{ section.settings.step2_heading }}</h2>
+          <p class="cb-panel__sub">{{ section.settings.step2_sub }}</p>
+        </div>
+        <div class="cb-toolbar">
+          <label class="cb-search">
+            {% include 'icon-search' %}
+            <input type="search" placeholder="Search charms…" data-cb-search aria-label="Search charms">
+          </label>
+          <div class="cb-metal" data-cb-metal hidden>
+            <button type="button" class="cb-metal__btn is-active" data-cb-metal-btn="Gold">Gold</button>
+            <button type="button" class="cb-metal__btn" data-cb-metal-btn="Silver">Silver</button>
+          </div>
+        </div>
+        <div class="cb-filters" data-cb-filters></div>
+        <div class="cb-charms" data-cb-charms></div>
+        <div class="cb-tray" data-cb-tray hidden>
+          <span class="cb-tray__label" data-cb-tray-label></span>
+          <div class="cb-tray__items" data-cb-tray-items></div>
+        </div>
+      </div>
+
+      {%- comment -%} ---------- Step 3 · Arrange ---------- {%- endcomment -%}
+      <div class="cb-panel" data-cb-panel="3" hidden>
+        <div class="cb-panel__head">
+          <h2 class="cb-panel__title">{{ section.settings.step3_heading }}</h2>
+          <p class="cb-panel__sub">{{ section.settings.step3_sub }}</p>
+        </div>
+        <div class="cb-hint" data-cb-hint>{{ section.settings.step3_hint }}</div>
+        <div class="cb-stage" data-cb-stage data-cb-stage-arrange>
+          <img class="cb-stage__base" data-cb-stage-base alt="" draggable="false" width="620" height="620">
+          <div class="cb-stage__layer" data-cb-layer></div>
+        </div>
+      </div>
+
+      {%- comment -%} ---------- Step 4 · Preview ---------- {%- endcomment -%}
+      <div class="cb-panel" data-cb-panel="4" hidden>
+        <div class="cb-panel__head">
+          <h2 class="cb-panel__title">{{ section.settings.step4_heading }}</h2>
+          <p class="cb-panel__sub">{{ section.settings.step4_sub }}</p>
+        </div>
+        <div class="cb-stage cb-stage--preview" data-cb-stage-preview>
+          <img class="cb-stage__base" data-cb-preview-base alt="" draggable="false" width="620" height="620">
+          <div class="cb-stage__layer" data-cb-preview-layer></div>
+        </div>
+        <div class="cb-summary" data-cb-summary></div>
+      </div>
+    </div>
+
+    {%- comment -%} ---------- Sticky action bar ---------- {%- endcomment -%}
+    <div class="cb-actionbar" data-cb-actionbar>
+      <button type="button" class="cb-actionbar__back" data-cb-prev hidden>← Back</button>
+      <div class="cb-actionbar__meta">
+        <span class="cb-actionbar__count" data-cb-count></span>
+        <span class="cb-actionbar__total" data-cb-total></span>
+      </div>
+      <button type="button" class="cb-actionbar__next" data-cb-next data-magnetic="0.2">
+        <span data-cb-next-label>Continue</span> →
+      </button>
+    </div>
+  {%- endif -%}
+</section>
+
+{%- if bases_count > 0 and charms_count > 0 -%}
+  <script src="{{ 'charm-bar.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Charm Bar Builder",
+  "settings": [
+    { "type": "header", "content": "Collections" },
+    { "type": "text", "id": "bases_collection", "label": "Bases collection handle", "default": "charm-bar-bases", "info": "Chains / bracelets / keychains / safety pins. Product TYPE becomes the Step-1 tab." },
+    { "type": "text", "id": "charms_collection", "label": "Charms collection handle", "default": "charm-bar-charms", "info": "One product per charm." },
+    { "type": "header", "content": "Rules" },
+    { "type": "range", "id": "min_charms", "label": "Minimum charms", "min": 0, "max": 10, "step": 1, "default": 1 },
+    { "type": "range", "id": "max_charms", "label": "Maximum charms", "min": 1, "max": 20, "step": 1, "default": 10 },
+    { "type": "header", "content": "Intro" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Adophies / Charm Bar" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Build your charm bar" },
+    { "type": "textarea", "id": "intro", "label": "Intro text", "default": "Pick a base, choose your charms, arrange them just so — then make it yours." },
+    { "type": "header", "content": "Step labels" },
+    { "type": "text", "id": "step1_label", "label": "Step 1 label", "default": "Base" },
+    { "type": "text", "id": "step2_label", "label": "Step 2 label", "default": "Charms" },
+    { "type": "text", "id": "step3_label", "label": "Step 3 label", "default": "Arrange" },
+    { "type": "text", "id": "step4_label", "label": "Step 4 label", "default": "Preview" },
+    { "type": "header", "content": "Step copy" },
+    { "type": "text", "id": "step1_heading", "label": "Step 1 heading", "default": "Choose your chain" },
+    { "type": "text", "id": "step1_sub", "label": "Step 1 subtext", "default": "Pick the base you'd like to build on — switch metals later without losing your charms." },
+    { "type": "text", "id": "step2_heading", "label": "Step 2 heading", "default": "Add your charms" },
+    { "type": "text", "id": "step2_sub", "label": "Step 2 subtext", "default": "Tap to add — build your story one charm at a time." },
+    { "type": "text", "id": "step3_heading", "label": "Step 3 heading", "default": "Arrange your piece" },
+    { "type": "text", "id": "step3_sub", "label": "Step 3 subtext", "default": "Drag charms to place them, twist the handle to rotate, tap ✕ to remove." },
+    { "type": "text", "id": "step3_hint", "label": "Step 3 hint chip", "default": "Drag to move · twist the handle to rotate" },
+    { "type": "text", "id": "step4_heading", "label": "Step 4 heading", "default": "Your piece" },
+    { "type": "text", "id": "step4_sub", "label": "Step 4 subtext", "default": "Looking good. Ready when you are." },
+    { "type": "header", "content": "Empty state (no products yet)" },
+    { "type": "text", "id": "empty_title", "label": "Empty title", "default": "The Charm Bar is being stocked" },
+    { "type": "textarea", "id": "empty_text", "label": "Empty text", "default": "We're adding chains and charms right now. Check back soon to build your own." }
+  ],
+  "presets": [{ "name": "Charm Bar Builder" }]
+}
+{% endschema %}
