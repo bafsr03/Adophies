@@ -232,7 +232,7 @@
 .cb-stage__layer { position: absolute; inset: 0; }
 
 .cb-charm {
-  position: absolute; width: clamp(46px, 12vw, 74px); height: clamp(46px, 12vw, 74px);
+  position: absolute; width: clamp(78px, 17vw, 116px); height: clamp(78px, 17vw, 116px);
   margin: 0; transform: translate(-50%, -50%); touch-action: none; cursor: grab;
   transition: left 0.5s var(--cb-bounce), top 0.5s var(--cb-bounce);
 }
@@ -245,10 +245,11 @@
 }
 .cb-charm.is-active .cb-charm__ring { opacity: 1; transform: scale(1); }
 .cb-charm__remove, .cb-charm__rotate {
-  position: absolute; width: 28px; height: 28px; border-radius: 50%; border: none;
-  display: none; place-items: center; cursor: pointer; z-index: 21; font-size: 15px; padding: 0;
+  position: absolute; width: 28px; height: 28px; border-radius: 50%; border: none; padding: 0;
+  display: none; align-items: center; justify-content: center; line-height: 1;
+  cursor: pointer; z-index: 21; font-size: 15px;
 }
-.cb-charm.is-active .cb-charm__remove, .cb-charm.is-active .cb-charm__rotate { display: grid; }
+.cb-charm.is-active .cb-charm__remove, .cb-charm.is-active .cb-charm__rotate { display: flex; }
 .cb-charm__remove { top: -26px; right: -26px; background: #fff; color: #d94b4b; box-shadow: 0 3px 8px rgba(0,0,0,0.18); }
 .cb-charm__rotate { bottom: -26px; left: 50%; transform: translateX(-50%); background: #d94b4b; color: #fff; cursor: grab; }
 
