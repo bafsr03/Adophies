@@ -152,8 +152,9 @@
 .cb-card--charm { cursor: default; }
 .cb-card__fav {
   position: absolute; top: 8px; left: 8px; width: 30px; height: 30px; border-radius: 50%;
-  border: none; background: rgba(255, 255, 255, 0.85); color: var(--adop-pink-300, #f5a48a);
+  border: none; padding: 0; background: rgba(255, 255, 255, 0.85); color: var(--adop-pink-300, #f5a48a);
   font-size: 15px; line-height: 1; cursor: pointer; z-index: 2; backdrop-filter: blur(3px);
+  display: flex; align-items: center; justify-content: center;
   transition: transform 0.25s var(--cb-bounce), color 0.25s var(--cb-ease);
 }
 .cb-card__fav:hover { transform: scale(1.12); }
@@ -161,11 +162,13 @@
 .cb-card__count {
   position: absolute; top: 8px; right: 8px; min-width: 22px; height: 22px; padding: 0 6px;
   border-radius: 999px; background: var(--adop-brown); color: var(--adop-cream);
-  font-size: 12px; font-weight: 700; display: grid; place-items: center; z-index: 2;
+  font-size: 12px; font-weight: 700; line-height: 1;
+  display: flex; align-items: center; justify-content: center; z-index: 2;
 }
 .cb-card__add {
   position: absolute; bottom: 10px; right: 10px; width: 40px; height: 40px; border-radius: 50%;
-  border: none; background: var(--adop-gold); color: #fff; font-size: 24px; line-height: 1;
+  border: none; padding: 0; background: var(--adop-gold); color: #fff; font-size: 24px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
   cursor: pointer; z-index: 3; box-shadow: 0 6px 16px rgba(222, 176, 113, 0.5);
   transition: transform 0.3s var(--cb-bounce), background-color 0.3s var(--cb-ease);
 }
@@ -211,8 +214,8 @@
   border: none; background: #fff; padding: 8px; cursor: pointer;
 }
 .cb-tray__chip img { width: 100%; height: 100%; object-fit: contain; }
-.cb-tray__n { position: absolute; bottom: -4px; left: -4px; background: var(--adop-gold); color: #fff; font-size: 11px; font-weight: 700; border-radius: 999px; min-width: 18px; height: 18px; display: grid; place-items: center; padding: 0 4px; }
-.cb-tray__x { position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; border-radius: 50%; background: #d94b4b; color: #fff; font-size: 13px; display: grid; place-items: center; }
+.cb-tray__n { position: absolute; bottom: -4px; left: -4px; background: var(--adop-gold); color: #fff; font-size: 11px; font-weight: 700; line-height: 1; border-radius: 999px; min-width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; padding: 0 4px; }
+.cb-tray__x { position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; border-radius: 50%; background: #d94b4b; color: #fff; font-size: 14px; line-height: 1; display: flex; align-items: center; justify-content: center; }
 
 /* ---------- Arrange / preview stage ---------- */
 .cb-hint {
