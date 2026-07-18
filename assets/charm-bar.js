@@ -90,7 +90,7 @@
       if (!charm) return;
       state.placed.push({
         uid: uidSeq++, charmId: p.charmId, variantId: variantFor(charm).id,
-        x: p.x, y: p.y, rot: p.rot || 0, scale: p.scale || 1, moved: !!p.moved
+        x: p.x, y: p.y, rot: p.rot || 0, scale: scaleForCharm(charm), moved: !!p.moved
       });
     });
   }
@@ -108,6 +108,50 @@
   }
   function baseProduct() { return state.baseId ? basesById[state.baseId] : null; }
   function baseVariant() { var b = baseProduct(); return b ? variantFor(b) : null; }
+
+  /* ---- Physical charm sizing ----
+     Charms render on the base at a scale that mirrors the real millimetre
+     size the store measures them at, so shoppers see true relative size and
+     displacement.
+       XS / micro 8mm · S 12mm · M 15mm · L 22mm
+     Sizes are mapped across a comfortable visual band rather than raw ratio:
+     the smallest (8mm) sits at MIN_SCALE so a micro charm still reads clearly,
+     the largest (22mm) fills the slot at 1.0, and S/M step between. */
+  var SIZE_MM = { xs: 8, micro: 8, s: 12, small: 12, m: 15, medium: 15, l: 22, large: 22, xl: 26 };
+  var MIN_MM = 8;          // smallest size we map from
+  var MAX_MM = 22;         // largest size we map from (fills the slot)
+  var MIN_SCALE = 0.74;    // scale for the smallest charm — big enough to read clearly
+  var MAX_SCALE = 1;       // scale for the largest charm
+  var DEFAULT_SCALE = 0.87; // used when a charm has no measurable size (≈ M)
+
+  function sizeToMM(size) {
+    if (size == null) return null;
+    var s = String(size).toLowerCase().trim();
+    if (!s) return null;
+    var num = s.match(/(\d+(?:\.\d+)?)\s*mm/);   // "8mm", "8 mm"
+    if (!num) num = s.match(/^(\d+(?:\.\d+)?)$/); // bare "8"
+    if (num) return parseFloat(num[1]);
+    if (SIZE_MM.hasOwnProperty(s)) return SIZE_MM[s];
+    var toks = s.split(/[^a-z]+/);               // e.g. "XS Micro"
+    for (var i = 0; i < toks.length; i++) {
+      if (SIZE_MM.hasOwnProperty(toks[i])) return SIZE_MM[toks[i]];
+    }
+    return null;
+  }
+  function scaleForCharm(charm) {
+    var mm = charm && sizeToMM(charm.size);
+    if (!mm) return DEFAULT_SCALE;
+    var t = (mm - MIN_MM) / (MAX_MM - MIN_MM);   // 0 at 8mm, 1 at 22mm
+    t = Math.max(0, Math.min(1, t));
+    return MIN_SCALE + t * (MAX_SCALE - MIN_SCALE);
+  }
+  function sizeLabel(charm) {
+    var raw = charm && charm.size ? String(charm.size).trim() : '';
+    if (!raw) return '';
+    var mm = sizeToMM(raw);
+    if (mm && raw.toLowerCase().indexOf('mm') === -1) return raw + ' · ' + mm + 'mm';
+    return raw;
+  }
 
   /* ---- Totals ---- */
   function totalCents() {
@@ -208,6 +252,7 @@
   function charmSizes() {
     var out = [];
     CATALOG.charms.forEach(function (c) { if (c.size && out.indexOf(c.size) === -1) out.push(c.size); });
+    out.sort(function (a, b) { return (sizeToMM(a) || 999) - (sizeToMM(b) || 999); });
     return out;
   }
 
@@ -254,7 +299,7 @@
           '<div class="cb-card__media">' + (c.image ? '<img src="' + esc(c.image) + '" alt="' + esc(c.title) + '" loading="lazy">' : '') + '</div>' +
           '<div class="cb-card__body">' +
             '<span class="cb-card__title">' + esc(c.title) + '</span>' +
-            '<span class="cb-card__meta">' + esc(c.size || '') + '</span>' +
+            '<span class="cb-card__meta">' + esc(sizeLabel(c)) + '</span>' +
             '<span class="cb-card__price">' + esc((v && v.priceLabel) || c.priceLabel) + '</span>' +
           '</div>' +
           '<button type="button" class="cb-card__add" data-add="' + c.id + '"' + (avail && !atCap ? '' : ' disabled') + ' aria-label="Add ' + esc(c.title) + '">+</button>' +
@@ -286,13 +331,14 @@
     node.dataset.uid = p.uid;
     node.style.left = p.x + '%';
     node.style.top = p.y + '%';
+    node.style.setProperty('--cb-scale', p.scale);
     node.innerHTML =
       '<div class="cb-charm__ring" aria-hidden="true"></div>' +
       '<div class="cb-charm__inner"><img src="' + esc(c.image) + '" alt="' + esc(c.title) + '" draggable="false"></div>' +
       (readOnly ? '' :
         '<button type="button" class="cb-charm__remove" data-cb-remove aria-label="Remove ' + esc(c.title) + '">×</button>' +
         '<span class="cb-charm__rotate" data-cb-rotate aria-hidden="true">⟲</span>');
-    node.querySelector('.cb-charm__inner').style.transform = 'rotate(' + p.rot + 'deg) scale(' + p.scale + ')';
+    node.querySelector('.cb-charm__inner').style.transform = 'rotate(' + p.rot + 'deg)';
     return node;
   }
 
@@ -381,7 +427,7 @@
   function addCharm(id) {
     if (state.placed.length >= MAX) { flashCap(); return; }
     var charm = charmsById[id]; if (!charm) return;
-    state.placed.push({ uid: uidSeq++, charmId: id, variantId: variantFor(charm).id, x: 50, y: 50, rot: 0, scale: 1, moved: false });
+    state.placed.push({ uid: uidSeq++, charmId: id, variantId: variantFor(charm).id, x: 50, y: 50, rot: 0, scale: scaleForCharm(charm), moved: false });
     placeAuto();
     renderAll();
     pulseCard(id);
@@ -474,9 +520,17 @@
   var gesture = null;
   function angleOf(e, cx, cy) { return Math.atan2(e.clientY - cy, e.clientX - cx) * 180 / Math.PI; }
 
+  // Deselect the active charm (hides its ring + rotate/remove handles).
+  // Cheap DOM-only update so it doesn't disturb positions mid-arrange.
+  function deselect() {
+    if (state.activeUid == null) return;
+    state.activeUid = null;
+    els.layer.querySelectorAll('.cb-charm.is-active').forEach(function (n) { n.classList.remove('is-active'); });
+  }
+
   els.stage.addEventListener('pointerdown', function (e) {
     var charmEl = e.target.closest('.cb-charm');
-    if (!charmEl) return;
+    if (!charmEl) { deselect(); return; }
     var uid = parseInt(charmEl.dataset.uid, 10);
     var p = state.placed.filter(function (x) { return x.uid === uid; })[0];
     if (!p) return;
@@ -516,7 +570,7 @@
     } else if (gesture.type === 'rotate') {
       var a = angleOf(e, gesture.cx, gesture.cy);
       p.rot = gesture.startRot + (a - gesture.startAngle);
-      gesture.node.querySelector('.cb-charm__inner').style.transform = 'rotate(' + p.rot + 'deg) scale(' + p.scale + ')';
+      gesture.node.querySelector('.cb-charm__inner').style.transform = 'rotate(' + p.rot + 'deg)';
     }
   });
 
@@ -528,6 +582,16 @@
   }
   els.stage.addEventListener('pointerup', endGesture);
   els.stage.addEventListener('pointercancel', endGesture);
+
+  // Tap/click anywhere that isn't a charm → deselect, so a finished
+  // arrangement reads clean (no red ring). Covers "click outside the viewer"
+  // on desktop and tapping away on mobile. Charm taps are handled above and
+  // keep their selection; this only fires for non-charm targets.
+  document.addEventListener('pointerdown', function (e) {
+    if (state.activeUid == null) return;
+    if (e.target.closest('.cb-charm')) return;
+    deselect();
+  });
 
   /* ====================================================================
      Delegated clicks

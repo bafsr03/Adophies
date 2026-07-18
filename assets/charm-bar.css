@@ -232,9 +232,16 @@
 .cb-stage__layer { position: absolute; inset: 0; }
 
 .cb-charm {
-  position: absolute; width: clamp(78px, 17vw, 116px); height: clamp(78px, 17vw, 116px);
+  --cb-scale: 1;
+  /* A full-size (L / 22mm) charm fills 30% of the stage; smaller sizes scale
+     down from there. Sized relative to the stage (not a fixed px cap) so the
+     charms stay big and proportional however wide the stage renders. */
+  --cb-charm-base: 30%;
+  position: absolute;
+  width: calc(var(--cb-charm-base) * var(--cb-scale));
+  height: calc(var(--cb-charm-base) * var(--cb-scale));
   margin: 0; transform: translate(-50%, -50%); touch-action: none; cursor: grab;
-  transition: left 0.5s var(--cb-bounce), top 0.5s var(--cb-bounce);
+  transition: left 0.5s var(--cb-bounce), top 0.5s var(--cb-bounce), width 0.3s var(--cb-ease), height 0.3s var(--cb-ease);
 }
 .cb-charm.is-active { z-index: 20; cursor: grabbing; transition: none; }
 .cb-charm__inner { width: 100%; height: 100%; transition: transform 0.12s linear; }
