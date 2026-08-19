@@ -339,6 +339,13 @@
             <small class="site-footer__copyright-content site-footer__copyright-content-powered-by">{{ bould_powered_by }}</small>
           </div>
         {%- endif -%}
+
+        {%- if social_icons and show_selectors == false -%}
+          <div class="small--hide site-footer-item-align-right">
+            <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
+            <small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ bould_powered_by }}</small>
+          </div>
+        {%- endif -%}
       </div>
 
       {%- if show_selectors -%}
