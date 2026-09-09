@@ -13,6 +13,8 @@
 
   Optional:
     card_price           e.g. "$48"
+    card_compare_price   e.g. "$96" — shown struck through next to card_price
+    card_percent_off     e.g. 50 — renders a "50% OFF" badge
     card_material        e.g. "14k Gold-filled"
     card_dimensions      e.g. "18mm x 24mm"
     card_product_url     PDP link (makes the whole card clickable + shows badge)
@@ -79,7 +81,15 @@
   <div class="jewelry-card__meta">
     <h3 class="jewelry-card__name">{{ card_name | escape }}</h3>
     {%- if card_price != blank -%}
-      <div class="jewelry-card__price">{{ card_price | escape }}</div>
+      <div class="jewelry-card__price{% if card_compare_price != blank %} jewelry-card__price--on-sale{% endif %}">
+        <span class="jewelry-card__price-current">{{ card_price | escape }}</span>
+        {%- if card_compare_price != blank -%}
+          <s class="jewelry-card__price-compare">{{ card_compare_price | escape }}</s>
+          {%- if card_percent_off > 0 -%}
+            <span class="jewelry-card__sale-badge">{{ 'products.product.percent_off_html' | t: percent: card_percent_off }}</span>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
     {%- endif -%}
     {%- if card_product_url != blank -%}
       <a href="{{ card_product_url }}" class="jewelry-card__btn">
@@ -88,3 +98,6 @@
     {%- endif -%}
   </div>
 </article>
+
+{%- assign card_compare_price = '' -%}
+{%- assign card_percent_off = 0 -%}

@@ -108,6 +108,7 @@
         regularPrice: {{ 'products.product.regular_price' | t | json }},
         salePrice: {{ 'products.product.sale_price' | t | json }},
         sale: {{ 'products.product.on_sale' | t | json }},
+        percentOff: {{ 'products.product.percent_off_html' | t: percent: '[percent]' | json }},
         fromLowestPrice: {{ 'products.product.from_lowest_price_html' | t: lowest_price: '[price]' | json }},
         vendor: {{'products.product.vendor' | t | json }},
         showMore: {{ 'general.filters.show_more' | t | json }},

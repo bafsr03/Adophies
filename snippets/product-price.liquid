@@ -21,6 +21,10 @@
   endif
 
   assign money_price = price | money
+  assign percent_off = 0
+  if compare_at_price > price and compare_at_price > 0
+    assign percent_off = compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price | round
+  endif
 -%}
 
 <dl class="price
@@ -79,7 +83,13 @@
     </div>
     <div class="price__badges">
       <span class="price__badge price__badge--sale" aria-hidden="true">
-        <span>{{ 'products.product.on_sale' | t }}</span>
+        <span data-sale-percent>
+          {%- if percent_off > 0 -%}
+            {{ 'products.product.percent_off_html' | t: percent: percent_off }}
+          {%- else -%}
+            {{ 'products.product.on_sale' | t }}
+          {%- endif -%}
+        </span>
       </span>
       <span class="price__badge price__badge--sold-out">
         <span>{{ 'products.product.sold_out' | t }}</span>

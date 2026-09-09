@@ -41,6 +41,12 @@
 
   {%- assign card_name = jpc_product.title -%}
   {%- assign card_price = jpc_product.price | money -%}
+  {%- assign card_compare_price = '' -%}
+  {%- assign card_percent_off = 0 -%}
+  {%- if jpc_product.compare_at_price > jpc_product.price and jpc_product.compare_at_price > 0 -%}
+    {%- assign card_compare_price = jpc_product.compare_at_price | money -%}
+    {%- assign card_percent_off = jpc_product.compare_at_price | minus: jpc_product.price | times: 100.0 | divided_by: jpc_product.compare_at_price | round -%}
+  {%- endif -%}
   {%- assign card_product_url = jpc_product.url -%}
   {%- assign card_poster_url = '' -%}
   {%- if jpc_product.featured_media != blank -%}

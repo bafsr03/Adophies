@@ -17,6 +17,7 @@
   --adop-pink-100: #ffe3d6;
   --adop-pink-200: #f9c8b5;
   --adop-pink-300: #f5a48a;
+  --adop-rose-600: #b8543a; /* readable sale-price red-rose (4.6:1 on cream) */
   --adop-cream:    #fffaec;
   --adop-gold:     #deb071;
   --adop-gold-soft:rgba(222,176,113,0.2);
@@ -510,8 +511,14 @@ img { transition: transform 0.6s var(--ease-soft); }
   font-weight: 600;
   letter-spacing: 0.04em;
 }
-.price--on-sale .product-price__price--sale {
-  color: var(--adop-pink-300) !important;
+/* Debut renders the sale price as .price-item--sale (the old
+   .product-price__price--sale class is no longer output). */
+.price--on-sale .price-item--sale {
+  color: var(--adop-rose-600) !important;
+}
+.price--on-sale .price-item--regular {
+  color: var(--adop-brown) !important;
+  opacity: 0.6;
 }
 
 /* Pagination */
@@ -571,13 +578,55 @@ img { transition: transform 0.6s var(--ease-soft); }
   font-weight: 600;
   letter-spacing: 0.02em;
 }
-.product-single .product-price__sale-label {
+/* Sale badge — Debut outputs .price__badge--sale, not the old
+   .product-price__sale-label. Shows the real discount, e.g. "50% OFF". */
+.price__badge--sale {
   background: var(--adop-pink-200) !important;
+  border-color: var(--adop-pink-200) !important;
   color: var(--adop-brown) !important;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  padding: 4px 10px;
+  font-size: 11px !important;
+  letter-spacing: 0.14em;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  white-space: nowrap;
+}
+.price__badges--listing .price__badge--sale {
+  font-size: 10px !important;
+  padding: 3px 8px !important;
+}
+
+/* Jewelry cards + jewelry product page sale treatment */
+.jewelry-card__price--on-sale {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.jewelry-card__price--on-sale .jewelry-card__price-current {
+  color: var(--adop-rose-600);
+}
+.jewelry-card__price-compare {
+  opacity: 0.6;
+}
+.jewelry-card__sale-badge,
+.jewelry-product__sale-badge {
+  display: inline-block;
+  background: var(--adop-pink-200);
+  color: var(--adop-brown);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 3px 8px;
   border-radius: 999px;
+  white-space: nowrap;
+}
+.jewelry-product__sale-badge {
+  font-size: 11px;
+  padding: 4px 10px;
+}
+.jewelry-product__price--sale {
+  color: var(--adop-rose-600) !important;
 }
 
 /* Variant labels and selectors */

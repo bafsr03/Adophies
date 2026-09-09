@@ -92,3 +92,37 @@ shared lighting environment.
   viewer. The grid cards stay as posters. Keeps GPU memory bounded.
 - **Reduced motion:** auto-rotate is disabled if
   `prefers-reduced-motion: reduce` is set.
+
+---
+
+# `sale.mjs` — run a percentage sale on a collection
+
+The free alternative to a bulk price app (see `SALE-GUIDE.md`). Sets `price` and
+`compare_at_price` on every variant in a collection, which is what makes the theme show
+the strikethrough, the rose sale price and the "50% OFF" badge.
+
+Needs Node >= 18 and a custom app token from **Shopify Admin → Settings → Apps and sales
+channels → Develop apps**, with the `write_products` / `read_products` scopes.
+
+```bash
+export SHOPIFY_STORE=adophies.myshopify.com
+export SHOPIFY_ADMIN_TOKEN=shpat_xxx
+
+# Preview first — prints every price change, touches nothing:
+node scripts/sale.mjs --collection sale --percent 50
+
+# Then apply:
+node scripts/sale.mjs --collection sale --percent 50 --yes
+
+# End the sale (restores the exact original prices):
+node scripts/sale.mjs --revert --yes
+```
+
+Notes:
+
+- Prices are rounded to end in **.99** ($39.99 at 50% off → $19.99).
+- The discount is always calculated from the **original** price (the compare-at price when
+  one already exists), so re-running at a different percentage never compounds.
+- Originals are written to `scripts/.sale-backup.json` before anything changes; `--revert`
+  reads that file and then renames it to `.sale-backup.json.reverted`. **Don't delete it
+  while a sale is running** — it's the only record of the pre-sale prices.

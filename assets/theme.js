@@ -7923,6 +7923,7 @@ theme.Product = (function() {
       priceContainer: '[data-price]',
       regularPrice: '[data-regular-price]',
       salePrice: '[data-sale-price]',
+      salePercent: '[data-sale-percent]',
       unitPrice: '[data-unit-price]',
       unitPriceBaseUnit: '[data-unit-price-base-unit]',
       productPolicies: '[data-product-policies]',
@@ -9020,6 +9021,9 @@ theme.Product = (function() {
       var salePrice = this.priceContainer.querySelector(
         this.selectors.salePrice
       );
+      var salePercent = this.priceContainer.querySelector(
+        this.selectors.salePercent
+      );
       var unitPrice = this.priceContainer.querySelector(
         this.selectors.unitPrice
       );
@@ -9040,6 +9044,15 @@ theme.Product = (function() {
           variant.price,
           theme.moneyFormat
         );
+        if (salePercent && variant.compare_at_price > 0) {
+          salePercent.innerHTML = theme.strings.percentOff.replace(
+            '[percent]',
+            Math.round(
+              ((variant.compare_at_price - variant.price) * 100) /
+                variant.compare_at_price
+            )
+          );
+        }
       } else {
         // Regular price
         regularPrices.forEach(function(regularPrice) {

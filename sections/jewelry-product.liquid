@@ -72,15 +72,28 @@
 
       <h1 class="jewelry-product__title">{{ product.title }}</h1>
 
+      {%- liquid
+        assign jp_on_sale = false
+        assign jp_percent_off = 0
+        if current_variant.compare_at_price > current_variant.price and current_variant.compare_at_price > 0
+          assign jp_on_sale = true
+          assign jp_percent_off = current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round
+        endif
+      -%}
       <div class="jewelry-product__price-row">
-        <span class="jewelry-product__price" data-price>
+        <span class="jewelry-product__price{% if jp_on_sale %} jewelry-product__price--sale{% endif %}" data-price>
           {{ current_variant.price | money }}
         </span>
-        {%- if current_variant.compare_at_price > current_variant.price -%}
-          <span class="jewelry-product__compare" data-compare-price>
-            {{ current_variant.compare_at_price | money }}
-          </span>
-        {%- endif -%}
+        {%- comment -%}
+          Always rendered (hidden when the selected variant isn't on sale) so the
+          strikethrough and badge can appear when switching to a variant that is.
+        {%- endcomment -%}
+        <span class="jewelry-product__compare" data-compare-price{% unless jp_on_sale %} style="display:none"{% endunless %}>
+          {{ current_variant.compare_at_price | money }}
+        </span>
+        <span class="jewelry-product__sale-badge" data-sale-percent{% unless jp_on_sale %} style="display:none"{% endunless %}>
+          {{ 'products.product.percent_off_html' | t: percent: jp_percent_off }}
+        </span>
       </div>
 
       <div class="jewelry-product__divider"></div>
@@ -141,6 +154,7 @@
                     data-variant-options="{{ variant.options | join: '||' | escape }}"
                     data-price="{{ variant.price | money }}"
                     data-compare="{{ variant.compare_at_price | money }}"
+                    data-percent="{% if variant.compare_at_price > variant.price and variant.compare_at_price > 0 %}{{ variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round }}{% endif %}"
                     data-available="{{ variant.available }}"
                     {% if variant == current_variant %}selected{% endif %}>
               {{ variant.title }} — {{ variant.price | money }}

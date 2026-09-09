@@ -72,6 +72,7 @@
     const swatches = section.querySelectorAll('[data-option-value]');
     const priceEl = section.querySelector('[data-price]');
     const compareEl = section.querySelector('[data-compare-price]');
+    const percentEl = section.querySelector('[data-sale-percent]');
     const atcBtn = section.querySelector('[data-atc]');
     const atcLabel = section.querySelector('[data-atc-label]');
 
@@ -124,13 +125,24 @@
       const opt = select.options[select.selectedIndex];
       if (!opt) return;
       if (priceEl && opt.dataset.price) priceEl.textContent = opt.dataset.price;
+      const cmp = opt.dataset.compare;
+      const onSale = !!(cmp && cmp !== '' && cmp !== opt.dataset.price && cmp !== '$0.00');
+      if (priceEl) priceEl.classList.toggle('jewelry-product__price--sale', onSale);
       if (compareEl) {
-        const cmp = opt.dataset.compare;
-        if (cmp && cmp !== '' && cmp !== opt.dataset.price && cmp !== '$0.00') {
+        if (onSale) {
           compareEl.textContent = cmp;
           compareEl.style.display = '';
         } else {
           compareEl.style.display = 'none';
+        }
+      }
+      if (percentEl) {
+        const pct = opt.dataset.percent;
+        if (onSale && pct) {
+          percentEl.textContent = pct + '% OFF';
+          percentEl.style.display = '';
+        } else {
+          percentEl.style.display = 'none';
         }
       }
       const available = opt.dataset.available === 'true';
