@@ -296,12 +296,12 @@
         "name": "Map",
         "settings": {
           "heading": "Our store",
-          "address": "<p>202 Pine ST <br/>Abilene, TX Suite 103</p><p>Tuesday - Saturday, 10:30am - 6pm<br/></p>",
+          "address": "<p>202 Pine ST&nbsp;<br/>Abilene, TX Suite 103</p><p>Tuesday - Saturday, 10:30am - 6pm<br/></p>",
           "map_address": "202 pine st abilene tx",
           "button_text": "Get directions",
           "show_pin": true,
           "api_key": "",
-          "background_image": "shopify://shop_images/Scent_bar_9.png",
+          "background_image": "shopify://shop_images/IMG_7073.jpg",
           "background_image_position": "center center"
         }
       },
