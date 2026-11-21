@@ -370,17 +370,6 @@
               "link": "shopify://collections"
             }
           },
-          "fp_h": {
-            "type": "pillar",
-            "settings": {
-              "image": "shopify://shop_images/Screenshot_2026-05-20_at_3.00.15_PM.png",
-              "fallback_asset": "pillar-hat.jpg",
-              "title": "Hat Bar",
-              "subtitle": "Pressed, burned, made yours.",
-              "cta": "Visit the Hat Bar",
-              "link": "shopify://collections"
-            }
-          },
           "fp_j": {
             "type": "pillar",
             "settings": {
@@ -404,7 +393,6 @@
         },
         "block_order": [
           "fp_w",
-          "fp_h",
           "fp_j",
           "fp_c"
         ],
@@ -464,11 +452,12 @@
       },
       "editorial_hat": {
         "type": "editorial-split",
+        "disabled": true,
         "settings": {
           "reverse": false,
           "fallback_asset": "editorial-1.jpg",
           "eyebrow": "Inside the boutique",
-          "title": "<p>The Hat Bar.<br/><em>Pressed, burned, made yours.</em></p>",
+          "title": "<p>A LITTLE CORNER DOWNTOWN<br/><em>Pressed, burned, made yours.</em></p>",
           "body": "<p>Pick the brim. Pick the band. We shape, brand and finish each hat in the shop so you walk out with something nobody else has.</p>",
           "cta_label": "Visit the Hat Bar",
           "cta_link": "shopify://collections"
@@ -519,7 +508,7 @@
           "reverse": true,
           "fallback_asset": "editorial-2.jpg",
           "eyebrow": "New worlds, soon",
-          "title": "<p>The Charm Bar.<br><em>Coming soon.</em></p>",
+          "title": "<p>The Charm Bar.<br/><em>Coming soon.</em></p>",
           "body": "<p>A new way to mix, match and build your own piece. We're building it — be the first to see it when it lands.</p>",
           "cta_label": "Browse Jewelry now",
           "cta_link": "/pages/jewelry"
