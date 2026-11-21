@@ -504,11 +504,12 @@
       },
       "editorial_charm": {
         "type": "editorial-split",
+        "disabled": true,
         "settings": {
           "reverse": true,
           "fallback_asset": "editorial-2.jpg",
           "eyebrow": "New worlds, soon",
-          "title": "<p>The Charm Bar.<br/><em>Coming soon.</em></p>",
+          "title": "",
           "body": "<p>A new way to mix, match and build your own piece. We're building it — be the first to see it when it lands.</p>",
           "cta_label": "Browse Jewelry now",
           "cta_link": "/pages/jewelry"
@@ -698,6 +699,36 @@
           "show_spinner": true,
           "spinner_link": ""
         }
+      },
+      "custom_content_GdAVpq": {
+        "type": "custom-content",
+        "blocks": {
+          "text_cKdmCW": {
+            "type": "text",
+            "settings": {
+              "title": "GROWING PRETTY, ONE SEASON AT A TIME",
+              "text": "<p>adophies is forever growing,evolving, amd finding new ways to bring pretty into your world.</p>",
+              "width": "50%",
+              "alignment": "center",
+              "align_text": "left"
+            }
+          },
+          "image_hEC86M": {
+            "type": "image",
+            "settings": {
+              "width": "50%",
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "text_cKdmCW",
+          "image_hEC86M"
+        ],
+        "name": "Custom content",
+        "settings": {
+          "title": "Custom content"
+        }
       }
     },
     "content_for_index": [
@@ -710,7 +741,8 @@
       "marquee_mid",
       "editorial_charm",
       "map_N4kRDY",
-      "newsletter_NxrfJT"
+      "newsletter_NxrfJT",
+      "custom_content_GdAVpq"
     ]
   },
   "presets": {
