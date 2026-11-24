@@ -296,12 +296,12 @@
         "name": "Map",
         "settings": {
           "heading": "Our store",
-          "address": "<p>202 Pine ST <br/>Abilene, TX Suite 103</p><p>Tuesday - Saturday, 10:30am - 6pm<br/></p>",
+          "address": "<p>202 Pine ST&nbsp;<br/>Abilene, TX Suite 103</p><p>Tuesday - Saturday, 10:30am - 6pm<br/></p>",
           "map_address": "202 pine st abilene tx",
           "button_text": "Get directions",
           "show_pin": true,
           "api_key": "",
-          "background_image": "shopify://shop_images/IMG_6802.jpg",
+          "background_image": "shopify://shop_images/IMG_7073.jpg",
           "background_image_position": "center center"
         }
       },
@@ -311,7 +311,7 @@
         "settings": {
           "title": "Featured collection",
           "collection": "new-arrivals",
-          "grid": 2,
+          "grid": 3,
           "rows": 1,
           "show_vendor": false,
           "show_view_all": false
@@ -335,7 +335,7 @@
           "mqt_p3": {
             "type": "phrase",
             "settings": {
-              "text": "Staples • night out • jewelry"
+              "text": "Hat Bar · Charm Bar · Dress Bar"
             }
           },
           "mqt_p4": {
@@ -370,18 +370,6 @@
               "link": "shopify://collections"
             }
           },
-          "fp_h": {
-            "type": "pillar",
-            "disabled": true,
-            "settings": {
-              "image": "shopify://shop_images/Screenshot_2026-05-20_at_3.00.15_PM.png",
-              "fallback_asset": "pillar-hat.jpg",
-              "title": "Hat Bar",
-              "subtitle": "Pressed, burned, made yours.",
-              "cta": "Visit the Hat Bar",
-              "link": "shopify://collections"
-            }
-          },
           "fp_j": {
             "type": "pillar",
             "settings": {
@@ -394,7 +382,6 @@
           },
           "fp_c": {
             "type": "pillar",
-            "disabled": true,
             "settings": {
               "fallback_asset": "pillar-charm.jpg",
               "title": "Charm Bar",
@@ -406,7 +393,6 @@
         },
         "block_order": [
           "fp_w",
-          "fp_h",
           "fp_j",
           "fp_c"
         ],
@@ -466,14 +452,14 @@
       },
       "editorial_hat": {
         "type": "editorial-split",
+        "disabled": true,
         "settings": {
           "reverse": false,
-          "image": "shopify://shop_images/IMG_7069.jpg",
           "fallback_asset": "editorial-1.jpg",
           "eyebrow": "Inside the boutique",
-          "title": "<p>A LITTLE CORNER OF DOWNTOWN.<br/><em>Even prettier in person.</em></p>",
-          "body": "<p>Come for the clothes, fall in love with the little things, and leave with something pretty. There's always something waiting for you at adophies.&nbsp;</p>",
-          "cta_label": "EXPLORE COLLECTIONS",
+          "title": "<p>A LITTLE CORNER DOWNTOWN<br/><em>Pressed, burned, made yours.</em></p>",
+          "body": "<p>Pick the brim. Pick the band. We shape, brand and finish each hat in the shop so you walk out with something nobody else has.</p>",
+          "cta_label": "Visit the Hat Bar",
           "cta_link": "shopify://collections"
         }
       },
@@ -483,7 +469,7 @@
           "mqm_p1": {
             "type": "phrase",
             "settings": {
-              "text": "Soft girl summer, all year"
+              "text": "Soft staples"
             }
           },
           "mqm_p2": {
@@ -501,7 +487,7 @@
           "mqm_p4": {
             "type": "phrase",
             "settings": {
-              "text": "Charm. Press. Spin."
+              "text": "year  round"
             }
           }
         },
@@ -523,7 +509,7 @@
           "reverse": true,
           "fallback_asset": "editorial-2.jpg",
           "eyebrow": "New worlds, soon",
-          "title": "<p>The Charm Bar.<br><em>Coming soon.</em></p>",
+          "title": "",
           "body": "<p>A new way to mix, match and build your own piece. We're building it — be the first to see it when it lands.</p>",
           "cta_label": "Browse Jewelry now",
           "cta_link": "/pages/jewelry"
@@ -704,7 +690,7 @@
         "type": "hero-video",
         "name": "Hero video",
         "settings": {
-          "custom_video_url": "https://cdn.shopify.com/videos/c/o/v/415d4e0bff1f45478115de182c7f124e.mp4",
+          "custom_video_url": "",
           "poster": "shopify://shop_images/IMG_7073.jpg",
           "eyebrow": "Adophies — est. for the girls",
           "title": "<p>For the girls<br/>who love <em>pretty things</em>.</p>",
@@ -713,6 +699,36 @@
           "cta_link": "",
           "show_spinner": true,
           "spinner_link": ""
+        }
+      },
+      "custom_content_GdAVpq": {
+        "type": "custom-content",
+        "blocks": {
+          "text_cKdmCW": {
+            "type": "text",
+            "settings": {
+              "title": "GROWING PRETTY, ONE SEASON AT A TIME",
+              "text": "<p>adophies is forever growing,evolving, amd finding new ways to bring pretty into your world.</p>",
+              "width": "50%",
+              "alignment": "center",
+              "align_text": "left"
+            }
+          },
+          "image_hEC86M": {
+            "type": "image",
+            "settings": {
+              "width": "50%",
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "text_cKdmCW",
+          "image_hEC86M"
+        ],
+        "name": "Custom content",
+        "settings": {
+          "title": "Custom content"
         }
       }
     },
@@ -726,7 +742,8 @@
       "marquee_mid",
       "editorial_charm",
       "map_N4kRDY",
-      "newsletter_NxrfJT"
+      "newsletter_NxrfJT",
+      "custom_content_GdAVpq"
     ]
   },
   "presets": {
